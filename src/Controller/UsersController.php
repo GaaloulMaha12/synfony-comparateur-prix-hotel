@@ -33,14 +33,10 @@ class UsersController extends AbstractController
 //        $form = $this->createFormBuilder($administrateur)
         //            ->add('Administrateur', TextType::class)
         $form = $this->createFormBuilder($administrateur)
-            ->add('nom', TextType::class, [
-                'attr' => ['class' => 'nom'],])
-            ->add('prenom', TextType::class, [
-                'attr' => ['class' => 'prenom'],])
-            ->add('email', TextType::class, [
-                'attr' => ['class' => 'email'],])
-            ->add('password', TextType::class, [
-                'attr' => ['class' => 'password'],])
+            ->add('nom', TextType::class)
+            ->add('prenom', TextType::class)
+            ->add('email', TextType::class)
+            ->add('password', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'modifier'])
             ->getForm();
 
@@ -77,14 +73,10 @@ class UsersController extends AbstractController
 
 
         $form = $this->createFormBuilder($administrateur)
-            ->add('nom', TextType::class, [
-                'attr' => ['class' => 'nom'],])
-            ->add('prenom', TextType::class, [
-                'attr' => ['class' => 'prenom'],])
-            ->add('email', TextType::class, [
-                'attr' => ['class' => 'email'],])
-            ->add('password', TextType::class, [
-                'attr' => ['class' => 'password'],])
+            ->add('nom', TextType::class)
+            ->add('prenom', TextType::class)
+            ->add('email', TextType::class)
+            ->add('password', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'modifier'])
             ->getForm();
 
