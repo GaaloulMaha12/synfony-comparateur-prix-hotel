@@ -8,10 +8,14 @@
  */
 
 namespace App\Controller;
-
+use App\Entity\Administrateur;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class UsersController extends AbstractController
 {
@@ -19,9 +23,93 @@ class UsersController extends AbstractController
     /**
      * @Route("/users", name="users")
      */
-    public function usersList()
+    public function usersList(Request $request)
     {
-        return $this->render('admin/users/usersList.html.twig');
+
+        $administrateur = new Administrateur();
+
+
+        $form = $this->createFormBuilder($administrateur)
+            //            ->add('Administrateur', TextType::class)
+            ->add('nom', TextType::class)
+            ->add('prenom', TextType::class)
+            ->add('email', TextType::class)
+            ->add('password', TextType::class)
+            ->add('save', SubmitType::class, ['label' => 'Ajouter'])
+            ->getForm();
+        $form->handleRequest($request);
+
+        $repository = $this->getDoctrine()->getRepository(Administrateur::class);
+        $usersData = $repository->findAll();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $administrateur = $form->getData();
+            $entityManager->persist($administrateur);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('users');
+        }
+
+
+        return $this->render('admin/users/usersList.html.twig', [
+            'users' => $usersData,
+            'form' => $form->createView(),
+
+        ]);
+
+
     }
 
+
+    /**
+     * @Route("/users/edit/{id}")
+     */
+    public function edit(Request $request, $id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $administrateur = $entityManager->getRepository(administrateur::class)->find($id);
+
+
+        $form = $this->createFormBuilder($administrateur)
+//            ->add('administrateur', TextType::class)
+            ->add('nom', TextType::class)
+            ->add('prenom', TextType::class)
+            ->add('email', TextType::class)
+            ->add('password', TextType::class)
+            ->add('save', SubmitType::class, ['label' => 'modifier'])
+            ->getForm();
+
+
+        $form->handleRequest($request);
+
+
+        if (!$administrateur) {
+            throw $this->createNotFoundException(
+                'No user found for id ' . $id
+            );
+        }
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $administrateur->setNom($form->getData()->getNom());
+            $administrateur->setPrenom($form->getData()->getPrenom());
+            $administrateur->setEmail($form->getData()->getEmail());
+            $administrateur->setPassword($form->getData()->getPassword());
+
+//            $utilisateur = $form->getData();
+            $entityManager->persist($administrateur);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('administrateur');
+        }
+        //
+
+
+        return $this->render('users/edit.html.twig', [
+            'form' => $form->createView(),
+
+        ]);
+
+
+    }
 }
+
