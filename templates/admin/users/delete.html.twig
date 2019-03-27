@@ -1,0 +1,22 @@
+{% extends 'admin/admin.base.html.twig' %}
+{% block content %}
+
+
+
+
+    <div class="card" style="width: 18rem;">
+
+        <div class="card-body">
+            <h5 class="card-title">are you sure ?</h5>
+
+            <div class="col-md-1">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    <a href="/users"> annuler </a>
+                </button>
+            </div>
+            <div class="col-md-1">
+                {{ form(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

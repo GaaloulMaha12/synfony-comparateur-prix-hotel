@@ -10,52 +10,40 @@
         </li>
         <li class="breadcrumb-item active">Administrateurs</li>
     </ol>
+    <div class="row">
+        <div class="col-12 col-md-8"><h3>users list here</h3></div>
+        <div class="col-6 col-md-4">
 
-    <h1>users list here </h1>
-
-
+    <button id="addNewRow" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" >ajouter administrateur</button>
+        </div>
+    </div>
     <table class="table table-striped table-dark">
         <thead>
 
         <tr>
-            <th scope="col">#</th>
+            <th scope="col" >#</th>
             <th scope="col">Nom</th>
             <th scope="col">Prenom</th>
             <th scope="col">Adresse e-mail </th>
-            <th scope="col">Password </th>
-            <th scope="col"><button id="addNewRow" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" >ajouter administrateur</button></th>
+            <th scope="col">Action </th>
 
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+    {%for user in users %}
 
-            <td><button type="submit"> modifier    </button>
-                <button type="submit"> supprimer    </button> </td>
-        </tr>
         <tr>
-            <th scope="row">2</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><button type="submit"> modifier    </button>
-                <button type="submit"> supprimer    </button> </td>
+
+            <td> {{  user.nom }}</td>
+            <td>  {{  user.prenom }}</td>
+            <td>  {{  user.email }}</td>
+            <td>  {{  user.password }}</td>
+
+            <td><a href="/users/edit/{{ user.id }}"> modifier    </a>
+                <a href="/users/delete/{{ user.id }}"> supprimer    </a> </td>
         </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><button type="submit"> modifier    </button>
-                <button type="submit"> supprimer    </button> </td>
-        </tr>
+        {% endfor %}
+   s
         </tbody>
     </table>
  {#MODAL ADD#}
@@ -67,7 +55,8 @@
                     <h4  class="modal-title" id="myModalLabel">Ajout</h4>
                 </div>
                 <div class="modal-body">
-                   {{ form(form) }}
+                    {% form_theme form 'admin/users/ajout_bootstrap.html.twig' %}
+                   {#{{ form(form) }}#}
                     <div class="row">
 
 

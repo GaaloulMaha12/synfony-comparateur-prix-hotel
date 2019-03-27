@@ -8,6 +8,7 @@
  */
 
 namespace App\Controller;
+
 use App\Entity\Administrateur;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,14 +30,20 @@ class UsersController extends AbstractController
         $administrateur = new Administrateur();
 
 
+//        $form = $this->createFormBuilder($administrateur)
+        //            ->add('Administrateur', TextType::class)
         $form = $this->createFormBuilder($administrateur)
-            //            ->add('Administrateur', TextType::class)
-            ->add('nom', TextType::class)
-            ->add('prenom', TextType::class)
-            ->add('email', TextType::class)
-            ->add('password', TextType::class)
-            ->add('save', SubmitType::class, ['label' => 'Ajouter'])
+            ->add('nom', TextType::class, [
+                'attr' => ['class' => 'nom'],])
+            ->add('prenom', TextType::class, [
+                'attr' => ['class' => 'prenom'],])
+            ->add('email', TextType::class, [
+                'attr' => ['class' => 'email'],])
+            ->add('password', TextType::class, [
+                'attr' => ['class' => 'password'],])
+            ->add('save', SubmitType::class, ['label' => 'modifier'])
             ->getForm();
+
         $form->handleRequest($request);
 
         $repository = $this->getDoctrine()->getRepository(Administrateur::class);
@@ -46,11 +53,10 @@ class UsersController extends AbstractController
             $administrateur = $form->getData();
             $entityManager->persist($administrateur);
             $entityManager->flush();
-
+            $adminstrateur = $repository->findAll();
             return $this->redirectToRoute('users');
+
         }
-
-
         return $this->render('admin/users/usersList.html.twig', [
             'users' => $usersData,
             'form' => $form->createView(),
@@ -62,7 +68,7 @@ class UsersController extends AbstractController
 
 
     /**
-     * @Route("/users/edit/{id}")
+     * @Route("/users/edit/{id}",name="edit")
      */
     public function edit(Request $request, $id)
     {
@@ -71,11 +77,14 @@ class UsersController extends AbstractController
 
 
         $form = $this->createFormBuilder($administrateur)
-//            ->add('administrateur', TextType::class)
-            ->add('nom', TextType::class)
-            ->add('prenom', TextType::class)
-            ->add('email', TextType::class)
-            ->add('password', TextType::class)
+            ->add('nom', TextType::class, [
+                'attr' => ['class' => 'nom'],])
+            ->add('prenom', TextType::class, [
+                'attr' => ['class' => 'prenom'],])
+            ->add('email', TextType::class, [
+                'attr' => ['class' => 'email'],])
+            ->add('password', TextType::class, [
+                'attr' => ['class' => 'password'],])
             ->add('save', SubmitType::class, ['label' => 'modifier'])
             ->getForm();
 
@@ -95,18 +104,41 @@ class UsersController extends AbstractController
             $administrateur->setEmail($form->getData()->getEmail());
             $administrateur->setPassword($form->getData()->getPassword());
 
-//            $utilisateur = $form->getData();
+
             $entityManager->persist($administrateur);
             $entityManager->flush();
 
-            return $this->redirectToRoute('administrateur');
+            return $this->redirectToRoute('edit');
         }
-        //
-
-
-        return $this->render('users/edit.html.twig', [
+        return $this->render('admin/users/edit.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
 
+    /**
+     * @Route("/users/delete/{id}",name="delete")
+     */
+    public function delete(request $request, $id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $administrateur = $entityManager->getRepository(administrateur::class)->find($id);
+
+        $form = $this->createFormBuilder()
+            ->add('delete', SubmitType::class, ['label' => 'delete'])
+            ->getForm();
+
+        $form->handleRequest($request);
+        $repository = $this->getDoctrine()->getRepository(Administrateur::class);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($administrateur);
+            $entityManager->flush();
+            return $this->redirectToRoute('users');
+        }
+
+        return $this->render('admin/users/delete.html.twig', [
+            'form' => $form->createView(),
         ]);
 
 
