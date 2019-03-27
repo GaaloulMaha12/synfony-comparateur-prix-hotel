@@ -100,7 +100,7 @@ class UsersController extends AbstractController
             $entityManager->persist($administrateur);
             $entityManager->flush();
 
-            return $this->redirectToRoute('edit');
+            return $this->redirectToRoute('users');
         }
         return $this->render('admin/users/edit.html.twig', [
             'form' => $form->createView(),
