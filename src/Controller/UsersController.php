@@ -37,7 +37,7 @@ class UsersController extends AbstractController
             ->add('prenom', TextType::class)
             ->add('email', TextType::class)
             ->add('password', TextType::class)
-            ->add('save', SubmitType::class, ['label' => 'modifier'])
+            ->add('save', SubmitType::class, ['label' => 'ajouter'])
             ->getForm();
 
         $form->handleRequest($request);

@@ -1,17 +1,17 @@
 {% extends 'admin/admin.base.html.twig' %}
-
+ {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
 {% block content %}
 
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="index.html">Dashboard</a>
+            <a href="index.html">accueil</a>
         </li>
         <li class="breadcrumb-item active">Administrateurs</li>
     </ol>
     <div class="row">
-        <div class="col-12 col-md-8"><h3>users list here</h3></div>
+        <div class="col-12 col-md-8"><h3>liste des administrateurs </h3></div>
         <div class="col-6 col-md-4">
 
     <button id="addNewRow" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" >ajouter administrateur</button>
@@ -21,10 +21,10 @@
         <thead>
 
         <tr>
-            <th scope="col" >#</th>
-            <th scope="col">Nom</th>
+            <th scope="col" >Nom</th>
             <th scope="col">Prenom</th>
-            <th scope="col">Adresse e-mail </th>
+            <th scope="col">Adresse e-mail</th>
+            <th scope="col"> mot de passe </th>
             <th scope="col">Action </th>
 
         </tr>
@@ -43,7 +43,7 @@
                 <a href="/users/delete/{{ user.id }}"> supprimer    </a> </td>
         </tr>
         {% endfor %}
-   s
+
         </tbody>
     </table>
  {#MODAL ADD#}
@@ -52,17 +52,32 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4  class="modal-title" id="myModalLabel">Ajout</h4>
-                </div>
-                <div class="modal-body">
-                                      {{ form(form) }}
-                    <div class="row">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+
+                            </div>
+                            <div class="col-6">
+                              <h3>Ajout</h3>
+                            </div>
+                            <div class="col">
+
+                            </div>
+                        </div>
+                    <div class="modal-body">
+
+                        {{  form_start(form) }}
+                        {{  form_widget(form) }}
+                         {{  form_end(form) }}
+
+                        <div class="row">
+
+                        </div>
 
 
 
 
-
-
+                    </div>
                     </div>
                 </div>
             </div>
