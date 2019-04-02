@@ -2,13 +2,13 @@
 /**
  * Created by PhpStorm.
  * User: pc
- * Date: 30/03/2019
- * Time: 20:53
+ * Date: 01/04/2019
+ * Time: 11:06
  */
 
 namespace App\Controller;
-
-use App\Entity\Offre;
+use App\Entity\Page;
+use function PHPSTORM_META\type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,40 +17,41 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class OffresController extends AbstractController
+
+class PagesController extends AbstractController
 {
     /**
-     * @Route("/offres",name="offre")
+     * @Route("/pages",name="page")
      */
-    public function agenciesList(Request $request)
+    public function pagesList(Request $request)
     {
 
 
-        $offre = new Offre();
+        $page = new Page();
 
 
 
-        $form = $this->createFormBuilder($offre)
-            ->add('datedebut', TextType::class)
-            ->add('datefin', TextType::class)
+        $form = $this->createFormBuilder( $page)
+            ->add('typepage', TextType::class)
+            ->add('titrepage', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'ajouter'])
             ->getForm();
 
         $form->handleRequest($request);
 
-        $repository = $this->getDoctrine()->getRepository(Offre::class);
-        $DealsData = $repository->findAll();
+        $repository = $this->getDoctrine()->getRepository(Page::class);
+        $PagesData = $repository->findAll();
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $offre = $form->getData();
-            $entityManager->persist($offre);
+            $page = $form->getData();
+            $entityManager->persist( $page);
             $entityManager->flush();
-            $offre = $repository->findAll();
-            return $this->redirectToRoute('offre');
+            $page = $repository->findAll();
+            return $this->redirectToRoute('page');
 
         }
-        return $this->render('admin/offres/offresList.html.twig', [
-            'offres' =>  $DealsData,
+        return $this->render('admin/pages/pagesList.html.twig', [
+            'pages' => $PagesData,
             'form' => $form->createView(),
 
         ]);
@@ -58,17 +59,17 @@ class OffresController extends AbstractController
 
     }
     /**
-     * @Route("/offres/edit/{id}" ,name="editoffre")
+     * @Route("/pages/editpage/{id}" ,name="editpage")
      */
     public function editAgency(Request $request, $id)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $offre = $entityManager->getRepository(offre::class)->find($id);
+        $page = $entityManager->getRepository(page::class)->find($id);
 
 
-        $form = $this->createFormBuilder($offre)
-            ->add('datedebut', TextType::class)
-            ->add('datefin', TextType::class)
+        $form = $this->createFormBuilder(  $page)
+            ->add('typepage', TextType::class)
+            ->add('titrepage',TextType::class)
             ->add('save', SubmitType::class, ['label' => 'modifier'])
             ->getForm();
 
@@ -76,54 +77,60 @@ class OffresController extends AbstractController
         $form->handleRequest($request);
 
 
-        if (!$offre) {
+        if (!$page) {
             throw $this->createNotFoundException(
-                'No deal found for id ' . $id
+                'No page found for id ' . $id
             );
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $offre->setDatedebut($form->getData()->getDatedebut());
-            $offre->setDatefin($form->getData()->getDatefin());
+            $page->setTypepage($form->getData()->getTypepage());
+            $page->setTitrepage($form->getData()->getTitrepage());
 
-
-            $entityManager->persist($offre);
+            $entityManager->persist($page);
             $entityManager->flush();
 
-            return $this->redirectToRoute('offre');
+            return $this->redirectToRoute('page');
         }
-        return $this->render('admin/offres/editoffre.html.twig', [
+        return $this->render('admin/pages/editpage.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
-
     /**
-     * @Route("/offres/delete/{id}",name="deleteoffre")
+     * @Route("/pages/deletepage/{id}",name="deletepage")
      */
     public function delete(request $request, $id)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $offre = $entityManager->getRepository(offre::class)->find($id);
+        $page = $entityManager->getRepository(page::class)->find($id);
 
         $form = $this->createFormBuilder()
             ->add('delete', SubmitType::class, ['label' => 'delete'])
             ->getForm();
 
         $form->handleRequest($request);
-        $repository = $this->getDoctrine()->getRepository(offre::class);
+        $repository = $this->getDoctrine()->getRepository(page::class);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($offre);
+            $entityManager->remove($page);
             $entityManager->flush();
-            return $this->redirectToRoute('offre');
+            return $this->redirectToRoute('page');
         }
 
-        return $this->render('admin/offres/deleteoffre.html.twig', [
+        return $this->render('admin/pages/deletepage.html.twig', [
             'form' => $form->createView(),
         ]);
 
 
     }
+
+
+
+
+
+
+
+
 }

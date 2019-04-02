@@ -63,7 +63,7 @@ class AgenciesController extends AbstractController{
     /**
      * @Route("/agences/edit/{id}" ,name="editAgency")
      */
-    public function editAgency(Request $request, $id)
+    public function editagency(Request $request, $id)
     {
         $entityManager = $this->getDoctrine()->getManager();
         $agence = $entityManager->getRepository(agence::class)->find($id);
@@ -102,7 +102,7 @@ class AgenciesController extends AbstractController{
     /**
      * @Route("/agences/delete/{id}",name="deleteagency")
      */
-    public function delete(request $request, $id)
+    public function deleteagency(request $request, $id)
     {
         $entityManager = $this->getDoctrine()->getManager();
         $agence = $entityManager->getRepository(agence::class)->find($id);
