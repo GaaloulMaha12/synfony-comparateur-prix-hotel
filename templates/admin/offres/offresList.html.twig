@@ -21,8 +21,14 @@
         <thead>
 
         <tr>
-            <th scope="col" >date début </th>
+            <th scope="col" >nom offre </th>
+            <th scope="col" >date debut </th>
             <th scope="col" >date fin </th>
+            <th scope="col" >agence </th>
+            <th scope="col" >hotel </th>
+            <th scope="col" >pension </th>
+            <th scope="col" >chambre </th>
+            <th scope="col" >tarif </th>
             <th scope="col">Action </th>
 
         </tr>
@@ -31,9 +37,14 @@
         {%for offre in offres %}
 
             <tr>
-
+                <td> {{  offre.nomoffre}}</td>
                 <td> {{  offre.datedebut }}</td>
                 <td> {{  offre.datefin }}</td>
+                <td> {{  offre.agence }}</td>
+                <td> {{  offre.hotel}}</td>
+                <td> {{  offre.pension}}</td>
+                <td> {{  offre.chambre}}</td>
+                <td> {{  offre.tarif}}</td>
 
 
                 <td><a href="/offres/edit/{{ offre.id }}"> modifier    </a>

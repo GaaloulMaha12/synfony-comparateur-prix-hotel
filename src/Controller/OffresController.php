@@ -7,7 +7,7 @@
  */
 
 namespace App\Controller;
-
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use App\Entity\Offre;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,8 +31,14 @@ class OffresController extends AbstractController
 
 
         $form = $this->createFormBuilder($offre)
+            ->add('nomoffre', TextType::class)
             ->add('datedebut', TextType::class)
             ->add('datefin', TextType::class)
+            ->add('agence', ChoiceType::class)
+            ->add('hotel', ChoiceType::class)
+            ->add('pension', ChoiceType::class)
+            ->add('chambre', ChoiceType::class)
+            ->add('tarif', ChoiceType::class)
             ->add('save', SubmitType::class, ['label' => 'ajouter'])
             ->getForm();
 
@@ -67,8 +73,14 @@ class OffresController extends AbstractController
 
 
         $form = $this->createFormBuilder($offre)
+            ->add('nomoffre', TextType::class)
             ->add('datedebut', TextType::class)
             ->add('datefin', TextType::class)
+            ->add('agence', ChoiceType::class)
+            ->add('hotel', ChoiceType::class)
+            ->add('pension', ChoiceType::class)
+            ->add('chambre', ChoiceType::class)
+            ->add('tarif', ChoiceType::class)
             ->add('save', SubmitType::class, ['label' => 'modifier'])
             ->getForm();
 
