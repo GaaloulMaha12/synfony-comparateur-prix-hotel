@@ -73,6 +73,14 @@
 
 
     </style>
+
+    <link href="/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="/css/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="/css/sb-admin.css" rel="stylesheet">
     {% endblock %}
 
 {% block body %}
@@ -84,8 +92,11 @@
         <h1>Login</h1>
 
         {{ form(form) }}
+        {% if message != " " %}
+            <div class="alert alert-success"  role="alert">
 {{ message }}
-
+    </div>
+        {% endif %}
     </div>
 
 {% endblock %}
