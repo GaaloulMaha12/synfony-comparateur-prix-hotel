@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -40,6 +42,16 @@ class Hotel
      * @ORM\Column(type="string", length=255)
      */
     private $service;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Offre", mappedBy="hotel")
+     */
+    private $offres;
+
+    public function __construct()
+    {
+        $this->offres = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -102,6 +114,37 @@ class Hotel
     public function setService(string $service): self
     {
         $this->service = $service;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Offre[]
+     */
+    public function getOffres(): Collection
+    {
+        return $this->offres;
+    }
+
+    public function addOffre(Offre $offre): self
+    {
+        if (!$this->offres->contains($offre)) {
+            $this->offres[] = $offre;
+            $offre->setHotel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffre(Offre $offre): self
+    {
+        if ($this->offres->contains($offre)) {
+            $this->offres->removeElement($offre);
+            // set the owning side to null (unless already changed)
+            if ($offre->getHotel() === $this) {
+                $offre->setHotel(null);
+            }
+        }
 
         return $this;
     }
