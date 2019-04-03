@@ -1,0 +1,76 @@
+{% extends 'admin/admin.base.html.twig' %}
+
+
+{% block content %}
+
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="index.html">accueil</a>
+        </li>
+        <li class="breadcrumb-item active">hotels</li>
+    </ol>
+    <div class="row">
+        <div class="col-12 col-md-8"><h3>liste des hotels</h3></div>
+        <div class="col-6 col-md-4">
+
+            <button id="addNewRow" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" >ajouter un hotel</button>
+        </div>
+    </div>
+    <table class="table table-striped table-dark">
+        <thead>
+
+        <tr>
+            <th scope="col" >Nom hotel</th>
+            <th scope="col" >adresse hotel</th>
+            <th scope="col" >type hotel</th>
+            <th scope="col" >note</th>
+            <th scope="col" >service</th>
+            <th scope="col">Action </th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {%for hotel in hotels %}
+
+            <tr>
+
+                <td> {{  hotel.nomhotel }}</td>
+                <td>  {{  hotel.positionhotel }}</td>
+                <td>  {{  hotel.typehotel }}</td>
+                <td>  {{  hotel.note }}</td>
+                <td>  {{  hotel.service }}</td>
+
+
+
+             <td><a href="/hotels/edit/{{ hotel.id }}"> modifier    </a>
+                    <a href="/hotels/delete/{{ hotel.id }}"> supprimer </a>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    {#MODAL ADD#}
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="row">
+                    <div class="col-sm">ajout  </div>
+                </div>
+                <div class="modal-body">
+                    {{ form(form) }}
+                    <div class="row">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

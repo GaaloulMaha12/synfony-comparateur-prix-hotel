@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190326200937 extends AbstractMigration
+final class Version20190403135825 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,9 @@ final class Version20190326200937 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE administrateur (id INT AUTO_INCREMENT NOT NULL, nom VARCHAR(255) NOT NULL, prenom VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE offre ADD hotel_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE offre ADD CONSTRAINT FK_AF86866F3243BB18 FOREIGN KEY (hotel_id) REFERENCES hotel (id)');
+        $this->addSql('CREATE INDEX IDX_AF86866F3243BB18 ON offre (hotel_id)');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +32,8 @@ final class Version20190326200937 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('DROP TABLE administrateur');
+        $this->addSql('ALTER TABLE offre DROP FOREIGN KEY FK_AF86866F3243BB18');
+        $this->addSql('DROP INDEX IDX_AF86866F3243BB18 ON offre');
+        $this->addSql('ALTER TABLE offre DROP hotel_id');
     }
 }
