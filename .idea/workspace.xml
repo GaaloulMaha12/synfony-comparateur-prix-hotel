@@ -2,50 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4cf68b9-968f-47c5-b4d1-72adc2e94943" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Controller/AgenciesController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Controller/HotelsController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Controller/OffresController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Controller/PagesController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Controller/PensionController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Entity/Agence.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Entity/Chambre.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Entity/Hotel.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Entity/Offre.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Entity/Page.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Entity/Pension.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Entity/Tarif.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Migrations/Version20190403133821.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Repository/AgenceRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Repository/ChambreRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Repository/HotelRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Repository/OffreRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Repository/PageRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Repository/PensionRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Repository/TarifRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/agences/agencesList.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/agences/deleteagency.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/agences/editagency.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/hotels/deletehotel.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/hotels/edithotel.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/hotels/hotelsList.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/offres/deleteoffre.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/offres/editoffre.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/offres/offresList.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/pages/deletepage.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/pages/editpage.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/pages/pagesList.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/pension/pensionList.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/users/ajout.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/users/delete.html.twig" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Migrations/Version20190327134916.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Migrations/Version20190326200937.php" afterPath="$PROJECT_DIR$/src/Migrations/Version20190403135825.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Migrations/Version20190403143023.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/packages/twig.yaml" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/UsersController.php" afterPath="$PROJECT_DIR$/src/Controller/UsersController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/admin.base.html.twig" afterPath="$PROJECT_DIR$/templates/admin/admin.base.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/users/edit.html.twig" afterPath="$PROJECT_DIR$/templates/admin/users/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/users/usersList.html.twig" afterPath="$PROJECT_DIR$/templates/admin/users/usersList.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/OffresController.php" afterPath="$PROJECT_DIR$/src/Controller/OffresController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entity/Offre.php" afterPath="$PROJECT_DIR$/src/Entity/Offre.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/offres/offresList.html.twig" afterPath="$PROJECT_DIR$/templates/admin/offres/offresList.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -60,16 +21,35 @@
       <file leaf-file-name="Offre.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Entity/Offre.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3536">
-              <caret line="208" column="5" lean-forward="false" selection-start-line="208" selection-start-column="5" selection-end-line="208" selection-end-column="5" />
+            <state relative-caret-position="3315">
+              <caret line="195" column="5" lean-forward="false" selection-start-line="195" selection-start-column="5" selection-end-line="195" selection-end-column="5" />
               <folding>
                 <element signature="e#30#78#0#PHP" expanded="true" />
+                <marker date="1554303843629" expanded="true" signature="241:4720" ph="{...}" />
+                <marker date="1554303843629" expanded="true" signature="2899:2942" ph="{...}" />
+                <marker date="1554303843629" expanded="true" signature="2999:3069" ph="{...}" />
+                <marker date="1554303843629" expanded="true" signature="3078:3118" ph=" @return Collection|tarif[] ..." />
+                <marker date="1554303843629" expanded="true" signature="3163:3204" ph="{...}" />
+                <marker date="1554303843629" expanded="true" signature="3254:3420" ph="{...}" />
+                <marker date="1554303843629" expanded="true" signature="3307:3390" ph="..." />
+                <marker date="1554303843629" expanded="true" signature="3473:3783" ph="{...}" />
+                <marker date="1554303843629" expanded="true" signature="3525:3753" ph="..." />
+                <marker date="1554303843629" expanded="true" signature="3690:3743" ph="..." />
+                <marker date="1554303843629" expanded="true" signature="3792:3833" ph=" @return Collection|agence[] ..." />
+                <marker date="1554303843629" expanded="true" signature="3879:3921" ph="{...}" />
+                <marker date="1554303843629" expanded="true" signature="3974:4145" ph="{...}" />
+                <marker date="1554303843629" expanded="true" signature="4029:4115" ph="..." />
+                <marker date="1554303843629" expanded="true" signature="4201:4517" ph="{...}" />
+                <marker date="1554303843629" expanded="true" signature="4255:4487" ph="..." />
+                <marker date="1554303843629" expanded="true" signature="4423:4477" ph="..." />
+                <marker date="1554303843629" expanded="true" signature="4557:4598" ph="{...}" />
+                <marker date="1554303843629" expanded="true" signature="4649:4715" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OffresController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="OffresController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/OffresController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
@@ -79,12 +59,42 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="offresList.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/admin/offres/offresList.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="901">
-              <caret line="53" column="53" lean-forward="false" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
-              <folding />
+              <caret line="64" column="53" lean-forward="false" selection-start-line="64" selection-start-column="53" selection-end-line="64" selection-end-column="53" />
+              <folding>
+                <marker date="1554303843645" expanded="true" signature="1494:1733" ph="..." />
+                <marker date="1554303843645" expanded="true" signature="1494:1716" ph="{%for offre in offres ...%}" />
+                <marker date="1554303843645" expanded="true" signature="1494:1694" ph="..." />
+                <marker date="1554303843645" expanded="true" signature="1523:1676" ph="..." />
+                <marker date="1554303843645" expanded="true" signature="1865:2456" ph="..." />
+                <marker date="1554303843645" expanded="true" signature="1912:2451" ph="..." />
+                <marker date="1554303843645" expanded="true" signature="1948:2440" ph="..." />
+                <marker date="1554303843645" expanded="true" signature="1987:2425" ph="..." />
+                <marker date="1554303843645" expanded="true" signature="2162:2239" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -123,9 +133,7 @@
         <option value="$PROJECT_DIR$/templates/admin/hotels/deletehotel.html.twig" />
         <option value="$PROJECT_DIR$/templates/admin/offres/editoffre.html.twig" />
         <option value="$PROJECT_DIR$/templates/admin/offres/deletoffre.html.twig" />
-        <option value="$PROJECT_DIR$/templates/admin/offres/offresList.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/HotelsController.php" />
-        <option value="$PROJECT_DIR$/src/Controller/OffresController.php" />
         <option value="$PROJECT_DIR$/templates/admin/pages/pagesList.html.twig" />
         <option value="$PROJECT_DIR$/templates/admin/pages/editpage.html.twig" />
         <option value="$PROJECT_DIR$/templates/admin/pages/deletepage.html.twig" />
@@ -138,8 +146,9 @@
         <option value="$PROJECT_DIR$/src/Entity/Chambre.php" />
         <option value="$PROJECT_DIR$/src/Entity/Pension.php" />
         <option value="$PROJECT_DIR$/src/Entity/Tarif.php" />
+        <option value="$PROJECT_DIR$/templates/admin/offres/offresList.html.twig" />
+        <option value="$PROJECT_DIR$/src/Controller/OffresController.php" />
         <option value="$PROJECT_DIR$/src/Entity/Offre.php" />
-        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -356,19 +365,17 @@
       <workItem from="1554106540125" duration="14279000" />
       <workItem from="1554194522931" duration="544000" />
       <workItem from="1554211513157" duration="11332000" />
-      <workItem from="1554284440403" duration="8583000" />
-      <workItem from="1554303773929" duration="34000" />
+      <workItem from="1554284440403" duration="11029000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100430000" />
+    <option name="totallyTimeSpent" value="102859000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25036603" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25036603" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -379,12 +386,22 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.83146065" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2503671" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32744783" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -398,13 +415,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Controller/dashboardController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="14" column="52" lean-forward="false" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/auth/login.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -650,28 +660,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Pension.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding>
-            <element signature="e#30#78#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Tarif.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="161" column="0" lean-forward="false" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Chambre.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -682,12 +675,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Offre.php">
+    <entry file="file://$PROJECT_DIR$/src/Entity/Pension.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3536">
-          <caret line="208" column="5" lean-forward="false" selection-start-line="208" selection-start-column="5" selection-end-line="208" selection-end-column="5" />
+        <state relative-caret-position="345">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding>
-            <element signature="e#30#78#0#PHP" expanded="true" />
+            <element signature="e#30#78#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -695,16 +688,18 @@
     <entry file="file://$PROJECT_DIR$/templates/admin/offres/offresList.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="901">
-          <caret line="53" column="53" lean-forward="false" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="20" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="20" />
-          <folding />
+          <caret line="64" column="53" lean-forward="false" selection-start-line="64" selection-start-column="53" selection-end-line="64" selection-end-column="53" />
+          <folding>
+            <marker date="1554303843645" expanded="true" signature="1494:1733" ph="..." />
+            <marker date="1554303843645" expanded="true" signature="1494:1716" ph="{%for offre in offres ...%}" />
+            <marker date="1554303843645" expanded="true" signature="1494:1694" ph="..." />
+            <marker date="1554303843645" expanded="true" signature="1523:1676" ph="..." />
+            <marker date="1554303843645" expanded="true" signature="1865:2456" ph="..." />
+            <marker date="1554303843645" expanded="true" signature="1912:2451" ph="..." />
+            <marker date="1554303843645" expanded="true" signature="1948:2440" ph="..." />
+            <marker date="1554303843645" expanded="true" signature="1987:2425" ph="..." />
+            <marker date="1554303843645" expanded="true" signature="2162:2239" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -712,6 +707,58 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="10" column="21" lean-forward="false" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Chambre.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1615">
+          <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Offre.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3315">
+          <caret line="195" column="5" lean-forward="false" selection-start-line="195" selection-start-column="5" selection-end-line="195" selection-end-column="5" />
+          <folding>
+            <element signature="e#30#78#0#PHP" expanded="true" />
+            <marker date="1554303843629" expanded="true" signature="241:4720" ph="{...}" />
+            <marker date="1554303843629" expanded="true" signature="2899:2942" ph="{...}" />
+            <marker date="1554303843629" expanded="true" signature="2999:3069" ph="{...}" />
+            <marker date="1554303843629" expanded="true" signature="3078:3118" ph=" @return Collection|tarif[] ..." />
+            <marker date="1554303843629" expanded="true" signature="3163:3204" ph="{...}" />
+            <marker date="1554303843629" expanded="true" signature="3254:3420" ph="{...}" />
+            <marker date="1554303843629" expanded="true" signature="3307:3390" ph="..." />
+            <marker date="1554303843629" expanded="true" signature="3473:3783" ph="{...}" />
+            <marker date="1554303843629" expanded="true" signature="3525:3753" ph="..." />
+            <marker date="1554303843629" expanded="true" signature="3690:3743" ph="..." />
+            <marker date="1554303843629" expanded="true" signature="3792:3833" ph=" @return Collection|agence[] ..." />
+            <marker date="1554303843629" expanded="true" signature="3879:3921" ph="{...}" />
+            <marker date="1554303843629" expanded="true" signature="3974:4145" ph="{...}" />
+            <marker date="1554303843629" expanded="true" signature="4029:4115" ph="..." />
+            <marker date="1554303843629" expanded="true" signature="4201:4517" ph="{...}" />
+            <marker date="1554303843629" expanded="true" signature="4255:4487" ph="..." />
+            <marker date="1554303843629" expanded="true" signature="4423:4477" ph="..." />
+            <marker date="1554303843629" expanded="true" signature="4557:4598" ph="{...}" />
+            <marker date="1554303843629" expanded="true" signature="4649:4715" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

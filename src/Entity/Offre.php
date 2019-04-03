@@ -34,33 +34,30 @@ class Offre
      */
     private $datefin;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $prix;
+
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\chambre", mappedBy="offre")
+     * @ORM\OneToMany(targetEntity="App\Entity\Chambre", mappedBy="offre")
      */
     private $chambre;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\pension", inversedBy="offres")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Pension", inversedBy="offres")
      */
     private $pension;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\tarif", mappedBy="offre")
+     * @ORM\OneToMany(targetEntity="App\Entity\Tarif", mappedBy="offre")
      */
     private $tarif;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\agence", mappedBy="offre")
+     * @ORM\OneToMany(targetEntity="App\Entity\Agence", mappedBy="offre")
      */
     private $agence;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\hotel", inversedBy="offres")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Hotel", inversedBy="offres")
      */
     private $hotel;
 
@@ -147,17 +144,7 @@ class Offre
         return $this;
     }
 
-    public function getPrix(): ?string
-    {
-        return $this->prix;
-    }
 
-    public function setPrix(string $prix): self
-    {
-        $this->prix = $prix;
-
-        return $this;
-    }
 
     public function getPension(): ?pension
     {
