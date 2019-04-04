@@ -35,6 +35,8 @@ class AgenciesController extends AbstractController{
 
         $form = $this->createFormBuilder($agence)
             ->add('nom_agence', TextType::class)
+            ->add('lien_agence', TextType::class)
+
             ->add('save', SubmitType::class, ['label' => 'ajouter'])
             ->getForm();
 
@@ -100,12 +102,12 @@ class AgenciesController extends AbstractController{
     }
 
     /**
-     * @Route("/agences/delete/{id}",name="deleteagency")
+     * @Route("/agences/deleteagency/{id}",name="deleteagency")
      */
-    public function deleteagency(request $request, $id)
+    public function delete(request $request, $id)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $agence = $entityManager->getRepository(agence::class)->find($id);
+        $page = $entityManager->getRepository(agence::class)->find($id);
 
         $form = $this->createFormBuilder()
             ->add('delete', SubmitType::class, ['label' => 'delete'])
@@ -116,12 +118,12 @@ class AgenciesController extends AbstractController{
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($agence);
+            $entityManager->remove($page);
             $entityManager->flush();
             return $this->redirectToRoute('agences');
         }
 
-        return $this->render('admin/agences/deleteagency.html.twig', [
+        return $this->render('admin/pages/deleteagency.html.twig', [
             'form' => $form->createView(),
         ]);
 

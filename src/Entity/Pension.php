@@ -28,18 +28,16 @@ class Pension
      */
     private $offres;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\tarif", inversedBy="pensions")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $tarif;
+
+
+
 
 
 
     public function __construct()
     {
         $this->offres = new ArrayCollection();
-        $this->tarif = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -86,18 +84,6 @@ class Pension
                 $offre->setPension(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getTarif(): ?tarif
-    {
-        return $this->tarif;
-    }
-
-    public function setTarif(?tarif $tarif): self
-    {
-        $this->tarif = $tarif;
 
         return $this;
     }

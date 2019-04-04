@@ -36,15 +36,26 @@ class Offre
 
 
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Chambre", mappedBy="offre")
-     */
-    private $chambre;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Pension", inversedBy="offres")
      */
     private $pension;
+
+
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Hotel", inversedBy="offres")
+     */
+    private $hotel;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Agence", inversedBy="offre")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $agence;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Tarif", mappedBy="offre")
@@ -52,21 +63,17 @@ class Offre
     private $tarif;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Agence", mappedBy="offre")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Chambre", inversedBy="offres")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $agence;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Hotel", inversedBy="offres")
-     */
-    private $hotel;
+    private $chambre;
 
 
 
 
     public function __construct()
     {
-        $this->chambre = new ArrayCollection();
+
         $this->tarif = new ArrayCollection();
         $this->agence = new ArrayCollection();
 
@@ -113,36 +120,7 @@ class Offre
         return $this;
     }
 
-    /**
-     * @return Collection|chambre[]
-     */
-    public function getChambre(): Collection
-    {
-        return $this->chambre;
-    }
 
-    public function addChambre(chambre $chambre): self
-    {
-        if (!$this->chambre->contains($chambre)) {
-            $this->chambre[] = $chambre;
-            $chambre->setOffre($this);
-        }
-
-        return $this;
-    }
-
-    public function removeChambre(chambre $chambre): self
-    {
-        if ($this->chambre->contains($chambre)) {
-            $this->chambre->removeElement($chambre);
-            // set the owning side to null (unless already changed)
-            if ($chambre->getOffre() === $this) {
-                $chambre->setOffre(null);
-            }
-        }
-
-        return $this;
-    }
 
 
 
@@ -154,6 +132,32 @@ class Offre
     public function setPension(?pension $pension): self
     {
         $this->pension = $pension;
+
+        return $this;
+    }
+
+
+
+    public function getHotel(): ?hotel
+    {
+        return $this->hotel;
+    }
+
+    public function setHotel(?hotel $hotel): self
+    {
+        $this->hotel = $hotel;
+
+        return $this;
+    }
+
+    public function getAgence(): ?Agence
+    {
+        return $this->agence;
+    }
+
+    public function setAgence(?Agence $agence): self
+    {
+        $this->agence = $agence;
 
         return $this;
     }
@@ -189,45 +193,14 @@ class Offre
         return $this;
     }
 
-    /**
-     * @return Collection|agence[]
-     */
-    public function getAgence(): Collection
+    public function getChambre(): ?chambre
     {
-        return $this->agence;
+        return $this->chambre;
     }
 
-    public function addAgence(agence $agence): self
+    public function setChambre(?chambre $chambre): self
     {
-        if (!$this->agence->contains($agence)) {
-            $this->agence[] = $agence;
-            $agence->setOffre($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAgence(agence $agence): self
-    {
-        if ($this->agence->contains($agence)) {
-            $this->agence->removeElement($agence);
-            // set the owning side to null (unless already changed)
-            if ($agence->getOffre() === $this) {
-                $agence->setOffre(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getHotel(): ?hotel
-    {
-        return $this->hotel;
-    }
-
-    public function setHotel(?hotel $hotel): self
-    {
-        $this->hotel = $hotel;
+        $this->chambre = $chambre;
 
         return $this;
     }

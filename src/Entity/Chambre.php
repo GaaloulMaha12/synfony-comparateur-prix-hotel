@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,15 +29,18 @@ class Chambre
     private $nomchambre;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Offre", inversedBy="chambre")
+     * @ORM\OneToMany(targetEntity="App\Entity\Offre", mappedBy="chambre")
      */
-    private $offre;
+    private $offres;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\tarif", inversedBy="chambres")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $tarif;
+    public function __construct()
+    {
+        $this->offres = new ArrayCollection();
+    }
+
+
+
+
 
 
     public function getId(): ?int
@@ -67,29 +72,43 @@ class Chambre
         return $this;
     }
 
-    public function getOffre(): ?Offre
+    /**
+     * @return Collection|Offre[]
+     */
+    public function getOffres(): Collection
     {
-        return $this->offre;
+        return $this->offres;
     }
 
-    public function setOffre(?Offre $offre): self
+    public function addOffre(Offre $offre): self
     {
-        $this->offre = $offre;
+        if (!$this->offres->contains($offre)) {
+            $this->offres[] = $offre;
+            $offre->setChambre($this);
+        }
 
         return $this;
     }
 
-    public function getTarif(): ?tarif
+    public function removeOffre(Offre $offre): self
     {
-        return $this->tarif;
-    }
-
-    public function setTarif(?tarif $tarif): self
-    {
-        $this->tarif = $tarif;
+        if ($this->offres->contains($offre)) {
+            $this->offres->removeElement($offre);
+            // set the owning side to null (unless already changed)
+            if ($offre->getChambre() === $this) {
+                $offre->setChambre(null);
+            }
+        }
 
         return $this;
     }
+
+
+
+
+
+
+
 }
 
 
