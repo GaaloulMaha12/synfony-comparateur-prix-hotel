@@ -8,38 +8,39 @@
         <li class="breadcrumb-item">
             <a href="index.html">accueil</a>
         </li>
-        <li class="breadcrumb-item active">agences</li>
+        <li class="breadcrumb-item active">chambres</li>
     </ol>
     <div class="row">
-        <div class="col-12 col-md-8"><h3>liste des agences</h3></div>
+        <div class="col-12 col-md-8"><h3>liste des chambres </h3></div>
         <div class="col-6 col-md-4">
 
-            <button id="addNewRow" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" >ajouter agence</button>
+            <button id="addNewRow" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" >ajouter une chambre</button>
         </div>
     </div>
     <table class="table table-striped table-dark">
         <thead>
 
         <tr>
-            <th scope="col" >Nom agence</th>
-            <th scope="col" >lien agence</th>
+            <th scope="col" >Nom chambre</th>
+            <th scope="col" >type chambre</th>
             <th scope="col">Action </th>
 
         </tr>
         </thead>
         <tbody>
-        {%for agence in agences %}
+        {%for chambre in chambres %}
 
             <tr>
 
-                <td> {{  agence.getNomAgence() }}</td>
-                <td> {{  agence.getLienAgence() }}</td>
+                <td> {{  chambre.nomchambre }}</td>
+                <td>  {{  chambre.typechambre }}</td>
 
 
 
-                <td><a href="/agences/editagency/{{ agence.id }}"> modifier    </a>
-                    <a href="/agences/deleteagency/{{ agence.id }}"> supprimer </a>
-                     </td>
+
+                <td><a href="/chambre/edit/{{ chambre.id }}"> modifier    </a>
+                    <a href="/chambre/delete/{{ chambre.id }}"> supprimer </a>
+                </td>
             </tr>
         {% endfor %}
 

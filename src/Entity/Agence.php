@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,10 +33,16 @@ class Agence
     private  $lien_agence;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Offre", inversedBy="agence")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity="App\Entity\Offre", mappedBy="agence")
      */
     private $offre;
+
+    public function __construct()
+    {
+        $this->offre = new ArrayCollection();
+    }
+
+
 
 
     public function getId(): ?int
@@ -65,15 +73,35 @@ class Agence
         return $this;
     }
 
-    public function getOffre(): ?Offre
+    /**
+     * @return Collection|offre[]
+     */
+    public function getOffre(): Collection
     {
         return $this->offre;
     }
 
-    public function setOffre(?Offre $offre): self
+    public function addOffre(offre $offre): self
     {
-        $this->offre = $offre;
+        if (!$this->offre->contains($offre)) {
+            $this->offre[] = $offre;
+            $offre->setAgence($this);
+        }
 
         return $this;
     }
+
+    public function removeOffre(offre $offre): self
+    {
+        if ($this->offre->contains($offre)) {
+            $this->offre->removeElement($offre);
+            // set the owning side to null (unless already changed)
+            if ($offre->getAgence() === $this) {
+                $offre->setAgence(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

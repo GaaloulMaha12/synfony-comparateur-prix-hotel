@@ -7,6 +7,7 @@
  */
 
 namespace App\Controller;
+use App\Entity\Agence;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use App\Entity\Offre;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,19 +28,32 @@ class OffresController extends AbstractController
 
 
         $offre = new Offre();
+        $repository = $this->getDoctrine()->getRepository(Agence::class);
+        $agences = $repository->findAll();
+        $agencesArray = array("");
+        foreach($agences as $a => $val) {
+            $agencesArray[$val->getNomAgence()]= $val->getId();
+        }
 
+        var_dump($agences);
 
+        // jib liste des agences
+        // declaration mta3 array vide
+        // boucle for bch n7adher el array
+        // fel array 3andi nom => id
 
         $form = $this->createFormBuilder($offre)
             ->add('nomoffre', TextType::class)
             ->add('datedebut', TextType::class)
             ->add('datefin', TextType::class)
-            ->add('agence', ChoiceType::class)
-//             'choices' =>array('nom_agence')
+            ->add('agence', ChoiceType::class, [
+             'choices' => $agencesArray
+                    ]
+            )
             ->add('hotel', ChoiceType::class)
             ->add('pension', ChoiceType::class)
-            ->add('chambre', ChoiceType::class)
-            ->add('tarif', ChoiceType::class)
+            ->add('chambres', ChoiceType::class)
+
             ->add('save', SubmitType::class, ['label' => 'ajouter'])
             ->getForm();
 
@@ -48,10 +62,11 @@ class OffresController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(Offre::class);
         $DealsData = $repository->findAll();
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $offre = $form->getData();
-            $entityManager->persist($offre);
-            $entityManager->flush();
+            var_dump($offre);
+//            $entityManager = $this->getDoctrine()->getManager();
+//            $entityManager->persist($offre);
+//            $entityManager->flush();
             $offre = $repository->findAll();
             return $this->redirectToRoute('offre');
 
@@ -80,8 +95,8 @@ class OffresController extends AbstractController
             ->add('agence', ChoiceType::class)
             ->add('hotel', ChoiceType::class)
             ->add('pension', ChoiceType::class)
-            ->add('chambre', ChoiceType::class)
-            ->add('tarif', ChoiceType::class)
+            ->add('chambres', ChoiceType::class)
+
             ->add('save', SubmitType::class, ['label' => 'modifier'])
             ->getForm();
 

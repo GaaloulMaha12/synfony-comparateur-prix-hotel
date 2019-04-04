@@ -21,7 +21,7 @@
 
         <tr>
             <th scope="col" >type pension</th>
-
+            <th scope="col">Action </th>
 
         </tr>
         </thead>
@@ -33,8 +33,8 @@
                 <td> {{  pension.typepension }}</td>
 
 
-                <td><a href="/hotels/edit/{{ hotel.id }}"> modifier    </a>
-                    <a href="/hotels/delete/{{ hotel.id }}"> supprimer </a>
+                <td><a href="/pension/edit/{{ pension.id }}"> modifier    </a>
+                    <a href="/pension/delete/{{ pension.id }}"> supprimer </a>
                 </td>
             </tr>
         {% endfor %}
