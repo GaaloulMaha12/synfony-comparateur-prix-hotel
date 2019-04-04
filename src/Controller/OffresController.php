@@ -35,7 +35,7 @@ class OffresController extends AbstractController
             ->add('datedebut', TextType::class)
             ->add('datefin', TextType::class)
             ->add('agence', ChoiceType::class)
-             'choices' =>array('nom_agence')
+//             'choices' =>array('nom_agence')
             ->add('hotel', ChoiceType::class)
             ->add('pension', ChoiceType::class)
             ->add('chambre', ChoiceType::class)

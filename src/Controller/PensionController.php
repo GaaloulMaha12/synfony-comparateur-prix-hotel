@@ -11,6 +11,7 @@ namespace App\Controller;
 
 use App\Entity\Pension;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,18 +20,19 @@ class PensionController extends AbstractController
     /**
      * @Route("/pension",name="pension")
      */
-    public function pensionList (Request $request)
+    public function pensionList(Request $request)
     {
 
-        $pension = new Pension ();
+        $pension = new Pension();
 
         $form = $this->createFormBuilder($pension)
             ->add('typepension', TextType::class)
+            ->add('save', SubmitType::class, ['label' => 'ajouter'])
             ->getForm();
 
         $form->handleRequest($request);
 
-        $repository = $this->getDoctrine()->getRepository(pension::class);
+        $repository = $this->getDoctrine()->getRepository(Pension::class);
         $pensionData = $repository->findAll();
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -43,6 +45,12 @@ class PensionController extends AbstractController
 
 
         }
-    }
 
+        return $this->render('admin/pension/pensionList.html.twig', [
+            'pension' => $pensionData,
+            'form' => $form->createView(),
+
+        ]);
+
+    }
 }

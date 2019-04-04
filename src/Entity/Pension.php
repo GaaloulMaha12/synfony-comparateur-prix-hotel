@@ -29,7 +29,7 @@ class Pension
     private $offres;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\tarif", inversedBy="pensions")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Tarif", inversedBy="pensions")
      * @ORM\JoinColumn(nullable=false)
      */
     private $tarif;
