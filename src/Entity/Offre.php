@@ -57,10 +57,7 @@ class Offre
      */
     private $agence;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Tarif", mappedBy="offre")
-     */
-    private $tarif;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Chambre", inversedBy="offres")
@@ -68,13 +65,19 @@ class Offre
      */
     private $chambre;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Tarif", inversedBy="offres")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $tarif;
+
 
 
 
     public function __construct()
     {
 
-        $this->tarif = new ArrayCollection();
+
         $this->agence = new ArrayCollection();
 
     }
@@ -138,7 +141,7 @@ class Offre
 
 
 
-    public function getHotel(): ?hotel
+    public function getHotel(): ?ArrayCollection
     {
         return $this->hotel;
     }
@@ -150,7 +153,7 @@ class Offre
         return $this;
     }
 
-    public function getAgence(): ?Agence
+    public function getAgence(): ?ArrayCollection
     {
         return $this->agence;
     }
@@ -162,36 +165,6 @@ class Offre
         return $this;
     }
 
-    /**
-     * @return Collection|tarif[]
-     */
-    public function getTarif(): Collection
-    {
-        return $this->tarif;
-    }
-
-    public function addTarif(tarif $tarif): self
-    {
-        if (!$this->tarif->contains($tarif)) {
-            $this->tarif[] = $tarif;
-            $tarif->setOffre($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTarif(tarif $tarif): self
-    {
-        if ($this->tarif->contains($tarif)) {
-            $this->tarif->removeElement($tarif);
-            // set the owning side to null (unless already changed)
-            if ($tarif->getOffre() === $this) {
-                $tarif->setOffre(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getChambre(): ?chambre
     {
@@ -201,6 +174,18 @@ class Offre
     public function setChambre(?chambre $chambre): self
     {
         $this->chambre = $chambre;
+
+        return $this;
+    }
+
+    public function getTarif(): ?tarif
+    {
+        return $this->tarif;
+    }
+
+    public function setTarif(?tarif $tarif): self
+    {
+        $this->tarif = $tarif;
 
         return $this;
     }

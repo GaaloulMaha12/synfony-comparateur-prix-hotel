@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 use App\Entity\Agence;
+use App\Entity\Hotel;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use App\Entity\Offre;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,12 +31,18 @@ class OffresController extends AbstractController
         $offre = new Offre();
         $repository = $this->getDoctrine()->getRepository(Agence::class);
         $agences = $repository->findAll();
-        $agencesArray = array("");
+        $agencesArray = array();
         foreach($agences as $a => $val) {
             $agencesArray[$val->getNomAgence()]= $val->getId();
         }
+        $repository = $this->getDoctrine()->getRepository(Hotel::class);
+        $hotels = $repository->findAll();
+        $hotelsArray = array();
+        foreach($hotels as $a => $val) {
+            $hotelsArray[$val->getNomhotel()]= $val->getId();
+        }
 
-        var_dump($agences);
+     //   var_dump($agences);
 
         // jib liste des agences
         // declaration mta3 array vide
@@ -50,10 +57,13 @@ class OffresController extends AbstractController
              'choices' => $agencesArray
                     ]
             )
-            ->add('hotel', ChoiceType::class)
+            ->add('hotel', ChoiceType::class, [
+                'choices' => $hotelsArray
+            ]
+            )
             ->add('pension', ChoiceType::class)
             ->add('chambre', ChoiceType::class)
-
+            ->add('tarif', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'ajouter'])
             ->getForm();
 
@@ -96,7 +106,7 @@ class OffresController extends AbstractController
             ->add('hotel', ChoiceType::class)
             ->add('pension', ChoiceType::class)
             ->add('chambre', ChoiceType::class)
-
+            ->add('tarif', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'modifier'])
             ->getForm();
 

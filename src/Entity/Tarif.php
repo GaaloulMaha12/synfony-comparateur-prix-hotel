@@ -23,15 +23,21 @@ class Tarif
      */
     private $prix;
 
-
-
-
-
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Offre", inversedBy="tarif")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity="App\Entity\Offre", mappedBy="tarif")
      */
-    private $offre;
+    private $offres;
+
+    public function __construct()
+    {
+        $this->offres = new ArrayCollection();
+    }
+
+
+
+
+
+
 
 
 
@@ -59,18 +65,37 @@ class Tarif
         return $this;
     }
 
-
-    public function getOffre(): ?Offre
+    /**
+     * @return Collection|Offre[]
+     */
+    public function getOffres(): Collection
     {
-        return $this->offre;
+        return $this->offres;
     }
 
-    public function setOffre(?Offre $offre): self
+    public function addOffre(Offre $offre): self
     {
-        $this->offre = $offre;
+        if (!$this->offres->contains($offre)) {
+            $this->offres[] = $offre;
+            $offre->setTarif($this);
+        }
 
         return $this;
     }
+
+    public function removeOffre(Offre $offre): self
+    {
+        if ($this->offres->contains($offre)) {
+            $this->offres->removeElement($offre);
+            // set the owning side to null (unless already changed)
+            if ($offre->getTarif() === $this) {
+                $offre->setTarif(null);
+            }
+        }
+
+        return $this;
+    }
+
 
 
 }
