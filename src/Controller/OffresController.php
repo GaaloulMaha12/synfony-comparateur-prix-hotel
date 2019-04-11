@@ -62,13 +62,9 @@ class OffresController extends AbstractController
             ]
             )
             ->add('pension', ChoiceType::class)
-<<<<<<< HEAD
             ->add('chambre', ChoiceType::class)
             ->add('tarif', TextType::class)
-=======
             ->add('chambres', ChoiceType::class)
-
->>>>>>> 63a1e366d4d242d3bfab55d2cb81b2f4e2b9ee9e
             ->add('save', SubmitType::class, ['label' => 'ajouter'])
             ->getForm();
 
@@ -110,13 +106,10 @@ class OffresController extends AbstractController
             ->add('agence', ChoiceType::class)
             ->add('hotel', ChoiceType::class)
             ->add('pension', ChoiceType::class)
-<<<<<<< HEAD
             ->add('chambre', ChoiceType::class)
             ->add('tarif', TextType::class)
-=======
             ->add('chambres', ChoiceType::class)
 
->>>>>>> 63a1e366d4d242d3bfab55d2cb81b2f4e2b9ee9e
             ->add('save', SubmitType::class, ['label' => 'modifier'])
             ->getForm();
 

@@ -7,6 +7,7 @@
  */
 
 namespace App\Controller;
+use App\Entity\Element;
 use App\Entity\Page;
 use function PHPSTORM_META\type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -122,15 +123,6 @@ class PagesController extends AbstractController
         return $this->render('admin/pages/deletepage.html.twig', [
             'form' => $form->createView(),
         ]);
-
-
     }
-
-
-
-
-
-
-
 
 }

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,6 +27,16 @@ class Page
      * @ORM\Column(type="string", length=255)
      */
     private $titrepage;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Element", mappedBy="page")
+     */
+    private $element;
+
+    public function __construct()
+    {
+        $this->element = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -51,6 +63,37 @@ class Page
     public function setTitrepage(string $titrepage): self
     {
         $this->titrepage = $titrepage;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|element[]
+     */
+    public function getElement(): Collection
+    {
+        return $this->element;
+    }
+
+    public function addElement(element $element): self
+    {
+        if (!$this->element->contains($element)) {
+            $this->element[] = $element;
+            $element->setPage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeElement(element $element): self
+    {
+        if ($this->element->contains($element)) {
+            $this->element->removeElement($element);
+            // set the owning side to null (unless already changed)
+            if ($element->getPage() === $this) {
+                $element->setPage(null);
+            }
+        }
 
         return $this;
     }
