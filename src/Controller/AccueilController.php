@@ -7,7 +7,7 @@
  */
 
 namespace App\Controller;
-use App\Entity\Offre;
+use App\Entity\Hotel;
 use function PHPSTORM_META\type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,15 +25,15 @@ class AccueilController  extends  AbstractController
      */
     public function accueil()
     {
-        $offre = new Offre();
-        $repository = $this->getDoctrine()->getRepository(Offre::class);
+        $hotel = new Hotel();
+        $repository = $this->getDoctrine()->getRepository(Hotel::class);
 
-        $DealsData = $repository->findAll();
+        $hotelsData = $repository->findAll();
 
 
 
 
         return $this->render('client/recherche.html.twig', [
-            'offres' => $DealsData,]);
+            'hotels' => $hotelsData,]);
     }
 }
