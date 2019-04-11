@@ -23,10 +23,7 @@ class Chambre
      */
     private $typechambre;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $nomchambre;
+
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Offre", mappedBy="chambre")
@@ -60,17 +57,7 @@ class Chambre
         return $this;
     }
 
-    public function getNomchambre(): ?string
-    {
-        return $this->nomchambre;
-    }
 
-    public function setNomchambre(string $nomchambre): self
-    {
-        $this->nomchambre = $nomchambre;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Offre[]

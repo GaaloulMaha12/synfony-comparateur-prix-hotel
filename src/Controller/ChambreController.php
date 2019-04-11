@@ -21,7 +21,7 @@ class ChambreController extends  AbstractController
 {
     /**
     /**
-     * @Route("/chambres",name="chambres")
+     * @Route("/chambre",name="chambres")
      */
     public function chambreList(Request $request)
     {
@@ -31,7 +31,7 @@ class ChambreController extends  AbstractController
 
 
         $form = $this->createFormBuilder($chambre)
-            ->add('nomchambre', TextType::class)
+
             ->add('typechambre', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'ajouter'])
             ->getForm();
@@ -66,7 +66,7 @@ class ChambreController extends  AbstractController
 
 
         $form = $this->createFormBuilder($chambre)
-            ->add('nomchambre', TextType::class)
+
             ->add('typechambre', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'modifier'])
             ->getForm();
@@ -82,7 +82,7 @@ class ChambreController extends  AbstractController
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $chambre->setNomchambre($form->getData()->getNomchambre());
+
             $chambre->setTypechambre($form->getData()->getTypechambre());
 
 

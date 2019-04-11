@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\TarifRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\CategoriechambreRepository")
  */
-class Tarif
+class Categoriechambre
 {
     /**
      * @ORM\Id()
@@ -19,12 +19,12 @@ class Tarif
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $prix;
+    private $categorie;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Offre", mappedBy="tarif")
+     * @ORM\OneToMany(targetEntity="App\Entity\Offre", mappedBy="categoriechambre")
      */
     private $offres;
 
@@ -33,34 +33,19 @@ class Tarif
         $this->offres = new ArrayCollection();
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getPrix(): ?string
+    public function getCategorie(): ?string
     {
-        return $this->prix;
+        return $this->categorie;
     }
 
-    public function setPrix(string $prix): self
+    public function setCategorie(?string $categorie): self
     {
-        $this->prix = $prix;
+        $this->categorie = $categorie;
 
         return $this;
     }
@@ -77,7 +62,7 @@ class Tarif
     {
         if (!$this->offres->contains($offre)) {
             $this->offres[] = $offre;
-            $offre->setTarif($this);
+            $offre->setCategoriechambre($this);
         }
 
         return $this;
@@ -88,14 +73,11 @@ class Tarif
         if ($this->offres->contains($offre)) {
             $this->offres->removeElement($offre);
             // set the owning side to null (unless already changed)
-            if ($offre->getTarif() === $this) {
-                $offre->setTarif(null);
+            if ($offre->getCategoriechambre() === $this) {
+                $offre->setCategoriechambre(null);
             }
         }
 
         return $this;
     }
-
-
-
 }

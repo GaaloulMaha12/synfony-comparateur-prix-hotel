@@ -10,11 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-<<<<<<< HEAD:src/Migrations/Version20190404142552.php
-final class Version20190404142552 extends AbstractMigration
-=======
-final class Version20190409221427 extends AbstractMigration
->>>>>>> cf3dd4630f09bd7258dd86389075dab77dddef60:src/Migrations/Version20190409221427.php
+final class Version20190409220431 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -26,9 +22,7 @@ final class Version20190409221427 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE offre ADD categoriechambre_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE offre ADD CONSTRAINT FK_AF86866F7BD4D14E FOREIGN KEY (categoriechambre_id) REFERENCES categoriechambre (id)');
-        $this->addSql('CREATE INDEX IDX_AF86866F7BD4D14E ON offre (categoriechambre_id)');
+        $this->addSql('CREATE TABLE categoriechambre (id INT AUTO_INCREMENT NOT NULL, categorie VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
     }
 
     public function down(Schema $schema) : void
@@ -36,8 +30,6 @@ final class Version20190409221427 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE offre DROP FOREIGN KEY FK_AF86866F7BD4D14E');
-        $this->addSql('DROP INDEX IDX_AF86866F7BD4D14E ON offre');
-        $this->addSql('ALTER TABLE offre DROP categoriechambre_id');
+        $this->addSql('DROP TABLE categoriechambre');
     }
 }

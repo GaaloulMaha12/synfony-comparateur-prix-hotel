@@ -18,8 +18,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 
-class AgenciesController extends AbstractController{
-
+class AgenciesController extends AbstractController
+{
 
 
     /**
@@ -27,39 +27,26 @@ class AgenciesController extends AbstractController{
      */
     public function agenciesList(Request $request)
     {
-
-
-       $agence = new Agence();
-
-
-
+        $agence = new Agence();
         $form = $this->createFormBuilder($agence)
             ->add('nom_agence', TextType::class)
             ->add('lien_agence', TextType::class)
-
             ->add('save', SubmitType::class, ['label' => 'ajouter'])
             ->getForm();
-
         $form->handleRequest($request);
-
         $repository = $this->getDoctrine()->getRepository(Agence::class);
         $usersData = $repository->findAll();
         if ($form->isSubmitted() && $form->isValid()) {
+//            $agence = $form->getData();
             $entityManager = $this->getDoctrine()->getManager();
-            $agence = $form->getData();
             $entityManager->persist($agence);
             $entityManager->flush();
-            $agence = $repository->findAll();
             return $this->redirectToRoute('agence');
-
         }
         return $this->render('admin/agences/agencesList.html.twig', [
             'agences' => $usersData,
             'form' => $form->createView(),
-
         ]);
-
-
     }
 
     /**
@@ -73,7 +60,6 @@ class AgenciesController extends AbstractController{
 
         $form = $this->createFormBuilder($agence)
             ->add('nom_agence', TextType::class)
-
             ->add('save', SubmitType::class, ['label' => 'modifier'])
             ->getForm();
 
@@ -94,7 +80,7 @@ class AgenciesController extends AbstractController{
             $entityManager->persist($agence);
             $entityManager->flush();
 
-            return $this->redirectToRoute('agences');
+            return $this->redirectToRoute('agence');
         }
         return $this->render('admin/agences/editagency.html.twig', [
             'form' => $form->createView(),
@@ -103,11 +89,14 @@ class AgenciesController extends AbstractController{
 
     /**
      * @Route("/agences/deleteagency/{id}",name="deleteagency")
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function delete(request $request, $id)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $page = $entityManager->getRepository(agence::class)->find($id);
+        $agence = $entityManager->getRepository(agence::class)->find($id);
 
         $form = $this->createFormBuilder()
             ->add('delete', SubmitType::class, ['label' => 'delete'])
@@ -118,21 +107,18 @@ class AgenciesController extends AbstractController{
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($page);
+
+            $entityManager->remove($agence);
             $entityManager->flush();
-            return $this->redirectToRoute('agences');
+            return $this->redirectToRoute('agence');
         }
 
-        return $this->render('admin/pages/deleteagency.html.twig', [
+        return $this->render('admin/agences/deleteagency.html.twig', [
             'form' => $form->createView(),
         ]);
 
 
     }
-
-
-
-
 
 
 }

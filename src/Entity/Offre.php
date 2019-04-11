@@ -66,10 +66,17 @@ class Offre
     private $chambre;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Tarif", inversedBy="offres")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
-    private $tarif;
+    private $tariflocal;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categoriechambre", inversedBy="offres")
+     */
+    private $categoriechambre;
+
+
+
 
 
 
@@ -127,7 +134,7 @@ class Offre
 
 
 
-    public function getPension(): ?pension
+    public function getPension()
     {
         return $this->pension;
     }
@@ -141,7 +148,7 @@ class Offre
 
 
 
-    public function getHotel(): ?ArrayCollection
+    public function getHotel()
     {
         return $this->hotel;
     }
@@ -153,7 +160,7 @@ class Offre
         return $this;
     }
 
-    public function getAgence(): ?ArrayCollection
+    public function getAgence()
     {
         return $this->agence;
     }
@@ -166,7 +173,7 @@ class Offre
     }
 
 
-    public function getChambre(): ?chambre
+    public function getChambre()
     {
         return $this->chambre;
     }
@@ -178,17 +185,33 @@ class Offre
         return $this;
     }
 
-    public function getTarif(): ?tarif
+    public function getTariflocal(): ?string
     {
-        return $this->tarif;
+        return $this->tariflocal;
     }
 
-    public function setTarif(?tarif $tarif): self
+    public function setTariflocal(string $tariflocal): self
     {
-        $this->tarif = $tarif;
+        $this->tariflocal = $tariflocal;
 
         return $this;
     }
+
+    public function getCategoriechambre(): ?categoriechambre
+    {
+        return $this->categoriechambre;
+    }
+
+    public function setCategoriechambre(?categoriechambre $categoriechambre): self
+    {
+        $this->categoriechambre = $categoriechambre;
+
+        return $this;
+    }
+
+
+
+
 
 
 
