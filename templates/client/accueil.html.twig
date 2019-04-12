@@ -1,0 +1,97 @@
+{% extends 'client/client.base.html.twig' %}
+
+{% block body %}
+    <div class="Loader"></div>
+    <div class="wrapper">
+        <nav class="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
+            <div class="container">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu"><i class="fa fa-bars"></i></button>
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html"><img src="assets/img/logo-white.png" class="logo logo-display" alt=""><img src="img/image.jpg" class="logo logo-scrolled" alt=""></a>
+                </div>
+
+            </div>
+        </nav>
+        <div class="clearfix"></div>
+        <div class="banner" style="background-image:url(img/image.jpg);">
+            <div class="container">
+                <div class="banner-caption">
+                    <div class="col-md-12 col-sm-12 banner-text">
+                        <h1>Comparateur du prix des hotels    </h1>
+                        <form class="form-horizontal">
+                            <div class="col-md-3 no-padd">
+                                <div class="input-group">
+                                    <select id="choose-city" class="form-control">
+
+                                        <option value="" selected disabled>Destination</option>
+                                        <option value="">Ariana</option>
+                                        <option value="">Béja</option>
+                                        <option value="">Ben Arous</option>
+                                        <option value="">Bizerte</option>
+                                        <option value="">Gabès</option>
+                                        <option value="">Mahdia</option>
+                                        <option value="">La Manouba</option>
+                                        <option value="">Médenine</option>
+                                        <option value="">Monastir</option>
+                                        <option value="">Nabeul</option>
+                                        <option value="">Sfax</option>
+                                        <option value="">Sousse</option>
+                                        <option value="">Tataouine</option>
+                                        <option value="">Tozeur</option>
+                                        <option value="">Tunis</option>
+                                        <option value="">Zaghouane</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2 no-padd">
+                                <div class="input-group">
+
+                                    <input type="date" placeholder="Arrivée .." onClick="$(this).removeClass('placeholderclass')" class="form-control right-bor dateclass placeholderclass"  id="date" >
+                                </div>
+                            </div>
+                            <div class="col-md-2 no-padd">
+                                <div class="input-group">
+                                    <input type="date" placeholder="Départ .." onClick="$(this).removeClass('placeholderclass')" class="form-control right-bor dateclass placeholderclass"  id="date" > </div>
+                            </div>
+                            <div class="col-md-3 no-padd">
+                                <div class="input-group">
+                                    <select id="choose-city" class="form-control">
+
+                                        <option value="" selected disabled>Chambre</option>
+                                        <option value=""> <i class="far fa-user"></i>Chambre Simple</option>
+                                        <option value="">Chambre Double</option>
+                                        <option value="">Chambre Familiales</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2 no-padd">
+                                <div class="input-group">
+                                    <button type="submit" class="btn btn-primary" > <a href="/client/recherche"></a>Chercher</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="company-brand">
+                <div class="container">
+                    <div id="company-brands" class="owl-carousel">
+
+                        <div class="brand-img"><img src="/img/logo-miramar-hotels.png" class="img-responsive" alt="" /></div>
+                        <div class="brand-img"><img src="/img/movenpick.png" class="img-responsive" alt="" /></div>
+
+                        <div class="brand-img"><img src="/img/sousse palace.png" class="img-responsive" alt="" /></div>
+                        <div class="brand-img"><img src="/img/Hotel-1139-20160510-035018.png" class="img-responsive" alt="" /></div>
+                        <div class="brand-img"><img src="/img/.png" class="img-responsive" alt="" /></div>
+                        <div class="brand-img"><img src="/img/yahoo-home.png" class="img-responsive" alt="" /></div>
+                        <div class="brand-img"><img src="/img/mothercare-home.png" class="img-responsive" alt="" /></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+
+
+{% endblock %}

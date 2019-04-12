@@ -91,9 +91,16 @@ class OffresController extends AbstractController
                     'choices' => $chambresArray
                 ]
             )
+<<<<<<< HEAD
 
 //            ->add('tarif', TextType::class)
 //            ->add('chambres', ChoiceType::class)
+=======
+            ->add('pension', ChoiceType::class)
+            ->add('chambre', ChoiceType::class)
+            ->add('tarif', TextType::class)
+            ->add('chambres', ChoiceType::class)
+>>>>>>> 2f39d60bec47236b8b7b8ae32c86b58bc2732c17
             ->add('categoriechambre', ChoiceType::class,
                 [
                     'choices' => $categoriechambreArray
@@ -103,7 +110,10 @@ class OffresController extends AbstractController
                     'choices' => $pensionArray
                 ])
             ->add('tariflocal', TextType::class)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2f39d60bec47236b8b7b8ae32c86b58bc2732c17
             ->add('save', SubmitType::class, ['label' => 'ajouter'])
             ->getForm();
 
@@ -192,7 +202,18 @@ class OffresController extends AbstractController
             ->add('nomoffre', TextType::class)
             ->add('datedebut', TextType::class)
             ->add('datefin', TextType::class)
+<<<<<<< HEAD
             ->add('lienoffre', TextType::class)
+=======
+
+            ->add('agence', ChoiceType::class)
+            ->add('hotel', ChoiceType::class)
+            ->add('pension', ChoiceType::class)
+            ->add('chambre', ChoiceType::class)
+            ->add('tarif', TextType::class)
+            ->add('chambres', ChoiceType::class)
+
+>>>>>>> 2f39d60bec47236b8b7b8ae32c86b58bc2732c17
 
             ->add('agence', ChoiceType::class,
                 [
