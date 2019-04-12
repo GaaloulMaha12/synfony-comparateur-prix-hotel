@@ -36,4 +36,12 @@ class AccueilController  extends  AbstractController
         return $this->render('client/recherche.html.twig', [
             'hotels' => $hotelsData,]);
     }
+    /**
+     * @Route("/page")
+     */
+
+    public function pageAccueil () {
+        return $this->render('client/accueil.html.twig', []);
+    }
+
 }
