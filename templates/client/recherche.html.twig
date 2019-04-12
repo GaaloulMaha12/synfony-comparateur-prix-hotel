@@ -129,10 +129,10 @@
                         <input type="text" class="form-control" placeholder="Destination">
                     </div>
                     <div class="col-md-3 col-sm-6">
-                        <input type="text" class="form-control" placeholder="date arrivé">
+                        <input type="date" placeholder="date arrivé" onclick="$(this).removeClass('placeholderclass')" class= "form-control right-bor dateclass placeholderclass" id="date" >
                     </div>
                     <div class="col-md-3 col-sm-6">
-                        <input type="text" class="form-control" placeholder="date depart">
+                        <input type="date" placeholder="date depart" onclick="$(this).removeClass('placeholderclass')" class= "form-control right-bor dateclass placeholderclass" id="date" >
                     </div>
                     <div class="col-md-3 col-sm-6">
                         <select class="form-control">
@@ -241,7 +241,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-2 col-sm-2">
-                                        <a href="javascript:void(0)"  data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">Voir l'offre</a>
+                                       <a href="/hotel/{{ hotel.id }}" class="btn advance-search" >Voir l'offre</a>
                                     </div>
                                 </div>
                                 <span class="tg-themetag tg-featuretag">Premium</span>

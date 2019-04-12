@@ -75,6 +75,11 @@ class Offre
      */
     private $categoriechambre;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $lienoffre;
+
 
 
 
@@ -205,6 +210,18 @@ class Offre
     public function setCategoriechambre(?categoriechambre $categoriechambre): self
     {
         $this->categoriechambre = $categoriechambre;
+
+        return $this;
+    }
+
+    public function getLienoffre(): ?string
+    {
+        return $this->lienoffre;
+    }
+
+    public function setLienoffre(string $lienoffre): self
+    {
+        $this->lienoffre = $lienoffre;
 
         return $this;
     }

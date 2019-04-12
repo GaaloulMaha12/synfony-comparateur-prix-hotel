@@ -77,6 +77,7 @@ class OffresController extends AbstractController
             ->add('nomoffre', TextType::class)
             ->add('datedebut', TextType::class)
             ->add('datefin', TextType::class)
+            ->add('lienoffre', TextType::class)
             ->add('agence', ChoiceType::class, [
                     'choices' => $agencesArray
                 ]
@@ -90,12 +91,9 @@ class OffresController extends AbstractController
                     'choices' => $chambresArray
                 ]
             )
-<<<<<<< HEAD
-            ->add('pension', ChoiceType::class)
-            ->add('chambre', ChoiceType::class)
-            ->add('tarif', TextType::class)
-            ->add('chambres', ChoiceType::class)
-=======
+
+//            ->add('tarif', TextType::class)
+//            ->add('chambres', ChoiceType::class)
             ->add('categoriechambre', ChoiceType::class,
                 [
                     'choices' => $categoriechambreArray
@@ -105,7 +103,7 @@ class OffresController extends AbstractController
                     'choices' => $pensionArray
                 ])
             ->add('tariflocal', TextType::class)
->>>>>>> cf3dd4630f09bd7258dd86389075dab77dddef60
+
             ->add('save', SubmitType::class, ['label' => 'ajouter'])
             ->getForm();
 
@@ -167,8 +165,8 @@ class OffresController extends AbstractController
         foreach ($hotels as $a => $val) {
             $hotelsArray[$val->getNomhotel()] = $val;
         }
-        $repository2 = $this->getDoctrine()->getRepository(Chambre::class);
 
+        $repository2 = $this->getDoctrine()->getRepository(Chambre::class);
         $chambres = $repository2->findAll();
         $chambresArray = array();
         foreach ($chambres as $a => $val) {
@@ -194,15 +192,8 @@ class OffresController extends AbstractController
             ->add('nomoffre', TextType::class)
             ->add('datedebut', TextType::class)
             ->add('datefin', TextType::class)
-<<<<<<< HEAD
-            ->add('agence', ChoiceType::class)
-            ->add('hotel', ChoiceType::class)
-            ->add('pension', ChoiceType::class)
-            ->add('chambre', ChoiceType::class)
-            ->add('tarif', TextType::class)
-            ->add('chambres', ChoiceType::class)
+            ->add('lienoffre', TextType::class)
 
-=======
             ->add('agence', ChoiceType::class,
                 [
                     'choices' => $agencesArray,
@@ -216,7 +207,7 @@ class OffresController extends AbstractController
             ->add('chambre', ChoiceType::class,
                 [
                     'choices' => $chambresArray,
-//                    'empty_data' => $offre->getChambre()->getNomchambre()
+                    'empty_data' => $offre->getChambre()->getTypechambre()
                 ])
             ->add('categoriechambre', ChoiceType::class,
                 [
@@ -229,7 +220,6 @@ class OffresController extends AbstractController
                     'empty_data' => $offre->getPension()->getTypepension()
                 ])
             ->add('tariflocal', TextType::class)
->>>>>>> cf3dd4630f09bd7258dd86389075dab77dddef60
             ->add('save', SubmitType::class, ['label' => 'modifier'])
             ->getForm();
 

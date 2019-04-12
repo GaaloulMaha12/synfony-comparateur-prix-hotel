@@ -1,0 +1,75 @@
+{% extends 'client/client.base.html.twig' %}
+
+{% block body %}
+
+
+    <div class="row no-mrg">
+
+    </div>
+
+
+    <section class="brows-job-category gray-bg">
+    <div class="container">
+    <div class="col-md-6 col-sm-6">
+        <a href="new-job-detail.html" title="job Detail">
+            <div class="advance-search-img-box">
+                <img src="assets/img/com-2.jpg" class="img-responsive" alt="">
+            </div>
+        </a>
+        <div class="advance-search-caption">
+            <a href="new-job-detail.html" title="Job Dtail">
+                <h4>{{ hotel.nomHotel }}</h4></a>
+            <span>{{ hotel.typehotel }}</span><br>
+            <span><i class="fa fa-map-marker"> {{ hotel.adresse }}</i></span><br>
+
+
+            <span>{{ hotel.note }}</span><br>
+
+        </div>
+
+    </div>
+    {% for offre in offres %}
+        <div>
+            <div class="col-md-9 col-sm-12">
+
+                <div class="full-card">
+
+                    <div class="container">
+
+
+                    </div>
+                    <table class="table table-dark table-hover">
+
+                        <tbody>
+                        <tr>
+                            <td>{{ offre.agence.nomAgence }}</td>
+                            <td>{{ offre.tariflocal }}</td>
+                            <td><a href="{{ offre.lienoffre }}" target="_blank" class="btn">voir l'offre</a>   </td>
+                        </tr>
+                        <tr>
+                            <td>{{ offre.chambre.typechambre }}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>{{ offre.pension.typepension }}</td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+    {% endfor %}
+        </div>
+        </section>
+
+        {% endblock %}
