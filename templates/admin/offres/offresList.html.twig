@@ -24,13 +24,14 @@
             <th scope="col" >nom offre </th>
             <th scope="col" >date debut </th>
             <th scope="col" >date fin </th>
-            <th scope="col" >lien offre </th>
+
             <th scope="col" >agence </th>
             <th scope="col" >hotel </th>
             <th scope="col" > chambre </th>
             <th scope="col" > categoriechambre </th>
             <th scope="col" >pension </th>
             <th scope="col" >tariflocal </th>
+            <th scope="col" >lien offre </th>
             <th scope="col">Action </th>
 
         </tr>
@@ -42,7 +43,7 @@
                 <td> {{  offre.nomoffre}}</td>
                 <td> {{  offre.datedebut }}</td>
                 <td> {{  offre.datefin }}</td>
-                <td> {{  offre.lienoffre }}</td>
+
                 <td> {{  offre.agence.nomAgence() }}</td>
                 <td> {{  offre.hotel.nomHotel}}</td>
 
@@ -50,6 +51,7 @@
                 <td> {{  offre.categoriechambre.categorie }}</td>
                 <td> {{  offre.pension.typePension}}</td>
                 <td> {{  offre.tariflocal}}</td>
+                <td> {{  offre.lienoffre }}</td>
 
                 <td><a href="/offres/edit/{{ offre.id }}"> modifier    </a>
                     <a href="/offres/delete/{{ offre.id }}"> supprimer </a>

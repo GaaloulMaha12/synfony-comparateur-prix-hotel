@@ -11,6 +11,7 @@ use App\Entity\Hotel;
 use App\Entity\Offre;
 use function PHPSTORM_META\type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,25 +22,21 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class RechercheController  extends  AbstractController
 {
-    /**
- * @Route("/accueil")
- */
-    public function accueil()
-    {
-        $hotel = new Hotel();
-        $repository = $this->getDoctrine()->getRepository(Hotel::class);
 
-        $hotelsData = $repository->findAll();
-
-
-
-
-        return $this->render('client/recherche.html.twig', [
-            'hotels' => $hotelsData,]);
-    }
-//    /**
-//     * @Route("/deal")
-//     */
+//    public function accueil()
+//    {
+//        $hotel = new Hotel();
+//        $repository = $this->getDoctrine()->getRepository(Hotel::class);
+//
+//        $hotelsData = $repository->findAll();
+//
+//
+//
+//
+//        return $this->render('client/recherche.html.twig', [
+//            'hotels' => $hotelsData,]);
+//    }
+//
 //    public function offre()
 //    {
 //        $offre = new Offre();
@@ -75,4 +72,38 @@ class RechercheController  extends  AbstractController
             'hotel' => $HotelData
             ]);
     }
+
+    /**
+     * @Route("/accueil", name="recherche")
+     */
+
+    public function RechHotel(Request $request)
+    {
+        $hotel = new Hotel();
+        $form = $this->createFormBuilder($hotel)
+            ->add('positionhotel', TextType::class)
+            ->add('typehotel', TextType::class)
+            ->add('save', SubmitType::class, ['label' => 'chercher'])
+            ->getForm();
+        $form->handleRequest($request);
+        $repository = $this->getDoctrine()->getRepository(Hotel::class);
+        $hotelsData = $repository->findAll();
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($hotel);
+            $entityManager->flush();
+            return $this->redirectToRoute('recherche');
+        }
+        return $this->render('client/recherche.html.twig', [
+            'hotels' => $hotelsData,
+            'formRech' => $form->createView(),
+        ]);
+    }
+
+
+
+
+
+
 }
