@@ -42,10 +42,10 @@
         <!-- Title Header End -->
 
         <!-- bottom form section start -->
-        {#<section class="bottom-search-form">#}
-            {#<div class="container">#}
-                {#<form class="bt-form">#}
-                    {#<div class="col-md-3 col-sm-6">#}
+        <section class="bottom-search-form">
+            <div class="container">
+                <form class="bt-form">
+                    {#<div class="col-md-2 col-sm-6">#}
                         {#<select class="form-control">#}
                             {#<option value="" selected disabled>Destination</option>#}
                             {#<option value="">Ariana</option>#}
@@ -67,13 +67,13 @@
 
                         {#</select>#}
                     {#</div>#}
-                    {#<div class="col-md-3 col-sm-6">#}
+                    {#<div class="col-md-2 col-sm-6">#}
                         {#<input type="date" placeholder="date arrivé" onclick="$(this).removeClass('placeholderclass')" class= "form-control right-bor dateclass placeholderclass" id="date" >#}
                     {#</div>#}
-                    {#<div class="col-md-3 col-sm-6">#}
+                    {#<div class="col-md-2 col-sm-6">#}
                         {#<input type="date" placeholder="date depart" onclick="$(this).removeClass('placeholderclass')" class= "form-control right-bor dateclass placeholderclass" id="date" >#}
                     {#</div>#}
-                    {#<div class="col-md-3 col-sm-6">#}
+                    {#<div class="col-md-2 col-sm-6">#}
                         {#<select class="form-control">#}
                             {#<option>type chambre</option>#}
                             {#<option>single</option>#}
@@ -82,7 +82,7 @@
 
                         {#</select>#}
                     {#</div>#}
-                    {#<div class="col-md-3 col-sm-6">#}
+                    {#<div class="col-md-2 col-sm-6">#}
                         {#<select class="form-control">#}
                             {#<option>type hotel</option>#}
                             {#<option>5 étoiles</option>#}
@@ -92,7 +92,7 @@
                             {#<option>0/1 étoiles</option>#}
                         {#</select>#}
                     {#</div>#}
-                    {#<div class="col-md-3 col-sm-6">#}
+                    {#<div class="col-md-2 col-sm-6">#}
                         {#<select class="form-control">#}
                             {#<option>avis</option>#}
                             {#<option> Excellent</option>#}
@@ -102,7 +102,7 @@
 
                         {#</select>#}
                     {#</div>#}
-                    {#<div class="col-md-3 col-sm-6">#}
+                    {#<div class="col-md-2 col-sm-6">#}
                         {#<select class="form-control">#}
                             {#<option>adresse</option>#}
 
@@ -112,38 +112,16 @@
                     {#<div class="col-md-3 col-sm-6">#}
                         {#<button type="submit" class="btn btn-primary">rechercher</button>#}
                     {#</div>#}
-                {#</form>#}
-            {#</div>#}
-        {#</section>#}
+                    {#<div class="modal-body">#}
+                        {#{{ form(form) }}#}
+                    {#</div>#}
 
-    <table class="table table-striped table-dark">
-    <thead>
 
-    <tr>
-        <th scope="col" >position hotel </th>
-        <th scope="col" >type hotel</th>
-        <th scope="col">Action </th>
 
-    </tr>
-    </thead>
 
-    {%for hotel in hotels %}
-
-        <tr>
-
-            <td> {{  hotel.getPositionhotel() }}</td>
-            <td> {{  hotel.getTypehotel() }}</td>
-
-        </tr>
-
-    {% endfor %}
-
-    <div class="col-md-3 col-sm-6">
-    <button type="submit" class="btn btn-primary">chercher</button>
-    </div>
-    <div class="modal-body">
-    {{ form(formRech) }}
-    </div>
+                </form>
+            </div>
+        </section>
 
     {#</form>#}
     {#</div>#}
@@ -159,34 +137,7 @@
                 <div class="col-md-9 col-sm-12">
                     <div class="full-card">
 
-                        {#<div class="card-header">#}
-                            {#<div class="row mrg-0">#}
-                                {#<div class="col-md-4 col-sm-4">#}
-                                    {#<select class="selectpicker form-control" multiple title="Job Type">#}
-                                        {#<option>Full Time</option>#}
-                                        {#<option>Part Time</option>#}
-                                        {#<option>Freelancer</option>#}
-                                        {#<option>Internship</option>#}
-                                    {#</select>#}
-                                {#</div>#}
-                                {#<div class="col-md-4 col-sm-4 small-padd">#}
-                                    {#<select class="selectpicker form-control" multiple title="All Categories">#}
-                                        {#<option>Teacher Jobs</option>#}
-                                        {#<option>Consultant Jobs</option>#}
-                                        {#<option>IT Jobs</option>#}
-                                        {#<option>Sales Jobs</option>#}
-                                        {#<option>Graphic Designer Jobs</option>#}
-                                    {#</select>#}
-                                {#</div>#}
-                                {#<div class="col-md-4 col-sm-4">#}
-                                    {#<ol class="breadcrumb pull-right">#}
-                                        {#<li><a href="#"><i class="fa fa-home"></i></a></li>#}
-                                        {#<li><a href="#">Full Time</a></li>#}
-                                        {#<li class="active">IT Jobs</li>#}
-                                    {#</ol>#}
-                                {#</div>#}
-                            {#</div>#}
-                        {#</div>#}
+
                           {%for hotel in hotels %}
                         <div class="card-body">
 

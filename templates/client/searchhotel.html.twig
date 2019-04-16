@@ -1,0 +1,20 @@
+{% extends 'client/client.base.html.twig' %}
+{% block body %}
+    <div>
+    <h3>Recherche</h3>
+    {{ form(form) }}
+    </div>
+    <div>
+
+        <h2>resultat de la recherche</h2>
+        {% for hotel in hotels %}
+            <h4>
+            nom hotel: {{  hotel.nomhotel }}
+            type :{{ hotel.typehotel }}
+           adresse : {{ hotel.positionhotel }}
+            </h4>
+
+    </div>
+            {% endfor %}
+
+{% endblock %}

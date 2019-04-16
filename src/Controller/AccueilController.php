@@ -20,24 +20,22 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class AccueilController  extends  AbstractController
 {
+
+//    public function accueil()
+//    {
+//        $hotel = new Hotel();
+//        $repository = $this->getDoctrine()->getRepository(Hotel::class);
+//
+//        $hotelsData = $repository->findAll();
+//
+//
+//
+//
+//        return $this->render('client/recherche.html.twig', [
+//            'hotels' => $hotelsData,]);
+//    }
     /**
-     * @Route("/accueil")
-     */
-    public function accueil()
-    {
-        $hotel = new Hotel();
-        $repository = $this->getDoctrine()->getRepository(Hotel::class);
-
-        $hotelsData = $repository->findAll();
-
-
-
-
-        return $this->render('client/recherche.html.twig', [
-            'hotels' => $hotelsData,]);
-    }
-    /**
-     * @Route("/page")
+     * @Route("/1")
      */
 
     public function pageAccueil () {
