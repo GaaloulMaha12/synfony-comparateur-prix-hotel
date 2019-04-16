@@ -9,9 +9,9 @@
 namespace App\Controller;
 use App\Entity\Hotel;
 use App\Entity\Offre;
-use function PHPSTORM_META\type;
+use function Symfony\Bridge\Twig\Extension\twig_is_selected_choice;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -25,18 +25,35 @@ class RechercheController  extends  AbstractController
     /**
      * @Route("/2")
      */
-    public function accueil()
+    public function searchhotel(request $request)
     {
         $hotel = new Hotel();
-        $repository = $this->getDoctrine()->getRepository(Hotel::class);
+        $repository = $this->getDoctrine()->getRepository(hotel::class);
+        $hotels = $repository->findAll();
+        $hotelsArray = array();
+        foreach ($hotels as $a => $val) {
+            $hotelsArray[$val->getTypehotel()] = $val->getTypehotel();
+        }
+        $form = $this->createFormBuilder($hotel)
+            ->add('typehotel', ChoiceType::class, [
+                'choices' => $hotelsArray
+            ])
+            ->add('save', SubmitType::class, ['label' => 'rechercher'])
+            ->getForm();
+        $form->handleRequest($request);
+//          $repository = $this->getDoctrine()->getRepository(Hotel::class);
+        $selectedHotels = [];
+        if ($form->isSubmitted() && $form->isValid()) {
+            $crit = $form->getData();
+            $selectedHotels = $repository->findBy(['typehotel' => $crit->getTypehotel()]);
 
-        $hotelsData = $repository->findAll();
-
-
-
-
+            $hotelsData = $selectedHotels;
+        }
         return $this->render('client/recherche.html.twig', [
-            'hotels' => $hotelsData,]);
+            'hotels' => $selectedHotels,
+            'form' => $form->createView(),
+        ]);
+
     }
 //
 //    public function offre()
@@ -72,39 +89,8 @@ class RechercheController  extends  AbstractController
             'hotel' => $HotelData
         ]);
     }
-    /**
-     * @Route("/search")
-     */
-    public function searchhotel(request $request)
-    {
-        $hotel = new Hotel();
-        $repository = $this->getDoctrine()->getRepository(hotel::class);
-        $hotels = $repository->findAll();
-        $hotelsArray = array();
-        foreach ($hotels as $a => $val) {
-            $hotelsArray[$val->getTypehotel()] = $val->getTypehotel();
-        }
-        $form = $this->createFormBuilder($hotel)
-            ->add('typehotel', ChoiceType::class, [
-                'choices' => $hotelsArray
-            ])
-            ->add('save', SubmitType::class, ['label' => 'rechercher'])
-            ->getForm();
-        $form->handleRequest($request);
-//          $repository = $this->getDoctrine()->getRepository(Hotel::class);
-        $selectedHotels = [];
-        if ($form->isSubmitted() && $form->isValid()) {
-            $crit = $form->getData();
-            $selectedHotels = $repository->findBy(['typehotel' => $crit->getTypehotel()]);
 
-            $hotelsData = $selectedHotels;
-        }
-        return $this->render('client/searchhotel.html.twig', [
-            'hotels' => $selectedHotels,
-            'form' => $form->createView(),
-        ]);
 
-    }
 
     public function searchhotelbytypehotel($critéres)
     {
