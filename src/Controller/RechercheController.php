@@ -23,26 +23,27 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 class RechercheController  extends  AbstractController
 {
     /**
-     * @Route("/2")
+     * @Route("/resultat")
      */
     public function searchhotel(request $request)
     {
         $hotel = new Hotel();
         $repository = $this->getDoctrine()->getRepository(hotel::class);
         $hotels = $repository->findAll();
-        $hotelsArray = array();
+        $types = array();
         foreach ($hotels as $a => $val) {
-            $hotelsArray[$val->getTypehotel()] = $val->getTypehotel();
+            $types[$val->getTypehotel()] = $val->getTypehotel();
         }
         $form = $this->createFormBuilder($hotel)
             ->add('typehotel', ChoiceType::class, [
-                'choices' => $hotelsArray
+//                'choices' => $hotelsArray
             ])
             ->add('save', SubmitType::class, ['label' => 'rechercher'])
             ->getForm();
         $form->handleRequest($request);
-//          $repository = $this->getDoctrine()->getRepository(Hotel::class);
         $selectedHotels = [];
+//        $data = $request->get('key');
+//        var_dump($data);
         if ($form->isSubmitted() && $form->isValid()) {
             $crit = $form->getData();
             $selectedHotels = $repository->findBy(['typehotel' => $crit->getTypehotel()]);
@@ -50,8 +51,9 @@ class RechercheController  extends  AbstractController
             $hotelsData = $selectedHotels;
         }
         return $this->render('client/recherche.html.twig', [
-            'hotels' => $selectedHotels,
+            'hotels' => $hotels,
             'form' => $form->createView(),
+            'types' => $types,
         ]);
 
     }
@@ -84,9 +86,10 @@ class RechercheController  extends  AbstractController
         $HotelData = $repository2->find($id);
 
 
-        return $this->render('client/offre.html.twig', [
+        return $this->render('client/detailsoffre.html.twig', [
             'offres' => $DealsData,
             'hotel' => $HotelData
+
         ]);
     }
 

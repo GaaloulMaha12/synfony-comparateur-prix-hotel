@@ -1,207 +1,172 @@
 {% extends 'client/client.base.html.twig' %}
 
 {% block body %}
+
     <div class="Loader"></div>
     <div class="wrapper">
-
-        <!-- Start Navigation -->
         <nav class="navbar navbar-default navbar-fixed navbar-light white bootsnav">
-
             <div class="container">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <!-- Start Header Navigation -->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu"><i
+                            class="fa fa-bars"></i></button>
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
-                        <img src="/img/logo.png" class="logo logo-scrolled" alt="">
-                    </a>
+                    <a class="navbar-brand" href="index.html"><img
+                                src="http://codeminifier.com/new-job-stock/job-stock/assets/img/logo.png"
+                                class="logo logo-scrolled" alt=""></a>
                 </div>
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav navbar-left" data-in="fadeInDown" data-out="fadeOutUp">
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                {#  <div class="collapse navbar-collapse" id="navbar-menu">
-
-                   #}
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li><a href="login.html"><i class="fa fa-pencil" aria-hidden="true"></i>SignUp</a></li>
+                        <li><a href="pricing.html"><i class="fa fa-sign-in" aria-hidden="true"></i>Pricing</a></li>
+                        <li class="left-br"><a href="javascript:void(0)" data-toggle="modal" data-target="#signup"
+                                               class="signin">Sign In Now</a></li>
+                    </ul>
                 </div>
-        </nav>
-    </div>
-
-
-        </nav>
-        <!-- End Navigation -->
-        <div class="clearfix"></div>
-
-        <!-- Title Header Start -->
-        <section class="inner-header-title no-br advance-header-title" style="background-image:url(/img/capture.png);">
-            <div class="container">
-                <h2><span>Salut.</span>Trouvez l’hôtel idéal et comparez les prix de différents sites Web</h2>
-              {#  <p><span>704</span> new job in the last <span>7</span> days.</p>#}
             </div>
-        </section>
+        </nav>
         <div class="clearfix"></div>
-        <!-- Title Header End -->
-
-        <!-- bottom form section start -->
+        <div class="simple-banner" style="background-image:url(assets/img/simple-banner.jpg);">
+            <div class="container">
+                <div class="simple-banner-caption">
+                    <div class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1 banner-text">
+                        <h3>We Are Available On</h3>
+                        <h1>Job <span>Stock</span></h1></div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
         <section class="bottom-search-form">
             <div class="container">
                 <form class="bt-form">
-
-                    {#<div class="col-md-2 col-sm-6">#}
-                        {#<select class="form-control">#}
-                            {#<option value="" selected disabled>Destination</option>#}
-                            {#<option value="">Ariana</option>#}
-                            {#<option value="">Béja</option>#}
-                            {#<option value="">Ben Arous</option>#}
-                            {#<option value="">Bizerte</option>#}
-                            {#<option value="">Gabès</option>#}
-                            {#<option value="">Mahdia</option>#}
-                            {#<option value="">La Manouba</option>#}
-                            {#<option value="">Médenine</option>#}
-                            {#<option value="">Monastir</option>#}
-                            {#<option value="">Nabeul</option>#}
-                            {#<option value="">Sfax</option>#}
-                            {#<option value="">Sousse</option>#}
-                            {#<option value="">Tataouine</option>#}
-                            {#<option value="">Tozeur</option>#}
-                            {#<option value="">Tunis</option>#}
-                            {#<option value="">Zaghouane</option>#}
-
-                        {#</select>#}
-                    {#</div>#}
-                    {#<div class="col-md-2 col-sm-6">#}
-                        {#<input type="date" placeholder="date arrivé" onclick="$(this).removeClass('placeholderclass')" class= "form-control right-bor dateclass placeholderclass" id="date" >#}
-                    {#</div>#}
-                    {#<div class="col-md-2 col-sm-6">#}
-                        {#<input type="date" placeholder="date depart" onclick="$(this).removeClass('placeholderclass')" class= "form-control right-bor dateclass placeholderclass" id="date" >#}
-                    {#</div>#}
-                    {#<div class="col-md-2 col-sm-6">#}
-                        {#<select class="form-control">#}
-                            {#<option>type chambre</option>#}
-                            {#<option>single</option>#}
-                            {#<option>double</option>#}
-                            {#<option>multiple</option>#}
-
-                        {#</select>#}
-                    {#</div>#}
-                    {#<div class="col-md-2 col-sm-6">#}
-                        {#<select class="form-control">#}
-                            {#<option>type hotel</option>#}
-                            {#<option>5 étoiles</option>#}
-                            {#<option>4 étoiles</option>#}
-                            {#<option>3 étoiles</option>#}
-                            {#<option>2 étoiles</option>#}
-                            {#<option>0/1 étoiles</option>#}
-                        {#</select>#}
-                    {#</div>#}
-                    {#<div class="col-md-2 col-sm-6">#}
-                        {#<select class="form-control">#}
-                            {#<option>avis</option>#}
-                            {#<option> Excellent</option>#}
-                            {#<option>Bien</option>#}
-                            {#<option>Passable</option>#}
-                            {#<option>Mauvais</option>#}
-
-                        {#</select>#}
-                    {#</div>#}
-                    {#<div class="col-md-2 col-sm-6">#}
-                        {#<select class="form-control">#}
-                            {#<option>adresse</option>#}
-
-
-                        {#</select>#}
-                    {#</div>#}
-                    {#<div class="col-md-3 col-sm-6">#}
-                        {#<button type="submit" class="btn btn-primary">rechercher</button>#}
-                    {#</div>#}
-                    <div class="modal-body">
-                        {{ form(form) }}
-                    </div>
-
-
-
-
-                {#</form>#}
-            {#</div>#}
-        {#</section>#}
-
-    {#</form>#}
-    {#</div>#}
-    {#</table>#}
-
-
-
-        {#<!-- Bottom Search Form Section End -->#}
-
-        {#<!-- ========== Begin: Brows job Category ===============  -->#}
-        {#<section class="brows-job-category gray-bg">#}
-            {#<div class="container">#}
-                {#<div class="col-md-9 col-sm-12">#}
-                    {#<div class="full-card">#}
-                            <h3>RESULTS</h3>
-
-                          {%for hotel in hotels %}
-                        <div class="card-body">
-
-                            <article class="advance-search-job">
-                                <div class="row no-mrg">
-                                    <div class="col-md-6 col-sm-6">
-                                        <a href="new-job-detail.html" title="job Detail">
-                                            <div class="advance-search-img-box">
-                                                <img src="assets/img/com-2.jpg" class="img-responsive" alt="">
-                                            </div>
-                                        </a>
-                                        <div class="advance-search-caption">
-                                            <a href="new-job-detail.html" title="Job Dtail"><h4>{{  hotel.nomHotel}}</h4></a>
-                                            <span>{{  hotel.typehotel}}</span><br>
-                                            <span><i class="fa fa-map-marker"> {{  hotel.adresse}}</i></span><br>
-
-                                            {#<span>{{  offre.chambre.typechambre}} - {{  offre.categoriechambre.categorie}}</span><br>#}
-                                            <span>{{  hotel.note}}</span><br>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4">
-                                        <div class="advance-search-job-locat">
-                                            {#<p> {{  offre.agence.nomagence}}   {{  offre.tariflocal}}</p>#}
-
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 col-sm-2">
-                                       <a href="/hotel/{{ hotel.id }}" class="btn advance-search" >Voir l'offre</a>
-                                    </div>
-                                </div>
-                                <span class="tg-themetag tg-featuretag">Premium</span>
-                            </article>
-                            {% endfor %}
-
-
                     <div class="row">
-                        <ul class="pagination">
-                            <li><a href="#">&laquo;</a></li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li>
-                            <li><a href="#">&raquo;</a></li>
-                        </ul>
+                        <div class="col-md-10 col-sm-6">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6">
+                                    <select id="choose-city" class="form-control">
+                                        <option value="" selected disabled>Destination</option>
+                                        <option value="">Ariana</option>
+                                        <option value="">Béja</option>
+                                        <option value="">Ben Arous</option>
+                                        <option value="">Bizerte</option>
+                                        <option value="">Gabès</option>
+                                        <option value="">Mahdia</option>
+                                        <option value="">La Manouba</option>
+                                        <option value="">Médenine</option>
+                                        <option value="">Monastir</option>
+                                        <option value="">Nabeul</option>
+                                        <option value="">Sfax</option>
+                                        <option value="">Sousse</option>
+                                        <option value="">Tataouine</option>
+                                        <option value="">Tozeur</option>
+                                        <option value="">Tunis</option>
+                                        <option value="">Zaghouane</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Date debut">
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <input type="text" class="form-control" id="companies" placeholder="Date arrivee">
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <input type="text" class="form-control" id="location" placeholder="Chambre">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6">
+                            <button type="submit" class="btn btn-primary">Search Job</button>
+                        </div>
                     </div>
-
-
-            </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <input type="range" class="form-control" id="location" placeholder="budget">
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <input type="text" class="form-control" id="location" placeholder="avis">
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <select class="form-control">
+                                <option disabled selected>Type</option>
+                                {% for type in types %}
+                                    <option>{{ type }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <input type="text" class="form-control" id="location" placeholder="autre">
+                        </div>
+                    </div>
                 </form>
             </div>
         </section>
-    
+        <section class="brows-job-category">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>We found {{ hotels | length }} Hotels</h2></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {% for hotel in hotels %}
+                            <div class="item-click">
+                                <article>
+                                    <div class="brows-job-list">
+                                        <div class="col-md-1 col-sm-2 small-padding">
+                                            <div class="brows-job-company-img">
+                                                <a href="job-detail.html"><img src="assets/img/com-1.jpg"
+                                                                               class="img-responsive" alt=""/></a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-5">
+                                            <div class="brows-job-position"><a href="job-detail.html">
+                                                    <h3>{{ hotel.nomhotel }}</h3></a>
+                                                <p><span class="brows-job-sallery">
+                                                    <i class="fa fa-star"></i>
+                                                        {{ hotel.note }} / 10
+                                                </span>
+                                                    <span
+                                                            class="job-type cl-success bg-trans-success">{{ hotel.typehotel }}</span>
+                                                    <span>
+                                                </span>
+                                                    <br>
+                                                    <span class="brows-job-sallery"> {{ hotel.service }}</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3">
+                                            <div class="brows-job-location">
+                                                <p><i class="fa fa-map-marker"></i>{{ hotel.positionhotel }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2">
+                                            <div class="brows-job-link"><a href="/hotel/{{ hotel.id }}"
+                                                                           class="btn btn-primary">Voir offres</a></div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        {% endfor %}
                     </div>
-        </section>
 
                 </div>
             </div>
         </section>
+        <div class="clearfix"></div>
+        <!-- Download app Section Start -->
+    </div>
 
+    <div class="clearfix"></div>
+    <!-- Download app Section End -->
+    <footer class="footer">
 
-
+        <div class="row copyright">
+            <div class="container">
+                <p>Copyright Job Stock © 2017. All Rights Reserved </p>
+            </div>
+        </div>
+    </footer>
+    <div class="clearfix"></div>
 
 {% endblock %}
