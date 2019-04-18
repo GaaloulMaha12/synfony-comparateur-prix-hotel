@@ -41,8 +41,8 @@
 
             <tr>
                 <td> {{  offre.nomoffre}}</td>
-                <td> {{  offre.datedebut }}</td>
-                <td> {{  offre.datefin }}</td>
+                <td> {{  offre.datedebut|date("m/d/Y") }}</td>
+                <td> {{  offre.datefin|date("m/d/Y") }}</td>
 
                 <td> {{  offre.agence.nomAgence() }}</td>
                 <td> {{  offre.hotel.nomHotel}}</td>

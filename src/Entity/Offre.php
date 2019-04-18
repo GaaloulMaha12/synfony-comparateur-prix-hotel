@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -26,12 +27,12 @@ class Offre
 
 
     /**
-     * @ORM\Column(type="date", length=255)
+     * @ORM\Column(type="datetime", length=255)
      */
     private $datedebut;
 
     /**
-     * @ORM\Column(type="date", length=255)
+     * @ORM\Column(type="datetime", length=255)
      */
     private $datefin;
 
@@ -100,32 +101,35 @@ class Offre
         return $this->id;
     }
 
-    public function getDatedebut(): ?date
+    public function getDatedebut(): ?datetime
     {
-        $date = \DateTime::createFromFormat('d/m/Y', $this->datedebut);
-        if (!empty($date)) {
-            return $date;
-        }
-        return null;
+//        $date = \DateTime::createFromFormat('d/m/Y', $this->datedebut);
+//        if (!empty($date)) {
+//            return $date;
+//        }
+        return $this->datedebut;
     }
 
-    public function setDatedebut(date $datedebut): self
+    public function setDatedebut(datetime $datedebut): self
     {
         $this->datedebut = $datedebut;
 
         return $this;
     }
 
-    public function getDatefin(): ?date
+    public function getDatefin(): ?datetime
     {
         return $this->datefin;
     }
 
-    public function setDatefin(date $datefin): self
+    public function setDatefin(datetime $datefin): self
     {
-        $date = \DateTime::createFromFormat('d/m/Y', $this->datefin);
+//        $date = \DateTime::createFromFormat('d/m/Y', $this->datefin);
+        $this->datefin = $datefin;
 
-        return $date;
+        return $this;
+
+
     }
 
     public function getNomoffre(): ?string
