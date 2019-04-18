@@ -33,7 +33,7 @@ class RechercheController extends AbstractController
         $pos = $request->get('destination');
         $type= $request->get('type');
         $debut = $request->get('arrivee');
-        $datefin= $request->get('départ');
+        $datefin= $request->get('depart');
         $note = $request->get('note');
         $chambre  = $request->get('chambre');
         $autre= $request->get('autre');

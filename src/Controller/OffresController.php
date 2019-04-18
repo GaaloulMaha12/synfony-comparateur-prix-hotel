@@ -13,16 +13,19 @@ use App\Entity\Pension;
 use App\Entity\Agence;
 use App\Entity\Hotel;
 use App\Entity\Chambre;
+
 use function Symfony\Bridge\Twig\Extension\twig_is_selected_choice;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use App\Entity\Offre;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Validator\Constraints\Date;
 
 class OffresController extends AbstractController
 {
@@ -75,8 +78,8 @@ class OffresController extends AbstractController
 
         $form = $this->createFormBuilder($offre)
             ->add('nomoffre', TextType::class)
-            ->add('datedebut', TextType::class)
-            ->add('datefin', TextType::class)
+            ->add('datedebut', dateType::class)
+            ->add('datefin', dateType::class)
             ->add('lienoffre', TextType::class)
             ->add('agence', ChoiceType::class, [
                     'choices' => $agencesArray

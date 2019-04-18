@@ -26,12 +26,12 @@ class Offre
 
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="date", length=255)
      */
     private $datedebut;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="date", length=255)
      */
     private $datefin;
 
@@ -106,23 +106,23 @@ class Offre
         return $date;
     }
 
-    public function setDatedebut(string $datedebut): self
+    public function setDatedebut(date $datedebut): self
     {
         $this->datedebut = $datedebut;
 
         return $this;
     }
 
-    public function getDatefin(): ?string
+    public function getDatefin(): ?date
     {
         return $this->datefin;
     }
 
-    public function setDatefin(string $datefin): self
+    public function setDatefin(date $datefin): self
     {
-        $this->datefin = $datefin;
+        $date = \DateTime::createFromFormat('d/m/Y', $this->datefin);
 
-        return $this;
+        return $date;
     }
 
     public function getNomoffre(): ?string
