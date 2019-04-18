@@ -103,7 +103,10 @@ class Offre
     public function getDatedebut(): ?date
     {
         $date = \DateTime::createFromFormat('d/m/Y', $this->datedebut);
-        return $date;
+        if (!empty($date)) {
+            return $date;
+        }
+        return null;
     }
 
     public function setDatedebut(date $datedebut): self
