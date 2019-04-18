@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OffreRepository")
@@ -99,9 +100,10 @@ class Offre
         return $this->id;
     }
 
-    public function getDatedebut(): ?string
+    public function getDatedebut(): ?date
     {
-        return $this->datedebut;
+        $date = \DateTime::createFromFormat('d/m/Y', $this->datedebut);
+        return $date;
     }
 
     public function setDatedebut(string $datedebut): self

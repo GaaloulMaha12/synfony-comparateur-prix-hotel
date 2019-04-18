@@ -12,7 +12,6 @@ use App\Entity\Agence;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -20,7 +19,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class AgenciesController extends AbstractController
 {
-
 
     /**
      * @Route("/agences",name="agence")
@@ -80,7 +78,7 @@ class AgenciesController extends AbstractController
             $entityManager->persist($agence);
             $entityManager->flush();
 
-            return $this->redirectToRoute('agence');
+            return $this->redirect('agence');
         }
         return $this->render('admin/agences/editagency.html.twig', [
             'form' => $form->createView(),

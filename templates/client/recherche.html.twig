@@ -45,38 +45,45 @@
                             <div class="row">
                                 <div class="col-md-3 col-sm-6">
                                     <select id="choose-city" class="form-control">
-                                        <option value="" selected disabled>Destination</option>
-                                        <option value="">Ariana</option>
-                                        <option value="">Béja</option>
-                                        <option value="">Ben Arous</option>
-                                        <option value="">Bizerte</option>
-                                        <option value="">Gabès</option>
-                                        <option value="">Mahdia</option>
-                                        <option value="">La Manouba</option>
-                                        <option value="">Médenine</option>
-                                        <option value="">Monastir</option>
-                                        <option value="">Nabeul</option>
-                                        <option value="">Sfax</option>
-                                        <option value="">Sousse</option>
-                                        <option value="">Tataouine</option>
-                                        <option value="">Tozeur</option>
-                                        <option value="">Tunis</option>
-                                        <option value="">Zaghouane</option>
+                                        {{ form(form) }}
+                                        {#<option value="" selected disabled>Destination</option>#}
+                                        {#<option value="">Ariana</option>#}
+                                        {#<option value="">Béja</option>#}
+                                        {#<option value="">Ben Arous</option>#}
+                                        {#<option value="">Bizerte</option>#}
+                                        {#<option value="">Gabès</option>#}
+                                        {#<option value="">Mahdia</option>#}
+                                        {#<option value="">La Manouba</option>#}
+                                        {#<option value="">Médenine</option>#}
+                                        {#<option value="">Monastir</option>#}
+                                        {#<option value="">Nabeul</option>#}
+                                        {#<option value="">Sfax</option>#}
+                                        {#<option value="">Sousse</option>#}
+                                        {#<option value="">Tataouine</option>#}
+                                        {#<option value="">Tozeur</option>#}
+                                        {#<option value="">Tunis</option>#}
+                                        {#<option value="">Zaghouane</option>#}
                                     </select>
                                 </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Date debut">
-                                </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <input type="text" class="form-control" id="companies" placeholder="Date arrivee">
-                                </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <input type="text" class="form-control" id="location" placeholder="Chambre">
-                                </div>
+                                {#<div class="col-md-3 col-sm-6">#}
+                                    {#<input type="text" class="form-control" placeholder="Date arrivée">#}
+                                {#</div>#}
+                                {#<div class="col-md-3 col-sm-6">#}
+                                    {#<input type="text" class="form-control" id="companies" placeholder="Date départ">#}
+                                {#</div>#}
+                                {#<div class="col-md-3 col-sm-6">#}
+                                    {#<select id="choose-city" class="form-control">#}
+                                        {#<option disabled selected>Type chambre</option>#}
+                                        {#{% for typechambre in typeschambres %}#}
+                                            {#<option>{{ typechambre }}</option>#}
+                                        {#{% endfor %}#}
+                                    {#</select>#}
+                                {#</div>#}
                             </div>
                         </div>
                         <div class="col-md-2 col-sm-6">
-                            <button type="submit" class="btn btn-primary">Search Job</button>
+                            {#<button type="submit" class="btn btn-primary">#}<a href="/hotel/recherche"
+                                                                             class="btn btn-primary">Search </a>
                         </div>
                     </div>
                     <div class="row">
@@ -84,19 +91,28 @@
                             <input type="range" class="form-control" id="location" placeholder="budget">
                         </div>
                         <div class="col-md-3 col-sm-6">
-                            <input type="text" class="form-control" id="location" placeholder="avis">
+                            <select class="form-control">
+                                <option disabled selected>Avis</option>
+                                {% for note in notes %}
+                                    <option>{{ note }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
                         <div class="col-md-3 col-sm-6">
                             <select class="form-control">
-                                <option disabled selected>Type</option>
+                                <option disabled selected>Type hotel</option>
                                 {% for type in types %}
                                     <option>{{ type }}</option>
                                 {% endfor %}
                             </select>
                         </div>
-                        <div class="col-md-3 col-sm-6">
-                            <input type="text" class="form-control" id="location" placeholder="autre">
-                        </div>
+
+                                <div class="col-md-3 col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Autres(piscine,spa,wifi..">
+                                </div>
+
+
+
                     </div>
                 </form>
             </div>

@@ -19,22 +19,23 @@ class HotelRepository extends ServiceEntityRepository
         parent::__construct($registry, Hotel::class);
     }
 
-    // /**
-    //  * @return Hotel[] Returns an array of Hotel objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+      * @return Hotel[] Returns an array of Hotel objects
+      */
+
+    public function findHotelsByCiteria($dest)
     {
         return $this->createQueryBuilder('h')
-            ->andWhere('h.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('h.id', 'ASC')
-            ->setMaxResults(10)
+            ->addSelect('o')
+            ->leftJoin('h.offre','o')
+            ->andWhere('h.id = o.hotel_id')
+            ->andWhere('h.positionhotel = :dest')
+            ->setParameter('dest', $dest)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Hotel
