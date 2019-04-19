@@ -40,10 +40,6 @@ class Offre
 
 
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Pension", inversedBy="offres")
-     */
-    private $pension;
 
 
 
@@ -58,33 +54,6 @@ class Offre
      * @ORM\JoinColumn(nullable=false)
      */
     private $agence;
-
-
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Chambre", inversedBy="offres")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $chambre;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $tariflocal;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Categoriechambre", inversedBy="offres")
-     */
-    private $categoriechambre;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $lienoffre;
-
-
-
-
 
 
 
@@ -148,18 +117,6 @@ class Offre
 
 
 
-    public function getPension()
-    {
-        return $this->pension;
-    }
-
-    public function setPension(?pension $pension): self
-    {
-        $this->pension = $pension;
-
-        return $this;
-    }
-
 
 
     public function getHotel()
@@ -182,55 +139,6 @@ class Offre
     public function setAgence(?Agence $agence): self
     {
         $this->agence = $agence;
-
-        return $this;
-    }
-
-
-    public function getChambre()
-    {
-        return $this->chambre;
-    }
-
-    public function setChambre(?chambre $chambre): self
-    {
-        $this->chambre = $chambre;
-
-        return $this;
-    }
-
-    public function getTariflocal(): ?string
-    {
-        return $this->tariflocal;
-    }
-
-    public function setTariflocal(string $tariflocal): self
-    {
-        $this->tariflocal = $tariflocal;
-
-        return $this;
-    }
-
-    public function getCategoriechambre(): ?categoriechambre
-    {
-        return $this->categoriechambre;
-    }
-
-    public function setCategoriechambre(?categoriechambre $categoriechambre): self
-    {
-        $this->categoriechambre = $categoriechambre;
-
-        return $this;
-    }
-
-    public function getLienoffre(): ?string
-    {
-        return $this->lienoffre;
-    }
-
-    public function setLienoffre(string $lienoffre): self
-    {
-        $this->lienoffre = $lienoffre;
 
         return $this;
     }

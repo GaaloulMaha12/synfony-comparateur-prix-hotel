@@ -49,24 +49,6 @@ class OffresController extends AbstractController
         foreach ($hotels as $a => $val) {
             $hotelsArray[$val->getNomhotel()] = $val;
         }
-        $repository2 = $this->getDoctrine()->getRepository(Chambre::class);
-        $chambres = $repository2->findAll();
-        $chambresArray = array();
-        foreach ($chambres as $a => $val) {
-            $chambresArray[$val->getTypechambre() ] = $val;
-        }
-        $repository3 = $this->getDoctrine()->getRepository(Categoriechambre::class);
-        $categoriechambre = $repository3->findAll();
-        $categoriechambreArray = array();
-        foreach ($categoriechambre as $a => $val) {
-            $categoriechambreArray[$val->getCategorie()] = $val;
-        }
-        $repository4 = $this->getDoctrine()->getRepository(Pension::class);
-        $pension = $repository4->findAll();
-        $pensionArray = array();
-        foreach ($pension as $a => $val) {
-            $pensionArray[$val->getTypepension()] = $val;
-        }
 
 
         //   var_dump($agences);
@@ -80,18 +62,12 @@ class OffresController extends AbstractController
             ->add('nomoffre', TextType::class)
             ->add('datedebut', dateType::class)
             ->add('datefin', dateType::class)
-            ->add('lienoffre', TextType::class)
             ->add('agence', ChoiceType::class, [
                     'choices' => $agencesArray
                 ]
             )
             ->add('hotel', ChoiceType::class, [
                     'choices' => $hotelsArray
-                ]
-            )
-            ->add('chambre', ChoiceType::class,
-                [
-                    'choices' => $chambresArray
                 ]
             )
 
@@ -101,18 +77,6 @@ class OffresController extends AbstractController
 
 
 
-
-
-
-            ->add('categoriechambre', ChoiceType::class,
-                [
-                    'choices' => $categoriechambreArray
-                ])
-            ->add('pension', ChoiceType::class,
-                [
-                    'choices' => $pensionArray
-                ])
-            ->add('tariflocal', TextType::class)
 
 
             ->add('save', SubmitType::class, ['label' => 'ajouter'])
