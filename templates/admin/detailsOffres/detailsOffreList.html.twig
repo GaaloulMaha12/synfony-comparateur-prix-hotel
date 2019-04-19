@@ -21,9 +21,9 @@
         <thead>
 
         <tr>
-            <th scope="col" >type chambre</th>
-            <th scope="col" >contenu catégorie</th>
-            <th scope="col" >type pension </th>
+            <th scope="col" >typechambre</th>
+            <th scope="col" > categorie</th>
+            <th scope="col" >typepension </th>
             <th scope="col" >prix</th>
             <th scope="col">Action </th>
 
@@ -33,10 +33,10 @@
         {%for detailsoffre in detailsoffres %}
 
             <tr>
-                <td> {{  offre.chambre.typeChambre}}</td>
+                <td> {{  offre.chambre.Typechambre}}</td>
                 <td> {{  offre.categoriechambre.categorie }}</td>
-                <td> {{  offre.pension.typePension}}</td>
-                <td> {{  offre.tariflocal}}</td>
+                <td> {{  offre.pension.Typepension}}</td>
+                <td> {{  offre.tarif}}</td>
                 <td> {{  offre.lienoffre }}</td>
 
 

@@ -23,21 +23,20 @@ class Chambre
      */
     private $typechambre;
 
-
-
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Offre", mappedBy="chambre")
+     * @ORM\OneToMany(targetEntity="App\Entity\Detailsoffre", mappedBy="chambre")
      */
-    private $offres;
+    private $detailsoffres;
+
+
+
+
 
     public function __construct()
     {
         $this->offres = new ArrayCollection();
+        $this->detailsoffres = new ArrayCollection();
     }
-
-
-
-
 
 
     public function getId(): ?int
@@ -57,45 +56,49 @@ class Chambre
         return $this;
     }
 
-
-
     /**
-     * @return Collection|Offre[]
+     * @return Collection|Detailsoffre[]
      */
-    public function getOffres(): Collection
+    public function getDetailsoffres(): Collection
     {
-        return $this->offres;
+        return $this->detailsoffres;
     }
 
-    public function addOffre(Offre $offre): self
+    public function addDetailsoffre(Detailsoffre $detailsoffre): self
     {
-        if (!$this->offres->contains($offre)) {
-            $this->offres[] = $offre;
-            $offre->setChambre($this);
+        if (!$this->detailsoffres->contains($detailsoffre)) {
+            $this->detailsoffres[] = $detailsoffre;
+            $detailsoffre->setChambre($this);
         }
 
         return $this;
     }
 
-    public function removeOffre(Offre $offre): self
+    public function removeDetailsoffre(Detailsoffre $detailsoffre): self
     {
-        if ($this->offres->contains($offre)) {
-            $this->offres->removeElement($offre);
+        if ($this->detailsoffres->contains($detailsoffre)) {
+            $this->detailsoffres->removeElement($detailsoffre);
             // set the owning side to null (unless already changed)
-            if ($offre->getChambre() === $this) {
-                $offre->setChambre(null);
+            if ($detailsoffre->getChambre() === $this) {
+                $detailsoffre->setChambre(null);
             }
         }
 
         return $this;
     }
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -16,68 +16,97 @@ class Detailsoffre
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $type_chambre;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $categorie_chambre;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $type_pension;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $tarif;
+
+
+
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $lien_offre;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Chambre", inversedBy="detailsoffres")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $chambre;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Pension", inversedBy="detailsoffres")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $pension;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categoriechambre", inversedBy="detailsoffres")
+     */
+    private $categoriechambre;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $tarif;
+
+
+
+
+
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTypeChambre(): ?string
+
+
+
+    public function getLienOffre(): ?string
     {
-        return $this->type_chambre;
+        return $this->lien_offre;
     }
 
-    public function setTypeChambre(string $type_chambre): self
+    public function setLienOffre(string $lien_offre): self
     {
-        $this->type_chambre = $type_chambre;
+        $this->lien_offre = $lien_offre;
 
         return $this;
     }
 
-    public function getCategorieChambre(): ?string
+    public function getChambre(): ?chambre
     {
-        return $this->categorie_chambre;
+        return $this->chambre;
     }
 
-    public function setCategorieChambre(string $categorie_chambre): self
+    public function setChambre(?chambre $chambre): self
     {
-        $this->categorie_chambre = $categorie_chambre;
+        $this->chambre = $chambre;
 
         return $this;
     }
 
-    public function getTypePension(): ?string
+    public function getPension(): ?pension
     {
-        return $this->type_pension;
+        return $this->pension;
     }
 
-    public function setTypePension(string $type_pension): self
+    public function setPension(?pension $pension): self
     {
-        $this->type_pension = $type_pension;
+        $this->pension = $pension;
+
+        return $this;
+    }
+
+    public function getCategoriechambre(): ?categoriechambre
+    {
+        return $this->categoriechambre;
+    }
+
+    public function setCategoriechambre(?categoriechambre $categoriechambre): self
+    {
+        $this->categoriechambre = $categoriechambre;
 
         return $this;
     }
@@ -94,15 +123,6 @@ class Detailsoffre
         return $this;
     }
 
-    public function getLienOffre(): ?string
-    {
-        return $this->lien_offre;
-    }
 
-    public function setLienOffre(string $lien_offre): self
-    {
-        $this->lien_offre = $lien_offre;
 
-        return $this;
-    }
 }

@@ -24,9 +24,12 @@ class Pension
     private $typepension;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Offre", mappedBy="pension")
+     * @ORM\OneToMany(targetEntity="App\Entity\Detailsoffre", mappedBy="pension")
      */
-    private $offres;
+    private $detailsoffres;
+
+
+
 
 
 
@@ -37,6 +40,7 @@ class Pension
     public function __construct()
     {
         $this->offres = new ArrayCollection();
+        $this->detailsoffres = new ArrayCollection();
 
     }
 
@@ -58,35 +62,40 @@ class Pension
     }
 
     /**
-     * @return Collection|Offre[]
+     * @return Collection|Detailsoffre[]
      */
-    public function getOffres(): Collection
+    public function getDetailsoffres(): Collection
     {
-        return $this->offres;
+        return $this->detailsoffres;
     }
 
-    public function addOffre(Offre $offre): self
+    public function addDetailsoffre(Detailsoffre $detailsoffre): self
     {
-        if (!$this->offres->contains($offre)) {
-            $this->offres[] = $offre;
-            $offre->setPension($this);
+        if (!$this->detailsoffres->contains($detailsoffre)) {
+            $this->detailsoffres[] = $detailsoffre;
+            $detailsoffre->setPension($this);
         }
 
         return $this;
     }
 
-    public function removeOffre(Offre $offre): self
+    public function removeDetailsoffre(Detailsoffre $detailsoffre): self
     {
-        if ($this->offres->contains($offre)) {
-            $this->offres->removeElement($offre);
+        if ($this->detailsoffres->contains($detailsoffre)) {
+            $this->detailsoffres->removeElement($detailsoffre);
             // set the owning side to null (unless already changed)
-            if ($offre->getPension() === $this) {
-                $offre->setPension(null);
+            if ($detailsoffre->getPension() === $this) {
+                $detailsoffre->setPension(null);
             }
         }
 
         return $this;
     }
+
+
+
+
+
 
 
 

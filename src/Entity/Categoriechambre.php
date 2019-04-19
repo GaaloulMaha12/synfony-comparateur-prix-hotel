@@ -24,13 +24,15 @@ class Categoriechambre
     private $categorie;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Offre", mappedBy="categoriechambre")
+     * @ORM\OneToMany(targetEntity="App\Entity\Detailsoffre", mappedBy="categoriechambre")
      */
-    private $offres;
+    private $detailsoffres;
+
 
     public function __construct()
     {
         $this->offres = new ArrayCollection();
+        $this->detailsoffres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -51,33 +53,35 @@ class Categoriechambre
     }
 
     /**
-     * @return Collection|Offre[]
+     * @return Collection|Detailsoffre[]
      */
-    public function getOffres(): Collection
+    public function getDetailsoffres(): Collection
     {
-        return $this->offres;
+        return $this->detailsoffres;
     }
 
-    public function addOffre(Offre $offre): self
+    public function addDetailsoffre(Detailsoffre $detailsoffre): self
     {
-        if (!$this->offres->contains($offre)) {
-            $this->offres[] = $offre;
-            $offre->setCategoriechambre($this);
+        if (!$this->detailsoffres->contains($detailsoffre)) {
+            $this->detailsoffres[] = $detailsoffre;
+            $detailsoffre->setCategoriechambre($this);
         }
 
         return $this;
     }
 
-    public function removeOffre(Offre $offre): self
+    public function removeDetailsoffre(Detailsoffre $detailsoffre): self
     {
-        if ($this->offres->contains($offre)) {
-            $this->offres->removeElement($offre);
+        if ($this->detailsoffres->contains($detailsoffre)) {
+            $this->detailsoffres->removeElement($detailsoffre);
             // set the owning side to null (unless already changed)
-            if ($offre->getCategoriechambre() === $this) {
-                $offre->setCategoriechambre(null);
+            if ($detailsoffre->getCategoriechambre() === $this) {
+                $detailsoffre->setCategoriechambre(null);
             }
         }
 
         return $this;
     }
+
+
 }

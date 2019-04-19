@@ -12,6 +12,7 @@ use App\Entity\Offre;
 use App\Entity\Categoriechambre;
 use App\Entity\Pension;
 use App\Entity\Chambre;
+
 use function PHPSTORM_META\type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,7 +43,7 @@ class detailsOffreController extends AbstractController
         $chambres = $repository2->findAll();
         $chambresArray = array();
         foreach ($chambres as $a => $val) {
-            $chambresArray[$val->getTypeChambre() ] = $val;
+            $chambresArray[$val->getTypechambre()] = $val;
         }
         $repository3 = $this->getDoctrine()->getRepository(Categoriechambre::class);
         $categoriechambre = $repository3->findAll();
@@ -59,7 +60,7 @@ class detailsOffreController extends AbstractController
 
 
         $form = $this->createFormBuilder($detailsoffre)
-            ->add('typechambre', ChoiceType::class,
+            ->add('chambre', ChoiceType::class,
                 [
                     'choices' => $chambresArray
                 ]
@@ -73,7 +74,7 @@ class detailsOffreController extends AbstractController
                 [
                     'choices' => $pensionArray
                 ])
-            ->add('tariflocal', TextType::class)
+            ->add('tarif', TextType::class)
             ->add('lienoffre', TextType::class)
 
             ->add('save', SubmitType::class, ['label' => 'ajouter'])
