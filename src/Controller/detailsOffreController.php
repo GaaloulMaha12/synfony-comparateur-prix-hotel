@@ -106,4 +106,120 @@ class detailsOffreController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/detailsoffres/editdetail/{id}" ,name="editdetail")
+     */
+    public function editElement(Request $request, $id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $detailsoffre = $entityManager->getRepository(Detailsoffre::class)->find($id);
+
+
+        $repository2 = $this->getDoctrine()->getRepository(Chambre::class);
+        $chambres = $repository2->findAll();
+        $chambresArray = array();
+        foreach ($chambres as $a => $val) {
+            $chambresArray[$val->getTypechambre()] = $val;
+        }
+        $repository3= $this->getDoctrine()->getRepository(Categoriechambre::class);
+
+        $categories = $repository3->findAll();
+        $categoriesArray = array();
+        foreach ($categories as $a => $val) {
+            $categoriesArray[$val->getCategorie()] = $val;
+        }
+
+        $repository4 = $this->getDoctrine()->getRepository(Pension::class);
+
+        $pension = $repository4->findAll();
+        $pensionArray = array();
+        foreach ($pension as $a => $val) {
+            $pensionArray[$val->getTypepension()] = $val;
+        }
+
+
+        $form = $this->createFormBuilder($detailsoffre)
+            ->add('type chambre', ChoiceType::class,
+                [
+                    'choices' => $chambresArray,
+                    'empty_data' => $detailsoffre->getChambre()->getTypechambre()
+                ])
+            ->add('categorie chambre', ChoiceType::class,
+                [
+                    'choices' => $categoriesArray,
+//                    'empty_data' => $detailsoffre->getChambre()->getNomchambre()
+                ])
+            ->add('type pension', ChoiceType::class,
+                [
+                    'choices' => $pensionArray,
+                    'empty_data' => $detailsoffre->getPension()->getTypepension()
+                ])
+            ->add('prix', TextType::class)
+            ->add('lien offre', TextType::class)
+            ->add('save', SubmitType::class, ['label' => 'modifier'])
+            ->getForm();
+
+
+        $form->handleRequest($request);
+
+
+        if (!$detailsoffre) {
+            throw $this->createNotFoundException(
+                'No element found for id ' . $id
+            );
+        }
+
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $repository = $this->getDoctrine()->getRepository(Detailsoffre::class);
+
+            $detail = $repository->find($id);
+            $iddetail = $detail->getPage()->getId();
+            $entityManager->persist($detail);
+            $detailsoffre->setTypechambre($form->getData()->getTypechambre());
+            $detailsoffre->setCategorie($form->getData()->getCategorie());
+            $detailsoffre->setTypepension($form->getData()->getTypepension());
+            $detailsoffre->setTarif($form->getData()->getTarif());
+            $detailsoffre->setLienOffre($form->getData()->getLienOffre());
+
+            $entityManager->flush();
+
+            return $this->redirect('/detailsoffres/detailsoffreList/'. $iddetail);
+        }
+        return $this->render('admin/detailsoffres/editdetail.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/detailsoffres/deletedetail/{id}",name="deletedetail")
+     */
+    public function deletedetail (request $request, $id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $form = $this->createFormBuilder()
+            ->add('delete', SubmitType::class, ['label' => 'delete'])
+            ->getForm();
+
+        $form->handleRequest($request);
+        $repository = $this->getDoctrine()->getRepository(detailsoffre::class);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $detail = $repository->find($id);
+            $iddetail = $detail->getOffre()->getId();
+            $entityManager->remove($detail);
+            $entityManager->flush();
+            return $this->redirect('/detailsoffres/detailsoffreList/'. $iddetail);
+        }
+
+        return $this->render('admin/detailsoffres/deletedetail.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+
 }
