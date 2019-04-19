@@ -52,14 +52,6 @@ class RechercheController extends AbstractController
             }
         }
 
-//        print_r($hotels);
-
-
-//        $positionhotel = array();
-//        foreach ($hotels as $a => $val) {
-//            $positionhotel[$val->getPositionhotel()] = $val->getPositionhotel();
-//        }
-
         $chambres = $repository2->findAll();
         $typeschambre = array();
         foreach ($chambres as $a => $val) {
