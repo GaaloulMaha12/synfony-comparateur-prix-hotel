@@ -31,12 +31,12 @@ class RechercheController extends AbstractController
     {
 
         $pos = $request->get('destination');
-        $type= $request->get('type');
+        $type = $request->get('type');
         $debut = $request->get('arrivee');
-        $datefin= $request->get('depart');
+        $datefin = $request->get('depart');
         $note = $request->get('note');
-        $chambre  = $request->get('chambre');
-        $autre= $request->get('autre');
+        $chambre = $request->get('chambre');
+        $autre = $request->get('autre');
 
         $repository2 = $this->getDoctrine()->getRepository(chambre::class);
         $repository = $this->getDoctrine()->getRepository(Offre::class);
@@ -67,35 +67,37 @@ class RechercheController extends AbstractController
         }
 
 
-        $form = $this->createFormBuilder()
-            ->add('positionhotel', ChoiceType::class, [
-//                'choices' => $hotelsArray
-            ])
-            ->add('arrivee', TextType::class, [
-
-            ])
-            ->add('depart', TextType::class, [
-
-            ])
-            ->add('chambre', ChoiceType::class, [
-
-            ])
+        $offre = new Offre();
+        $form = $this->createFormBuilder($offre)
+//            ->add('positionhotel', ChoiceType::class, [
+////                'choices' => $hotelsArray
+//            ])
+            ->add('datedebut', TextType::class, [])
+            ->add('datefin', TextType::class, [])
+//            ->add('chambre', ChoiceType::class, [
+//
+//            ])
             ->add('save', SubmitType::class, ['label' => 'rechercher'])
             ->getForm();
         $form->handleRequest($request);
         $selectedHotels = [];
 
 //        var_dump($data);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
             $crit = $form->getData();
-            $selectedHotels = $repository->findBy(['typehotel' => $crit->getTypehotel()]);
-
-            $hotelsData = $selectedHotels;
+            var_dump("hello");
+            var_dump($crit);
+//            $selectedHotels = $repository->findBy(['typehotel' => $crit->getTypehotel()]);
+            $positionhotel = "";
+            $arrivée = "";
+            $départ = "";
+            $typeschambre = "";
+//            $hotelsData = $selectedHotels;
             return $this->redirect('/resultat?positionhotel' . $positionhotel . "arrivée=" . $arrivée . "départ=" . $départ . "chambre" . $typeschambre);
         }
         return $this->render('client/recherche.html.twig', [
             'hotels' => $hotels,
-            'form' => $form->createView(),
+//            'form' => $form->createView(),
             'types' => [],
 
             'notes' => [],

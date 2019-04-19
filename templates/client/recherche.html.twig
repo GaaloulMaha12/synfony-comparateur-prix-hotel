@@ -4,7 +4,7 @@
 
     <div class="Loader"></div>
     <div class="wrapper">
-        <nav class="navbar navbar-default navbar-fixed navbar-light white bootsnav">
+        <nav class="navbar navbar-default navbar-light white bootsnav">
             <div class="container">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu"><i
                             class="fa fa-bars"></i></button>
@@ -45,45 +45,46 @@
                             <div class="row">
                                 <div class="col-md-3 col-sm-6">
                                     <select id="choose-city" class="form-control">
-                                        {{ form(form) }}
-                                        {#<option value="" selected disabled>Destination</option>#}
-                                        {#<option value="">Ariana</option>#}
-                                        {#<option value="">Béja</option>#}
-                                        {#<option value="">Ben Arous</option>#}
-                                        {#<option value="">Bizerte</option>#}
-                                        {#<option value="">Gabès</option>#}
-                                        {#<option value="">Mahdia</option>#}
-                                        {#<option value="">La Manouba</option>#}
-                                        {#<option value="">Médenine</option>#}
-                                        {#<option value="">Monastir</option>#}
-                                        {#<option value="">Nabeul</option>#}
-                                        {#<option value="">Sfax</option>#}
-                                        {#<option value="">Sousse</option>#}
-                                        {#<option value="">Tataouine</option>#}
-                                        {#<option value="">Tozeur</option>#}
-                                        {#<option value="">Tunis</option>#}
-                                        {#<option value="">Zaghouane</option>#}
+
+                                        <option value="" selected disabled>Destination</option>
+                                        <option value="">Ariana</option>
+                                        <option value="">Béja</option>
+                                        <option value="">Ben Arous</option>
+                                        <option value="">Bizerte</option>
+                                        <option value="">Gabès</option>
+                                        <option value="">Mahdia</option>
+                                        <option value="">La Manouba</option>
+                                        <option value="">Médenine</option>
+                                        <option value="">Monastir</option>
+                                        <option value="">Nabeul</option>
+                                        <option value="">Sfax</option>
+                                        <option value="">Sousse</option>
+                                        <option value="">Tataouine</option>
+                                        <option value="">Tozeur</option>
+                                        <option value="">Tunis</option>
+                                        <option value="">Zaghouane</option>
                                     </select>
                                 </div>
                                 {#<div class="col-md-3 col-sm-6">#}
-                                    {#<input type="text" class="form-control" placeholder="Date arrivée">#}
+                                {#<input type="text" class="form-control" placeholder="Date arrivée">#}
                                 {#</div>#}
                                 {#<div class="col-md-3 col-sm-6">#}
-                                    {#<input type="text" class="form-control" id="companies" placeholder="Date départ">#}
+                                {#<input type="text" class="form-control" id="companies" placeholder="Date départ">#}
                                 {#</div>#}
                                 {#<div class="col-md-3 col-sm-6">#}
-                                    {#<select id="choose-city" class="form-control">#}
-                                        {#<option disabled selected>Type chambre</option>#}
-                                        {#{% for typechambre in typeschambres %}#}
-                                            {#<option>{{ typechambre }}</option>#}
-                                        {#{% endfor %}#}
-                                    {#</select>#}
+                                {#<select id="choose-city" class="form-control">#}
+                                {#<option disabled selected>Type chambre</option>#}
+                                {#{% for typechambre in typeschambres %}#}
+                                {#<option>{{ typechambre }}</option>#}
+                                {#{% endfor %}#}
+                                {#</select>#}
                                 {#</div>#}
                             </div>
                         </div>
                         <div class="col-md-2 col-sm-6">
-                            {#<button type="submit" class="btn btn-primary">#}<a href="/hotel/recherche"
-                                                                             class="btn btn-primary">Search </a>
+                            {#<button type="submit" class="btn btn-primary">#}
+                            {#<a href="/hotel/recherche"#}
+                               {#class="btn btn-primary">Search </a>#}
                         </div>
                     </div>
                     <div class="row">
@@ -107,10 +108,9 @@
                             </select>
                         </div>
 
-                                <div class="col-md-3 col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Autres(piscine,spa,wifi..">
-                                </div>
-
+                        <div class="col-md-3 col-sm-6">
+                            <input type="text" class="form-control" placeholder="Autres(piscine,spa,wifi..">
+                        </div>
 
 
                     </div>

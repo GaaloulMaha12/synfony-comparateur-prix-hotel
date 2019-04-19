@@ -26,9 +26,10 @@ class OffreRepository extends ServiceEntityRepository
     */
     public function getHotelsByCriteria($pos, $type, $debut, $datefin, $note, $chambre, $autre)
     {
-        $debut = \DateTime::createFromFormat('d/m/Y', $debut);
-        $datefin = \DateTime::createFromFormat('d/m/Y', $datefin);
+//        $debut = \DateTime::createFromFormat('d/m/Y', '01/01/2019');
+//        $datefin = \DateTime::createFromFormat('d/m/Y', '01/04/2019');
 
+//        var_dump($debut <= $fin);
         $q = $this->createQueryBuilder('o')
             ->addSelect('h')
             ->leftJoin('o.hotel', 'h')
@@ -42,16 +43,26 @@ class OffreRepository extends ServiceEntityRepository
             $q->setParameter('type', $type)
                 ->andWhere('h.typehotel = :type');
         }
-        if ($debut != null) {
-            var_dump($debut);
+//            var_dump($datefin);
+        if ($debut != null && $datefin != null) {
+            var_dump(strtotime($debut));
+            var_dump($datefin);
+
+//            $debut = strtotime($debut);
+//            $datefin = strtotime($datefin);
 
             $q->setParameter('debut', $debut)
-                ->andWhere('o.datedebut < :debut');
-        }
-        if ($datefin != null) {
-            var_dump($datefin);
+                ->setParameter('datefin', $datefin)
+
+                ->andWhere('o.datefin >= :debut OR o.datedebut <= :debut OR o.datefin >= :datefin OR o.datedebut <= :datefin ');
+
+        } else if ($datefin != null) {
             $q->setParameter('datefin', $datefin)
-                ->andWhere('o.datefin > :datefin');
+                ->andWhere('o.datefin >= :datefin AND o.datedebut <= :datefin ');
+        } else if ($debut != null) {
+            var_dump($debut);
+            $q->setParameter('debut', $debut)
+                ->andWhere('o.datefin >= :debut AND o.datedebut <= :debut ');
         }
         if ($note != null) {
             $q->setParameter('note', $note)
@@ -62,7 +73,7 @@ class OffreRepository extends ServiceEntityRepository
                 ->andWhere('c.typechambre = :cham');
         }
         if ($autre != null) {
-            $q->setParameter('autre', '%'.$autre.'%')
+            $q->setParameter('autre', '%' . $autre . '%')
                 ->andWhere('h.service LIKE :autre');
         }
         return $q
