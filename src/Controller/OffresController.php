@@ -8,11 +8,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Categoriechambre;
-use App\Entity\Pension;
 use App\Entity\Agence;
 use App\Entity\Hotel;
-use App\Entity\Chambre;
+
 
 use function Symfony\Bridge\Twig\Extension\twig_is_selected_choice;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

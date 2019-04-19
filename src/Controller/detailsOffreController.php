@@ -91,7 +91,7 @@ class detailsOffreController extends AbstractController
             $offre = $repository->find($id);
 
             $detailsoffre = $form->getData();
-            $detailsoffre->setPage($offre);
+            $detailsoffre->setOffre($offre);
             $entityManager->persist($detailsoffre);
             $entityManager->flush();
             $detailsoffre = $repository->findAll();

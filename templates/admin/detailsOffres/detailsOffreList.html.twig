@@ -25,7 +25,8 @@
             <th scope="col" > categorie</th>
             <th scope="col" >typepension </th>
             <th scope="col" >prix</th>
-            <th scope="col">Action </th>
+            <th scope="col">lien </th>
+            <th scope="col">action </th>
 
         </tr>
         </thead>
@@ -33,16 +34,16 @@
         {%for detailsoffre in detailsoffres %}
 
             <tr>
-                <td> {{  offre.chambre.Typechambre}}</td>
-                <td> {{  offre.categoriechambre.categorie }}</td>
-                <td> {{  offre.pension.Typepension}}</td>
-                <td> {{  offre.tarif}}</td>
-                <td> {{  offre.lienoffre }}</td>
+                <td> {{  detailsoffre.chambre.Typechambre}}</td>
+                <td> {{  detailsoffre.categoriechambre.categorie }}</td>
+                <td> {{  detailsoffre.pension.Typepension}}</td>
+                <td> {{  detailsoffre.tarif}}</td>
+                <td> {{  detailsoffre.lienoffre }}</td>
 
 
 
-                <td><a href="/elements/editelement/{{ detailsoffre.id }}"> modifier    </a>
-                    <a href="/elements/deletelement/{{ detailsoffre.id }}"> supprimer </a>
+                <td><a href="/detailsoffres/editdetail/{{ detailsoffre.id }}"> modifier    </a>
+                    <a href="/detailsoffres/deletedetail/{{ detailsoffre.id }}"> supprimer </a>
 
                 </td>
             </tr>

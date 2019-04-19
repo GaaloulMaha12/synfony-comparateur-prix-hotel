@@ -50,6 +50,12 @@ class Detailsoffre
      */
     private $tarif;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Offre", inversedBy="detailsoffres")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $offre;
+
 
 
 
@@ -119,6 +125,18 @@ class Detailsoffre
     public function setTarif(string $tarif): self
     {
         $this->tarif = $tarif;
+
+        return $this;
+    }
+
+    public function getOffre(): ?offre
+    {
+        return $this->offre;
+    }
+
+    public function setOffre(?offre $offre): self
+    {
+        $this->offre = $offre;
 
         return $this;
     }

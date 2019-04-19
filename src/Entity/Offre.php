@@ -55,6 +55,11 @@ class Offre
      */
     private $agence;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Detailsoffre", mappedBy="offre")
+     */
+    private $detailsoffres;
+
 
 
     public function __construct()
@@ -62,6 +67,7 @@ class Offre
 
 
         $this->agence = new ArrayCollection();
+        $this->detailsoffres = new ArrayCollection();
 
     }
 
@@ -139,6 +145,37 @@ class Offre
     public function setAgence(?Agence $agence): self
     {
         $this->agence = $agence;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Detailsoffre[]
+     */
+    public function getDetailsoffres(): Collection
+    {
+        return $this->detailsoffres;
+    }
+
+    public function addDetailsoffre(Detailsoffre $detailsoffre): self
+    {
+        if (!$this->detailsoffres->contains($detailsoffre)) {
+            $this->detailsoffres[] = $detailsoffre;
+            $detailsoffre->setOffre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetailsoffre(Detailsoffre $detailsoffre): self
+    {
+        if ($this->detailsoffres->contains($detailsoffre)) {
+            $this->detailsoffres->removeElement($detailsoffre);
+            // set the owning side to null (unless already changed)
+            if ($detailsoffre->getOffre() === $this) {
+                $detailsoffre->setOffre(null);
+            }
+        }
 
         return $this;
     }
