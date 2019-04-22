@@ -139,7 +139,7 @@ class detailsOffreController extends AbstractController
 
 
         $form = $this->createFormBuilder($detailsoffre)
-            ->add('typechambre', ChoiceType::class,
+            ->add('Typechambre', ChoiceType::class,
                 [
                     'choices' => $chambresArray,
                     'empty_data' => $detailsoffre->getChambre()->getTypechambre()
@@ -169,12 +169,14 @@ class detailsOffreController extends AbstractController
             );
         }
 
+
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $repository = $this->getDoctrine()->getRepository(Detailsoffre::class);
 
             $detail = $repository->find($id);
-            $iddetail = $detail->getPage()->getId();
+            $iddetail = $detail->getOffre()->getId();
             $entityManager->persist($detail);
             $detailsoffre->setTypechambre($form->getData()->getTypechambre());
             $detailsoffre->setCategorie($form->getData()->getCategorie());

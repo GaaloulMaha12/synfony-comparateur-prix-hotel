@@ -47,4 +47,31 @@ class DetailsoffreRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getChambresByCriteria( $chambre)
+    {
+//        $debut = \DateTime::createFromFormat('d/m/Y', '01/01/2019');
+//        $datefin = \DateTime::createFromFormat('d/m/Y', '01/04/2019');
+
+//        var_dump($debut <= $fin);
+        $k= $this->createQueryBuilder('d')
+            ->addSelect('o')
+            ->leftJoin('d.offre', 'o')
+            ->addSelect('c')
+            ->leftJoin('d.chambre', 'c');
+
+        if ($chambre != null) {
+            $k->setParameter('cham', $chambre)
+                ->andWhere('c.typechambre = :cham');
+        }
+       return $k
+        ->getQuery()
+        ->getResult();
+
+    }
+
+    public function getHotelsByCriteria($pos, $debut, $datefin)
+    {
+        // TODO: Implement getHotelsByCriteria() method.
+    }
 }

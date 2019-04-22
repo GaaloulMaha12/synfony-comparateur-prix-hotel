@@ -10,6 +10,7 @@ namespace App\Controller;
 
 use App\Entity\Hotel;
 use App\Entity\Offre;
+use App\Entity\Detailsoffre;
 use App\Entity\Chambre;
 use function Symfony\Bridge\Twig\Extension\twig_is_selected_choice;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -27,7 +28,7 @@ class RechercheController extends AbstractController
     /**
      * @Route("/resultat")
      */
-    public function searchhotel(request $request)
+    public function searchhotel(request $request,$repository1)
     {
 
         $pos = $request->get('destination');
@@ -38,9 +39,10 @@ class RechercheController extends AbstractController
         $chambre = $request->get('chambre');
         $autre = $request->get('autre');
 
-        $repository2 = $this->getDoctrine()->getRepository(chambre::class);
+        $repository2 = $this->getDoctrine()->getRepository(Detailsoffre::class);
         $repository = $this->getDoctrine()->getRepository(Offre::class);
-        $offers = $repository->getHotelsByCriteria($pos, $type, $debut, $datefin, $note, $chambre, $autre);
+        $offers = $repository->getHotelsByCriteria($pos, $type, $debut, $datefin, $note, $autre);
+        $details = $repository1->getHotelsByCriteria($chambre);
         $hotelsNotUnique = array();
         foreach ($offers as $o => $val) {
             $hotelsNotUnique[$val->getHotel()->getId()] = $val->getHotel();
@@ -52,24 +54,35 @@ class RechercheController extends AbstractController
             }
         }
 
-        $chambres = $repository2->findAll();
-        $typeschambre = array();
-        foreach ($chambres as $a => $val) {
-            $typeschambre[$val->getTypechambre()] = $val->getTypechambre();
+//        $chambres = $repository2->findAll();
+//        $typeschambre = array();
+//        foreach ($chambres as $a => $val) {
+//            $typeschambre[$val->getTypechambre()] = $val->getTypechambre();
+//        }
+        $chambresNotUnique = array();
+        foreach ($details as $o => $val) {
+            $chambresNotUnique[$val->getChambre()->getId()] = $val->getChambre();
+        }
+        $chambres = array();
+        foreach ($chambresNotUnique as $key => $value) {
+            if (!isset($chambres[$key])) {
+                $chambres[$key] = $value;
+            }
         }
 
 
         $offre = new Offre();
-        $form = $this->createFormBuilder($offre)
+        $detailsoffre = new Detailsoffre();
+        $form = $this->createFormBuilder($offre,$detailsoffre)
 //            ->add('positionhotel', ChoiceType::class, [
 ////                'choices' => $hotelsArray
 //            ])
-            ->add('datedebut', TextType::class, [])
-            ->add('datefin', TextType::class, [])
-//            ->add('chambre', ChoiceType::class, [
-//
-//            ])
-            ->add('save', SubmitType::class, ['label' => 'rechercher'])
+//            ->add('datedebut', TextType::class, [])
+//            ->add('datefin', TextType::class, [])
+////            ->add('chambre', ChoiceType::class, [
+////
+////            ])
+//            ->add('save', SubmitType::class, ['label' => 'rechercher'])
             ->getForm();
         $form->handleRequest($request);
         $selectedHotels = [];
@@ -116,6 +129,7 @@ class RechercheController extends AbstractController
      */
     public function hotelById($id)
     {
+        $detailsoffre=new Detailsoffre();
         $offre = new Offre();
         $repository = $this->getDoctrine()->getRepository(Offre::class);
 
@@ -124,6 +138,13 @@ class RechercheController extends AbstractController
         $repository2 = $this->getDoctrine()->getRepository(Hotel::class);
 
         $HotelData = $repository2->find($id);
+        $repository1 = $this->getDoctrine()->getRepository(Detailsoffre::class);
+
+        $DetailsData = $repository1->findBy(["chambre" => $id]);
+
+        $repository11 = $this->getDoctrine()->getRepository(Chambre::class);
+
+        $ChambreData = $repository11->find($id);
 
 
         return $this->render('client/detailsoffre.html.twig', [
@@ -139,11 +160,14 @@ class RechercheController extends AbstractController
         return $this->createQueryBuilder('c')
             ->andWhere('c.typehotel = :typehotel')
             ->setParameter('typehotel', $critéres['typehotel'])
+            ->andWhere('c.typechambre = :typechambre')
+            ->setParameter('typechambre', $critéres['typechambre'])
             ->getQuery()
             ->getResult();
 
 
     }
+
 
 
 }

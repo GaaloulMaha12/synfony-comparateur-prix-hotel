@@ -46,7 +46,7 @@
                                 <div class="col-md-3 col-sm-6">
                                     <select id="choose-city" class="form-control">
 
-                                        <option value="" selected disabled>Destination</option>
+                                        <option value="" id="destination" selected disabled>Destination</option>
                                         <option value="">Ariana</option>
                                         <option value="">Béja</option>
                                         <option value="">Ben Arous</option>
@@ -65,26 +65,27 @@
                                         <option value="">Zaghouane</option>
                                     </select>
                                 </div>
-                                {#<div class="col-md-3 col-sm-6">#}
-                                {#<input type="text" class="form-control" placeholder="Date arrivée">#}
-                                {#</div>#}
-                                {#<div class="col-md-3 col-sm-6">#}
-                                {#<input type="text" class="form-control" id="companies" placeholder="Date départ">#}
-                                {#</div>#}
-                                {#<div class="col-md-3 col-sm-6">#}
-                                {#<select id="choose-city" class="form-control">#}
-                                {#<option disabled selected>Type chambre</option>#}
-                                {#{% for typechambre in typeschambres %}#}
-                                {#<option>{{ typechambre }}</option>#}
-                                {#{% endfor %}#}
-                                {#</select>#}
-                                {#</div>#}
+                                <div class="col-md-3 col-sm-6">
+                                <input type="text" id="datearrivee" class="form-control" placeholder="Date arrivée">
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                <input type="text" class="form-control" id="datedepart" placeholder="Date départ">
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                <select id="typechambre" class="form-control">
+                                <option disabled selected>Type chambre</option>
+                                {% for typechambre in typeschambres %}
+                                <option>{{ typechambre }}</option>
+                                {% endfor %}
+                                </select>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-2 col-sm-6">
-                            {#<button type="submit" class="btn btn-primary">#}
-                            {#<a href="/hotel/recherche"#}
-                               {#class="btn btn-primary">Search </a>#}
+                            <button type="submit" class="btn btn-primary" onclick="SearchHotel()">
+                            <a href="/hotel/recherche"
+                               class="btn btn-primary">Search </a>
+                            </button>
                         </div>
                     </div>
                     <div class="row">
@@ -92,7 +93,7 @@
                             <input type="range" class="form-control" id="location" placeholder="budget">
                         </div>
                         <div class="col-md-3 col-sm-6">
-                            <select class="form-control">
+                            <select id="avis" class="form-control">
                                 <option disabled selected>Avis</option>
                                 {% for note in notes %}
                                     <option>{{ note }}</option>
@@ -100,7 +101,7 @@
                             </select>
                         </div>
                         <div class="col-md-3 col-sm-6">
-                            <select class="form-control">
+                            <select id="typehotel" class="form-control">
                                 <option disabled selected>Type hotel</option>
                                 {% for type in types %}
                                     <option>{{ type }}</option>
@@ -109,13 +110,32 @@
                         </div>
 
                         <div class="col-md-3 col-sm-6">
-                            <input type="text" class="form-control" placeholder="Autres(piscine,spa,wifi..">
+                            <input type="text"  id="autres" class="form-control" placeholder="Autres(piscine,spa,wifi..">
                         </div>
 
 
                     </div>
                 </form>
             </div>
+
+            <script>
+                function SearchHotel() {
+                    var destination =document.getElementById('destination').value;
+                    console.log(destination)
+                    var datearrivee =document.getElementById('date arrivee ').value;
+                    console.log(datearrivee)
+                    var datedepart =document.getElementById('date depart').value;
+                    console.log(datedepart)
+                    var typechambre =document.getElementById('type chambre').value;
+                    console.log(typechambre)
+                    var typehotel =document.getElementById('type hotel').value;
+                    console.log(typehotel)
+                    var avis =document.getElementById('avis').value;
+                    console.log(avis)
+                    var autres =document.getElementById('autres').value;
+                    console.log(autres)
+                }
+            </script>
         </section>
         <section class="brows-job-category">
             <div class="container">
