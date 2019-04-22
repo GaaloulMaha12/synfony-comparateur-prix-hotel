@@ -24,6 +24,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class OffresController extends AbstractController
 {
@@ -139,33 +140,12 @@ class OffresController extends AbstractController
             $hotelsArray[$val->getNomhotel()] = $val;
         }
 
-        $repository2 = $this->getDoctrine()->getRepository(Chambre::class);
-        $chambres = $repository2->findAll();
-        $chambresArray = array();
-        foreach ($chambres as $a => $val) {
-            $chambresArray[$val->getTypechambre()] = $val;
-        }
-        $repository3= $this->getDoctrine()->getRepository(Categoriechambre::class);
 
-        $categories = $repository3->findAll();
-        $categoriesArray = array();
-        foreach ($categories as $a => $val) {
-            $categoriesArray[$val->getCategorie()] = $val;
-        }
-
-        $repository4 = $this->getDoctrine()->getRepository(Pension::class);
-
-        $pension = $repository4->findAll();
-        $pensionArray = array();
-        foreach ($pension as $a => $val) {
-            $pensionArray[$val->getTypepension()] = $val;
-        }
 //        var_dump($offre->getAgence()->getNomAgence());
         $form = $this->createFormBuilder($offre)
             ->add('nomoffre', TextType::class)
-            ->add('datedebut', TextType::class)
-            ->add('datefin', TextType::class)
-            ->add('lienoffre', TextType::class)
+            ->add('datedebut', dateType::class)
+            ->add('datefin', dateType::class)
 
             ->add('agence', ChoiceType::class,
                 [
@@ -177,22 +157,7 @@ class OffresController extends AbstractController
                     'choices' => $hotelsArray,
 //                    'empty_data' => $offre->getHotel()->getNomhotel()
                 ])
-            ->add('chambre', ChoiceType::class,
-                [
-                    'choices' => $chambresArray,
-                    'empty_data' => $offre->getChambre()->getTypechambre()
-                ])
-            ->add('categoriechambre', ChoiceType::class,
-                [
-                    'choices' => $categoriesArray,
-//                    'empty_data' => $offre->getChambre()->getNomchambre()
-                ])
-            ->add('pension', ChoiceType::class,
-                [
-                    'choices' => $pensionArray,
-                    'empty_data' => $offre->getPension()->getTypepension()
-                ])
-            ->add('tariflocal', TextType::class)
+
             ->add('save', SubmitType::class, ['label' => 'modifier'])
             ->getForm();
 
