@@ -68,10 +68,10 @@ class OffreRepository extends ServiceEntityRepository
             $q->setParameter('note', $note)
                 ->andWhere('h.note = :note');
         }
-        if ($chambre != null) {
-            $q->setParameter('cham', $chambre)
-                ->andWhere('c.typechambre = :cham');
-        }
+//        if ($chambre != null) {
+//            $q->setParameter('cham', $chambre)
+//                ->andWhere('c.typechambre = :cham');
+//        }
         if ($autre != null) {
             $q->setParameter('autre', '%' . $autre . '%')
                 ->andWhere('h.service LIKE :autre');

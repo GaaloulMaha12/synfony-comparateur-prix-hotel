@@ -48,4 +48,8 @@ class HotelRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function getHotelsByCriteria($pos, $debut, $datefin)
+    {
+        // TODO: Implement getHotelsByCriteria() method.
+    }
 }
