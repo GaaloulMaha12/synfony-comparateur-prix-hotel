@@ -7,12 +7,13 @@
  */
 
 namespace App\Controller;
+
 use App\Entity\Chambre;
 use App\Entity\Detailsoffre;
 use App\Entity\Hotel;
 use App\Entity\Offre;
-use function PHPSTORM_META\type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,23 +22,24 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 
-class AccueilController  extends  AbstractController
+class AccueilController extends AbstractController
 {
     /**
      * @Route("/accueil")
      */
 
-    public function pageAccueil (request $request, $repository1) {
+    public function pageAccueil(request $request)
+    {
 
         $pos = $request->get('destination');
         $debut = $request->get('arrivee');
-        $datefin= $request->get('depart');
-        $chambre  = $request->get('chambre');
+        $datefin = $request->get('depart');
+        $chambre = $request->get('chambre');
 
         $repository2 = $this->getDoctrine()->getRepository(detailsoffre::class);
         $repository = $this->getDoctrine()->getRepository(offre::class);
-        $offers = $repository->getHotelsByCriteria($pos, $debut, $datefin);
-        $details = $repository1->getChambresByCriteria($chambre);
+        $offers = $repository->getHotelsByCriteria($pos, $chambre, $debut, $datefin, null, null);
+        $details = $repository2->getChambresByCriteria($chambre);
         $hotelsNotUnique = array();
         foreach ($offers as $o => $val) {
             $hotelsNotUnique[$val->getHotel()->getId()] = $val->getHotel();
@@ -79,7 +81,7 @@ class AccueilController  extends  AbstractController
             ->add('chambre', ChoiceType::class, [
 
             ])
-            ->add('save', SubmitType::class, ['label' => 'rechercher'])
+//            ->add('save', SubmitType::class, ['label' => 'rechercher'])
             ->getForm();
         $form->handleRequest($request);
         $selectedHotels = [];
@@ -87,17 +89,18 @@ class AccueilController  extends  AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $crit = $form->getData();
             $selectedHotels = $repository->findBy(['typehotel' => $crit->getTypehotel()]);
-            $selectedChambres = $repository1->findBy(['typechambre' => $crit->getTypechambre()]);
+            $selectedChambres = $repository2->findBy(['typechambre' => $crit->getTypechambre()]);
 
             $hotelsData = $selectedHotels;
             return $this->redirect('/resultat?positionhotel' . $positionhotel . "arrivée=" . $arrivée . "départ=" . $départ . "chambre" . $typeschambre);
         }
-        return $this->render('client/recherche.html.twig', [
+        return $this->render('client/accueil.html.twig', [
             'hotels' => $hotels,
             'form' => $form->createView(),
             'types' => [],
 
             'notes' => [],
+            'typeschambres' => []
 
         ]);
 

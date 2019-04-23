@@ -44,73 +44,81 @@
                         <div class="col-md-10 col-sm-6">
                             <div class="row">
                                 <div class="col-md-3 col-sm-6">
-                                    <select id="choose-city" class="form-control">
+                                    <select id="destination" class="form-control">
 
-                                        <option value="" id="destination" selected disabled>Destination</option>
-                                        <option value="">Ariana</option>
-                                        <option value="">Béja</option>
-                                        <option value="">Ben Arous</option>
-                                        <option value="">Bizerte</option>
-                                        <option value="">Gabès</option>
-                                        <option value="">Mahdia</option>
-                                        <option value="">La Manouba</option>
-                                        <option value="">Médenine</option>
-                                        <option value="">Monastir</option>
-                                        <option value="">Nabeul</option>
-                                        <option value="">Sfax</option>
-                                        <option value="">Sousse</option>
-                                        <option value="">Tataouine</option>
-                                        <option value="">Tozeur</option>
-                                        <option value="">Tunis</option>
-                                        <option value="">Zaghouane</option>
+                                        <option selected disabled>Destination</option>
+                                        <option>Ariana</option>
+                                        <option>Béja</option>
+                                        <option>Ben Arous</option>
+                                        <option>Bizerte</option>
+                                        <option>Gabès</option>
+                                        <option>Mahdia</option>
+                                        <option>La Manouba</option>
+                                        <option>Médenine</option>
+                                        <option>Monastir</option>
+                                        <option>Nabeul</option>
+                                        <option>Sfax</option>
+                                        <option>Sousse</option>
+                                        <option>Tataouine</option>
+                                        <option>Tozeur</option>
+                                        <option>Tunis</option>
+                                        <option>Zaghouane</option>
+                                        <option>Gammarth</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3 col-sm-6">
-                                <input type="text" id="datearrivee" class="form-control" placeholder="Date arrivée">
+                                    <input type="text" id="arrivee" class="form-control" placeholder="Date arrivée">
                                 </div>
                                 <div class="col-md-3 col-sm-6">
-                                <input type="text" class="form-control" id="datedepart" placeholder="Date départ">
+                                    <input type="text" class="form-control" id="depart" placeholder="Date départ">
                                 </div>
                                 <div class="col-md-3 col-sm-6">
-                                <select id="typechambre" class="form-control">
-                                <option disabled selected>Type chambre</option>
-                                {% for typechambre in typeschambres %}
-                                <option>{{ typechambre }}</option>
-                                {% endfor %}
-                                </select>
+                                    <select id="chambre" class="form-control">
+                                        <option disabled selected>Type chambre</option>
+                                        <option>single</option>
+                                        <option>double</option>
+                                        <option>triple</option>
+
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2 col-sm-6">
-                            <button type="submit" class="btn btn-primary" onclick="SearchHotel()">
-                            <a href="/hotel/recherche"
-                               class="btn btn-primary">Search </a>
-                            </button>
+                        <div class="input-group">
+                            <div class="col-md-2 col-sm-6">
+                                <button type="button" class="btn btn-primary" onclick="SearchHotel()">chercher</button>
+
+
+                            </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3 col-sm-6">
-                            <input type="range" class="form-control" id="location" placeholder="budget">
+                            <input type="range" name="Budget" min="10" max="500" class="form-control" id="location">
                         </div>
                         <div class="col-md-3 col-sm-6">
-                            <select id="avis" class="form-control">
-                                <option disabled selected>Avis</option>
-                                {% for note in notes %}
-                                    <option>{{ note }}</option>
-                                {% endfor %}
+                            <select onchange="avisChange()" id="avis" class="form-control">
+
+                                <option selected disabled>Avis</option>
+                                <option>Excellent</option>
+                                <option>Bien</option>
+                                <option>Convenable</option>
+                                <option>Moyen</option>
                             </select>
                         </div>
                         <div class="col-md-3 col-sm-6">
                             <select id="typehotel" class="form-control">
-                                <option disabled selected>Type hotel</option>
-                                {% for type in types %}
-                                    <option>{{ type }}</option>
-                                {% endfor %}
+
+                                <option selected disabled>type hotel</option>
+                                <option>5 étoiles</option>
+                                <option>4 étoiles</option>
+                                <option>3 étoiles</option>
+                                <option>2 étoiles</option>
+                                <option> 0/1 étoiles</option>
                             </select>
                         </div>
 
                         <div class="col-md-3 col-sm-6">
-                            <input type="text"  id="autres" class="form-control" placeholder="Autres(piscine,spa,wifi..">
+                            <input type="text" id="autres" class="form-control" placeholder="Autres(piscine,spa,wifi..">
                         </div>
 
 
@@ -119,21 +127,58 @@
             </div>
 
             <script>
+                var oldCriteria = window.location.search;
+                var criteriaArray = oldCriteria.split("&");
+                criteriaArray = criteriaArray.filter(function (elem) {
+                    return elem !== "?"
+                });
+                for (var i = 0; i < criteriaArray.length; i++) {
+                    var crit = criteriaArray[i].split("=");
+                    document.getElementById(crit[0]).value = crit[1];
+                }
+
                 function SearchHotel() {
-                    var destination =document.getElementById('destination').value;
-                    console.log(destination)
-                    var datearrivee =document.getElementById('date arrivee ').value;
-                    console.log(datearrivee)
-                    var datedepart =document.getElementById('date depart').value;
-                    console.log(datedepart)
-                    var typechambre =document.getElementById('type chambre').value;
-                    console.log(typechambre)
-                    var typehotel =document.getElementById('type hotel').value;
-                    console.log(typehotel)
-                    var avis =document.getElementById('avis').value;
-                    console.log(avis)
-                    var autres =document.getElementById('autres').value;
-                    console.log(autres)
+                    var destination = document.getElementById('destination');
+                    var selectedDestination = destination.options[destination.selectedIndex].value;
+                    var arrivee = document.getElementById('arrivee').value;
+                    var depart = document.getElementById('depart').value;
+                    var chambre = document.getElementById('chambre');
+                    var selectedChambre = chambre.options[chambre.selectedIndex].value;
+                    var criteria = '?';
+                    if (selectedDestination !== "Destination") {
+                        criteria += "&destination=" + selectedDestination;
+                    }
+                    if (arrivee !== "") {
+                        criteria += "&arrivee=" + arrivee;
+                    }
+                    if (depart !== "") {
+                        criteria += "&depart=" + depart;
+                    }
+                    if (selectedChambre !== "Type chambre") {
+                        criteria += "&chambre=" + selectedChambre;
+                    }
+                    window.location.href = "http://127.0.0.1:8000/resultat" + criteria;
+
+                }
+                function avisChange() {
+                    var avis = document.getElementById('avis').options[document.getElementById('avis').selectedIndex].value;
+                    if (!oldCriteria.includes("avis")) {
+                        oldCriteria += "&avis=" + avis;
+                        window.location.href = "http://127.0.0.1:8000/resultat" + oldCriteria;
+                    } else {
+                        var criteriaArray = oldCriteria.split("&");
+                        criteriaArray = criteriaArray.filter(function (elem) {
+                            return elem !== "?"
+                        });
+                        for (var i = 0; i < criteriaArray.length; i++) {
+                            var crit = criteriaArray[i].split("=");
+                            if (crit[0] === "avis"){
+                                oldCriteria = oldCriteria.replace(crit[1], avis);
+                            }
+                        }
+                        window.location.href = "http://127.0.0.1:8000/resultat" + oldCriteria;
+                    }
+
                 }
             </script>
         </section>

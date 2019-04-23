@@ -71,16 +71,17 @@
         <!-- agency Detail End -->
 
           {% for offre in offres %}
+              {% for detail in detailsoffres %}
         <section class="full-detail-description full-detail">
             <div class="container">
                 <div class="row row-bottom">
-                    <h2 class="detail-title">{{ offre.agence.nomAgence }}:  {{ offre.tariflocal }}</h2>
+                    <h2 class="detail-title">{{ offre.agence.nomAgence }}:  {{ detail.prix }}</h2>
                     <span>
                         <p>{{ offre.pension.typepension }}</p>
-                        <p>{{offre.chambre.typechambre}}-{{ offre.categoriechambre.categorie }}</p>
+                        <p>{{detail.chambre.typechambre}}-{{ detail.categoriechambre.categorie }}</p>
                     </span>
                     <tr>
-                        <td><a href="{{ offre.lienoffre }}"  class="btn btn-primary" target="_blank" class="btn">Réservez  </a>   </td>
+                        <td><a href="{{ detail.lienoffre }}"  class="btn btn-primary" target="_blank" class="btn">Réservez  </a>   </td>
                     </tr>
                 </div>
 
@@ -88,6 +89,7 @@
 
             </div>
         </section>
+        {% endfor %}
         {% endfor %}
         <!-- company full detail End -->
 

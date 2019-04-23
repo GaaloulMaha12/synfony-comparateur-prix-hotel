@@ -28,7 +28,7 @@ class RechercheController extends AbstractController
     /**
      * @Route("/resultat")
      */
-    public function searchhotel(request $request,$repository1)
+    public function searchhotel(request $request)
     {
 
         $pos = $request->get('destination');
@@ -41,8 +41,8 @@ class RechercheController extends AbstractController
 
         $repository2 = $this->getDoctrine()->getRepository(Detailsoffre::class);
         $repository = $this->getDoctrine()->getRepository(Offre::class);
-        $offers = $repository->getHotelsByCriteria($pos, $type, $debut, $datefin, $note, $autre);
-        $details = $repository1->getHotelsByCriteria($chambre);
+        $offers = $repository->getHotelsByCriteria($pos, $type, $debut, $datefin, $note, $autre, $chambre);
+        $details = $repository2->getHotelsByCriteria($pos, $type, $debut, $datefin, $note, $autre);
         $hotelsNotUnique = array();
         foreach ($offers as $o => $val) {
             $hotelsNotUnique[$val->getHotel()->getId()] = $val->getHotel();
@@ -60,9 +60,9 @@ class RechercheController extends AbstractController
 //            $typeschambre[$val->getTypechambre()] = $val->getTypechambre();
 //        }
         $chambresNotUnique = array();
-        foreach ($details as $o => $val) {
-            $chambresNotUnique[$val->getChambre()->getId()] = $val->getChambre();
-        }
+//        foreach ($details as $o => $val) {
+//            $chambresNotUnique[$val->getChambre()->getId()] = $val->getChambre();
+//        }
         $chambres = array();
         foreach ($chambresNotUnique as $key => $value) {
             if (!isset($chambres[$key])) {
@@ -73,7 +73,7 @@ class RechercheController extends AbstractController
 
         $offre = new Offre();
         $detailsoffre = new Detailsoffre();
-        $form = $this->createFormBuilder($offre,$detailsoffre)
+        $form = $this->createFormBuilder($offre)
 //            ->add('positionhotel', ChoiceType::class, [
 ////                'choices' => $hotelsArray
 //            ])
@@ -96,7 +96,7 @@ class RechercheController extends AbstractController
             $positionhotel = "";
             $arrivée = "";
             $départ = "";
-            $typeschambre = "";
+//            $typeschambre = "";
 //            $hotelsData = $selectedHotels;
             return $this->redirect('/resultat?positionhotel' . $positionhotel . "arrivée=" . $arrivée . "départ=" . $départ . "chambre" . $typeschambre);
         }
@@ -106,6 +106,7 @@ class RechercheController extends AbstractController
             'types' => [],
 
             'notes' => [],
+//
 
         ]);
 
@@ -129,7 +130,7 @@ class RechercheController extends AbstractController
      */
     public function hotelById($id)
     {
-        $detailsoffre=new Detailsoffre();
+        $detailsoffre = new Detailsoffre();
         $offre = new Offre();
         $repository = $this->getDoctrine()->getRepository(Offre::class);
 
@@ -149,7 +150,8 @@ class RechercheController extends AbstractController
 
         return $this->render('client/detailsoffre.html.twig', [
             'offres' => $DealsData,
-            'hotel' => $HotelData
+            'hotel' => $HotelData,
+            'detailsoffres' => [],
 
         ]);
     }
@@ -167,7 +169,6 @@ class RechercheController extends AbstractController
 
 
     }
-
 
 
 }

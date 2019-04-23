@@ -139,7 +139,7 @@ class detailsOffreController extends AbstractController
 
 
         $form = $this->createFormBuilder($detailsoffre)
-            ->add('Typechambre', ChoiceType::class,
+            ->add('chambre', ChoiceType::class,
                 [
                     'choices' => $chambresArray,
                     'empty_data' => $detailsoffre->getChambre()->getTypechambre()
@@ -149,12 +149,12 @@ class detailsOffreController extends AbstractController
                     'choices' => $categoriesArray,
 //                    'empty_data' => $detailsoffre->getChambre()->getNomchambre()
                 ])
-            ->add('typepension', ChoiceType::class,
+            ->add('pension', ChoiceType::class,
                 [
                     'choices' => $pensionArray,
                     'empty_data' => $detailsoffre->getPension()->getTypepension()
                 ])
-            ->add('prix', TextType::class)
+            ->add('tarif', TextType::class)
             ->add('lienoffre', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'modifier'])
             ->getForm();
@@ -178,9 +178,9 @@ class detailsOffreController extends AbstractController
             $detail = $repository->find($id);
             $iddetail = $detail->getOffre()->getId();
             $entityManager->persist($detail);
-            $detailsoffre->setTypechambre($form->getData()->getTypechambre());
-            $detailsoffre->setCategorie($form->getData()->getCategorie());
-            $detailsoffre->setTypepension($form->getData()->getTypepension());
+            $detailsoffre->setChambre($form->getData()->getChambre());
+            $detailsoffre->setCategoriechambre($form->getData()->getCategoriechambre());
+            $detailsoffre->setPension($form->getData()->getPension());
             $detailsoffre->setTarif($form->getData()->getTarif());
             $detailsoffre->setLienOffre($form->getData()->getLienOffre());
 

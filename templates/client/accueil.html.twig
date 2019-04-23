@@ -21,57 +21,73 @@
                         <form class="form-horizontal">
                             <div class="col-md-3 no-padd">
                                 <div class="input-group">
-                                    <select id="choose-city" class="form-control">
+                                    <select id="destination"  class="form-control">
 
-                                        <option value="" selected disabled>Destination</option>
-                                        <option value="">Ariana</option>
-                                        <option value="">Béja</option>
-                                        <option value="">Ben Arous</option>
-                                        <option value="">Bizerte</option>
-                                        <option value="">Gabès</option>
-                                        <option value="">Mahdia</option>
-                                        <option value="">La Manouba</option>
-                                        <option value="">Médenine</option>
-                                        <option value="">Monastir</option>
-                                        <option value="">Nabeul</option>
-                                        <option value="">Sfax</option>
-                                        <option value="">Sousse</option>
-                                        <option value="">Tataouine</option>
-                                        <option value="">Tozeur</option>
-                                        <option value="">Tunis</option>
-                                        <option value="">Zaghouane</option>
+                                        <option  selected disabled> Destination</option>
+                                        <option >Ariana</option>
+                                        <option >Béja</option>
+                                        <option >Ben Arous</option>
+                                        <option >Bizerte</option>
+                                        <option >Gabès</option>
+                                        <option >Mahdia</option>
+                                        <option>La Manouba</option>
+                                        <option >Médenine</option>
+                                        <option >Monastir</option>
+                                        <option >Nabeul</option>
+                                        <option >Hammamet</option>
+                                        <option >Sfax</option>
+                                        <option >Sousse</option>
+                                        <option >Tataouine</option>
+                                        <option >Tozeur</option>
+                                        <option >Tunis</option>
+                                        <option >Zaghouane</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-2 no-padd">
                                 <div class="input-group">
 
-                                    <input type="date" placeholder="Arrivée .." onClick="$(this).removeClass('placeholderclass')" class="form-control right-bor dateclass placeholderclass"  id="date" >
+                                    <input type="date" id="datearrivee" placeholder="Arrivée .." onClick="$(this).removeClass('placeholderclass')" class="form-control right-bor dateclass placeholderclass"  id="date" >
                                 </div>
                             </div>
                             <div class="col-md-2 no-padd">
                                 <div class="input-group">
-                                    <input type="date" placeholder="Départ .." onClick="$(this).removeClass('placeholderclass')" class="form-control right-bor dateclass placeholderclass"  id="date" > </div>
+                                    <input type="date" id="datedepart" placeholder="Départ .." onClick="$(this).removeClass('placeholderclass')" class="form-control right-bor dateclass placeholderclass"  id="date" > </div>
                             </div>
                             <div class="col-md-3 no-padd">
                                 <div class="input-group">
-                                    <select id="choose-city" class="form-control">
+                                    <select id="choose-city" id="typechambre" class="form-control">
 
                                         <option value="" selected disabled>Chambre</option>
                                         <option value=""> <i class="far fa-user"></i>Chambre single</option>
                                         <option value="">Chambre Double</option>
-                                        <option value="">Chambre Familiales</option>
+                                        <option value="">Chambre triple</option>
+                                        <option value="">Chambre quadriple</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="col-md-2 no-padd">
-                                <div class="input-group">
 
-                                    <button type="submit" class="btn btn-primary" > <a href="/resultat">Chercher</a></button>
-                                </div>
+                                <div class="input-group">
+                                    <div class="col-md-2 col-sm-6">
+                                        <button type="button" class="btn btn-primary" onclick="SearchHotel()">chercher   </button>
+
+
+                                    </div>
                             </div>
                         </form>
+                        <script>
+                            function SearchHotel() {
+                                var destination = document.getElementById('destination');
+                                var selectedDestination = destination.options[destination.selectedIndex].value;
+
+                                console.log(selectedDestination)
+                                window.location.href = "http://127.0.0.1:8000/resultat?destination=" + selectedDestination;
+
+
+
+                            }
+                        </script>
                     </div>
                 </div>
             </div>
