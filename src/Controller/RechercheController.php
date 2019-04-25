@@ -35,14 +35,16 @@ class RechercheController extends AbstractController
         $type = $request->get('type');
         $debut = $request->get('arrivee');
         $datefin = $request->get('depart');
-        $note = $request->get('note');
+
         $chambre = $request->get('chambre');
         $autre = $request->get('autre');
+        $avis = $request->get('avis');
+        $budget = $request->get('budget');
 
         $repository2 = $this->getDoctrine()->getRepository(Detailsoffre::class);
         $repository = $this->getDoctrine()->getRepository(Offre::class);
-        $offers = $repository->getHotelsByCriteria($pos, $type, $debut, $datefin, $note, $autre, $chambre);
-        $details = $repository2->getHotelsByCriteria($pos, $type, $debut, $datefin, $note, $autre);
+        $offers = $repository->getHotelsByCriteria($pos, $type, $debut, $datefin,$autre , $chambre, $avis, $budget);
+        $details = $repository2->getHotelsByCriteria($pos, $type, $debut, $datefin,  $autre, $budget);
         $hotelsNotUnique = array();
         foreach ($offers as $o => $val) {
             $hotelsNotUnique[$val->getHotel()->getId()] = $val->getHotel();
@@ -151,7 +153,7 @@ class RechercheController extends AbstractController
         return $this->render('client/detailsoffre.html.twig', [
             'offres' => $DealsData,
             'hotel' => $HotelData,
-            'detailsoffres' => [],
+            'detailsoffres' => $DetailsData,
 
         ]);
     }

@@ -54,7 +54,7 @@
 
                              <div class="brows-job-location">
                                  <p>{{ hotel.positionhotel }}</p>
-                              <p>{{ hotel.note }}/10</p></div>
+                              <p>{{ hotel.note }}</p></div>
                                  <p>{{ hotel.service }}</p>
                             </span>
                     </div>
@@ -75,9 +75,9 @@
         <section class="full-detail-description full-detail">
             <div class="container">
                 <div class="row row-bottom">
-                    <h2 class="detail-title">{{ offre.agence.nomAgence }}:  {{ detail.prix }}</h2>
+                    <h2 class="detail-title">{{ offre.agence.nomAgence }}:  {{ detail.tarif }}</h2>
                     <span>
-                        <p>{{ offre.pension.typepension }}</p>
+                        <p>{{ detail.pension.typepension }}</p>
                         <p>{{detail.chambre.typechambre}}-{{ detail.categoriechambre.categorie }}</p>
                     </span>
                     <tr>

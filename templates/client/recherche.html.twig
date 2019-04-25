@@ -67,6 +67,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-3 col-sm-6">
+
                                     <input type="text" id="arrivee" class="form-control" placeholder="Date arrivée">
                                 </div>
                                 <div class="col-md-3 col-sm-6">
@@ -85,6 +86,7 @@
                         </div>
                         <div class="input-group">
                             <div class="col-md-2 col-sm-6">
+
                                 <button type="button" class="btn btn-primary" onclick="SearchHotel()">chercher</button>
 
 
@@ -93,7 +95,27 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3 col-sm-6">
-                            <input type="range" name="Budget" min="10" max="500" class="form-control" id="location">
+                            <select onchange="budgetChange()" id="budget" class="form-control">
+
+                                <option selected disabled>Budget</option>
+                                <option>20 - 100 </option>
+                                <option>100 - 200 </option>
+                                <option>200 - 300 </option>
+                                <option>300 - 400 </option>
+                                <option>400 - 500 </option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6">
+                            <select onchange="TypehotelChange()" id="type" class="form-control">
+
+                                <option selected disabled>type hotel</option>
+                                <option>5 étoiles</option>
+                                <option>4 étoiles</option>
+                                <option>3 étoiles</option>
+                                <option>2 étoiles</option>
+                                <option> 0/1 étoiles</option>
+                            </select>
                         </div>
                         <div class="col-md-3 col-sm-6">
                             <select onchange="avisChange()" id="avis" class="form-control">
@@ -105,20 +127,20 @@
                                 <option>Moyen</option>
                             </select>
                         </div>
-                        <div class="col-md-3 col-sm-6">
-                            <select id="typehotel" class="form-control">
 
-                                <option selected disabled>type hotel</option>
-                                <option>5 étoiles</option>
-                                <option>4 étoiles</option>
-                                <option>3 étoiles</option>
-                                <option>2 étoiles</option>
-                                <option> 0/1 étoiles</option>
+                        <div class="col-md-3 col-sm-6">
+                            <select onchange="autresChange()" id="autre" class="form-control">
+
+                                <option selected disabled>Service Spécifique</option>
+                                <option>Piscine</option>
+                                <option>Spa</option>
+                                <option>Wifi</option>
+                                <option>Sport</option>
+                                <option>Navette Aéroport</option>
+                                <option>Parking</option>
+                                <option>Restaurant</option>
+
                             </select>
-                        </div>
-
-                        <div class="col-md-3 col-sm-6">
-                            <input type="text" id="autres" class="form-control" placeholder="Autres(piscine,spa,wifi..">
                         </div>
 
 
@@ -134,7 +156,7 @@
                 });
                 for (var i = 0; i < criteriaArray.length; i++) {
                     var crit = criteriaArray[i].split("=");
-                    document.getElementById(crit[0]).value = crit[1];
+                    document.getElementById(crit[0]).value = decodeURIComponent(crit[1]);
                 }
 
                 function SearchHotel() {
@@ -163,6 +185,9 @@
                 function avisChange() {
                     var avis = document.getElementById('avis').options[document.getElementById('avis').selectedIndex].value;
                     if (!oldCriteria.includes("avis")) {
+                        if (oldCriteria === "") {
+                            oldCriteria += "?";
+                        }
                         oldCriteria += "&avis=" + avis;
                         window.location.href = "http://127.0.0.1:8000/resultat" + oldCriteria;
                     } else {
@@ -172,14 +197,82 @@
                         });
                         for (var i = 0; i < criteriaArray.length; i++) {
                             var crit = criteriaArray[i].split("=");
-                            if (crit[0] === "avis"){
+                            if (crit[0] === "avis") {
                                 oldCriteria = oldCriteria.replace(crit[1], avis);
                             }
                         }
                         window.location.href = "http://127.0.0.1:8000/resultat" + oldCriteria;
                     }
-
                 }
+                function TypehotelChange() {
+                    var typehotel = document.getElementById('type').options[document.getElementById('type').selectedIndex].value;
+                    if (!oldCriteria.includes("type")) {
+                        if (oldCriteria === "") {
+                            oldCriteria += "?";
+                        }
+                        oldCriteria += "&type=" + typehotel;
+                        window.location.href = "http://127.0.0.1:8000/resultat" + oldCriteria;
+                    } else {
+                        var criteriaArray = oldCriteria.split("&");
+                        criteriaArray = criteriaArray.filter(function (elem) {
+                            return elem !== "?"
+                        });
+                        for (var i = 0; i < criteriaArray.length; i++) {
+                            var crit = criteriaArray[i].split("=");
+                            if (crit[0] === "type") {
+                                oldCriteria = oldCriteria.replace(crit[1], typehotel);
+                            }
+                        }
+                        window.location.href = "http://127.0.0.1:8000/resultat" + oldCriteria;
+                    }
+                }
+                function budgetChange() {
+                    var budget = document.getElementById('budget').options[document.getElementById('budget').selectedIndex].value;
+                    if (!oldCriteria.includes("budget")) {
+                        if (oldCriteria === "") {
+                            oldCriteria += "?";
+                        }
+                        oldCriteria += "&budget=" + budget;
+                        window.location.href = "http://127.0.0.1:8000/resultat" + oldCriteria;
+                    } else {
+                        var criteriaArray = oldCriteria.split("&");
+                        criteriaArray = criteriaArray.filter(function (elem) {
+                            return elem !== "?"
+                        });
+                        for (var i = 0; i < criteriaArray.length; i++) {
+                            var crit = criteriaArray[i].split("=");
+                            if (crit[0] === "budget") {
+                                oldCriteria = oldCriteria.replace(crit[1], budget);
+                            }
+                        }
+                        window.location.href = "http://127.0.0.1:8000/resultat" + oldCriteria;
+                    }
+                }
+                function autresChange() {
+                    var autres = document.getElementById('autre').options[document.getElementById('autre').selectedIndex].value;
+                    if (!oldCriteria.includes("autre")) {
+                        if (oldCriteria === "") {
+                            oldCriteria += "?";
+                        }
+                        oldCriteria += "&autre=" + autres;
+                        window.location.href = "http://127.0.0.1:8000/resultat" + oldCriteria;
+                    } else {
+                        var criteriaArray = oldCriteria.split("&");
+                        criteriaArray = criteriaArray.filter(function (elem) {
+                            return elem !== "?"
+                        });
+                        for (var i = 0; i < criteriaArray.length; i++) {
+                            var crit = criteriaArray[i].split("=");
+                            if (crit[0] === "autre") {
+                                oldCriteria = oldCriteria.replace(crit[1], autres);
+                            }
+                        }
+                        window.location.href = "http://127.0.0.1:8000/resultat" + oldCriteria;
+                    }
+                }
+
+
+
             </script>
         </section>
         <section class="brows-job-category">
@@ -205,7 +298,7 @@
                                                     <h3>{{ hotel.nomhotel }}</h3></a>
                                                 <p><span class="brows-job-sallery">
                                                     <i class="fa fa-star"></i>
-                                                        {{ hotel.note }} / 10
+                                                        {{ hotel.note }}
                                                 </span>
                                                     <span
                                                             class="job-type cl-success bg-trans-success">{{ hotel.typehotel }}</span>

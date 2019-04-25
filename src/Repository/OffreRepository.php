@@ -24,7 +24,7 @@ class OffreRepository extends ServiceEntityRepository
     //  */
     /*
     */
-    public function getHotelsByCriteria($pos, $type, $debut, $datefin, $note, $autre, $chambre)
+    public function getHotelsByCriteria($pos, $type, $debut, $datefin, $autre, $chambre, $avis, $budget)
     {
         $q = $this->createQueryBuilder('o')
             ->addSelect('h')
@@ -54,17 +54,32 @@ class OffreRepository extends ServiceEntityRepository
             $q->setParameter('debut', $debut)
                 ->andWhere('o.datefin >= :debut AND o.datedebut <= :debut ');
         }
-        if ($note != null) {
-            $q->setParameter('note', $note)
-                ->andWhere('h.note = :note');
-        }
+
         if ($chambre != null) {
             $q->setParameter('cham', $chambre)
                 ->andWhere('c.typechambre = :cham');
         }
+        if ($avis != null) {
+            $q->setParameter('avis', $avis)
+                ->andWhere('h.note = :avis');
+        }
         if ($autre != null) {
-            $q->setParameter('autre', '%' . $autre . '%')
+            $q->setParameter('autre', $autre)
                 ->andWhere('h.service LIKE :autre');
+        }
+        if ($budget != null) {
+            // split/
+//            $budget = "50-101";
+            $budgetArray = explode("-", $budget);
+            $min = $budgetArray[0];
+            $max = $budgetArray[1];
+
+            var_dump($budgetArray);
+            $q
+                ->setParameter('min', (int)$min)
+                ->setParameter('max', (int)$max)
+                ->andWhere('d.tarif >= :min')
+                ->andWhere(' d.tarif <= :max ');
         }
         return $q
             ->getQuery()
