@@ -1,5 +1,34 @@
 {% extends 'client/client.base.html.twig' %}
+{% block  stylesheets %}
+    <link href="/css/plugins.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link href="/css/green-style.css" rel="stylesheet">
+    <link href="/css/date.css" rel="stylesheet">
 
+{% endblock %}
+{% block javascripts %}
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/viewportchecker.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/select2.min.js"></script>
+    <script src="/js/bootsnav.js"></script>
+    <script src="/js/bootstrap-wysihtml5.js"></script>
+    <script src="/js/datedropper.min.js"></script>
+    <script src="/js/dropzone.js"></script>
+    <script src="/js/gmap3.min.js"></script>
+    <script src="/js/jquery.easy-autocomplete.min.js"></script>
+    <script src="/js/loader.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/slick.min.js"></script>
+    <script src="/js/wysihtml5-0.3.0.js"></script>
+    <script src="/js/custom.js"></script>
+    <script src="/js/jQuery.style.switcher.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#styleOptions').styleSwitcher();
+        });
+    </script>
+    {% endblock %}
 {% block body %}
 
     <div class="Loader"></div>
@@ -44,9 +73,13 @@
                         <div class="col-md-10 col-sm-6">
                             <div class="row">
                                 <div class="col-md-3 col-sm-6">
-                                    <select id="destination" class="form-control">
 
-                                        <option selected disabled>Destination</option>
+
+
+                                        {#<div class="input-group">#}
+                                            <select  id="choose-city" class="form-control">
+                                        {#<option >Destination</option>#}
+                                        <option>Destination</option>
                                         <option>Ariana</option>
                                         <option>Béja</option>
                                         <option>Ben Arous</option>
@@ -75,7 +108,7 @@
                                 </div>
                                 <div class="col-md-3 col-sm-6">
                                     <select id="chambre" class="form-control">
-                                        <option disabled selected>Type chambre</option>
+                                        <option>Type chambre</option>
                                         <option>single</option>
                                         <option>double</option>
                                         <option>triple</option>
@@ -97,7 +130,7 @@
                         <div class="col-md-3 col-sm-6">
                             <select onchange="budgetChange()" id="budget" class="form-control">
 
-                                <option selected disabled>Budget</option>
+                                <option>Budget</option>
                                 <option>20 - 100 </option>
                                 <option>100 - 200 </option>
                                 <option>200 - 300 </option>
@@ -109,7 +142,7 @@
                         <div class="col-md-3 col-sm-6">
                             <select onchange="TypehotelChange()" id="type" class="form-control">
 
-                                <option selected disabled>type hotel</option>
+                                <option >type hotel</option>
                                 <option>5 étoiles</option>
                                 <option>4 étoiles</option>
                                 <option>3 étoiles</option>
@@ -120,7 +153,7 @@
                         <div class="col-md-3 col-sm-6">
                             <select onchange="avisChange()" id="avis" class="form-control">
 
-                                <option selected disabled>Avis</option>
+                                <option>Avis</option>
                                 <option>Excellent</option>
                                 <option>Bien</option>
                                 <option>Convenable</option>
@@ -131,7 +164,7 @@
                         <div class="col-md-3 col-sm-6">
                             <select onchange="autresChange()" id="autre" class="form-control">
 
-                                <option selected disabled>Service Spécifique</option>
+                                <option>Service Spécifique</option>
                                 <option>Piscine</option>
                                 <option>Spa</option>
                                 <option>Wifi</option>
@@ -160,7 +193,7 @@
                 }
 
                 function SearchHotel() {
-                    var destination = document.getElementById('destination');
+                    var destination = document.getElementById('choose-city');
                     var selectedDestination = destination.options[destination.selectedIndex].value;
                     var arrivee = document.getElementById('arrivee').value;
                     var depart = document.getElementById('depart').value;

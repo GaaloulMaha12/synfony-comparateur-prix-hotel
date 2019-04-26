@@ -9,14 +9,15 @@
 namespace App\Controller;
 
 use App\Entity\Parametre ;
+use App\Entity\Administrateur;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use function Symfony\Bridge\Twig\Extension\twig_is_selected_choice;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 class ParametreController extends  AbstractController
 {
     /**
@@ -27,13 +28,25 @@ class ParametreController extends  AbstractController
     {
 
 
-        $parametre = new Parametre();
 
+        $parametre = new Parametre();
+        $repository = $this->getDoctrine()->getRepository(Administrateur::class);
+        $administrateurs = $repository->findAll();
+        $administrateursArray = array();
+        foreach ($administrateurs as $a => $val) {
+            $administrateursArray[$val->getNom()] = $val;
+        }
 
         $form = $this->createFormBuilder($parametre)
+
             ->add('nomparametre', TextType::class)
             ->add('typeparametre', TextType::class)
             ->add('valeurparametre', TextType::class)
+            ->add('administrateur', ChoiceType::class,
+                [
+                    'choices' => $administrateursArray
+                ]
+            )
             ->add('save', SubmitType::class, ['label' => 'ajouter'])
             ->getForm();
 
@@ -64,11 +77,21 @@ class ParametreController extends  AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $parametre = $entityManager->getRepository(parametre::class)->find($id);
 
-
+        $repository= $this->getDoctrine()->getRepository(Administrateur::class);
+        $administrateurs = $repository->findAll();
+        $administrateursArray = array();
+        foreach ($administrateurs as $a => $val) {
+            $administrateursArray[$val->getNom()] = $val;
+        }
         $form = $this->createFormBuilder($parametre)
             ->add('nomparametre', TextType::class)
             ->add('typeparametre', TextType::class)
             ->add('valeurparametre', TextType::class)
+            ->add('administrateur', ChoiceType::class,
+                [
+                    'choices' => $administrateursArray,
+                    'empty_data' => $parametre->getAdministrateur()->getNom()
+                ])
             ->add('save', SubmitType::class, ['label' => 'modifier'])
             ->getForm();
 

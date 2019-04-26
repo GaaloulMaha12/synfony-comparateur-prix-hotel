@@ -31,6 +31,13 @@ class Parametre
      */
     private $valeurparametre;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Administrateur", inversedBy="parametres")
+     */
+    private $administrateur;
+
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,4 +78,18 @@ class Parametre
 
         return $this;
     }
+
+    public function getAdministrateur(): ?administrateur
+    {
+        return $this->administrateur;
+    }
+
+    public function setAdministrateur(?administrateur $administrateur): self
+    {
+        $this->administrateur = $administrateur;
+
+        return $this;
+    }
+
+
 }

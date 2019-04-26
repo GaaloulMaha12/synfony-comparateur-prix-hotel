@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190419223226 extends AbstractMigration
+final class Version20190425151624 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,9 +22,9 @@ final class Version20190419223226 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE detailsoffre ADD offre_id INT NOT NULL');
-        $this->addSql('ALTER TABLE detailsoffre ADD CONSTRAINT FK_A218887B4CC8505A FOREIGN KEY (offre_id) REFERENCES offre (id)');
-        $this->addSql('CREATE INDEX IDX_A218887B4CC8505A ON detailsoffre (offre_id)');
+        $this->addSql('ALTER TABLE parametre ADD administrateur_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE parametre ADD CONSTRAINT FK_ACC790417EE5403C FOREIGN KEY (administrateur_id) REFERENCES administrateur (id)');
+        $this->addSql('CREATE INDEX IDX_ACC790417EE5403C ON parametre (administrateur_id)');
     }
 
     public function down(Schema $schema) : void
@@ -32,8 +32,8 @@ final class Version20190419223226 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE detailsoffre DROP FOREIGN KEY FK_A218887B4CC8505A');
-        $this->addSql('DROP INDEX IDX_A218887B4CC8505A ON detailsoffre');
-        $this->addSql('ALTER TABLE detailsoffre DROP offre_id');
+        $this->addSql('ALTER TABLE parametre DROP FOREIGN KEY FK_ACC790417EE5403C');
+        $this->addSql('DROP INDEX IDX_ACC790417EE5403C ON parametre');
+        $this->addSql('ALTER TABLE parametre DROP administrateur_id');
     }
 }
