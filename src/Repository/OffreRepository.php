@@ -33,11 +33,11 @@ class OffreRepository extends ServiceEntityRepository
             ->leftJoin('o.detailsoffres', 'd')
             ->addSelect('c')
             ->leftJoin('d.chambre', 'c');
-        if ($pos != null) {
+        if ($pos != null  && $pos != "Destination") {
             $q->setParameter('pos', $pos)
                 ->andWhere('h.positionhotel = :pos');
         }
-        if ($type != null) {
+        if ($type != null  && $type != "type hotel") {
             $q->setParameter('type', $type)
                 ->andWhere('h.typehotel = :type');
         }
@@ -55,19 +55,20 @@ class OffreRepository extends ServiceEntityRepository
                 ->andWhere('o.datefin >= :debut AND o.datedebut <= :debut ');
         }
 
-        if ($chambre != null) {
+        if ($chambre != null  && $chambre != "Type chambre") {
             $q->setParameter('cham', $chambre)
                 ->andWhere('c.typechambre = :cham');
         }
-        if ($avis != null) {
+        if ($avis != null  && $avis != "Avis") {
             $q->setParameter('avis', $avis)
                 ->andWhere('h.note = :avis');
         }
-        if ($autre != null) {
+        if ($autre != null  && $autre != "Service Spécifique") {
             $q->setParameter('autre', $autre)
                 ->andWhere('h.service LIKE :autre');
         }
-        if ($budget != null) {
+        if ($budget != null && $budget != "Budget") {
+            var_dump($budget);
             // split/
 //            $budget = "50-101";
             $budgetArray = explode("-", $budget);

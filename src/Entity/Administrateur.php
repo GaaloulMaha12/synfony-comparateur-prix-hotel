@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +37,18 @@ class Administrateur
      * @ORM\Column(type="string", length=255)
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Parametre", mappedBy="administrateur")
+     */
+    private $parametres;
+
+
+
+    public function __construct()
+    {
+        $this->parametres = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -88,4 +102,37 @@ class Administrateur
 
         return $this;
     }
+
+    /**
+     * @return Collection|Parametre[]
+     */
+    public function getParametres(): Collection
+    {
+        return $this->parametres;
+    }
+
+    public function addParametre(Parametre $parametre): self
+    {
+        if (!$this->parametres->contains($parametre)) {
+            $this->parametres[] = $parametre;
+            $parametre->setAdministrateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParametre(Parametre $parametre): self
+    {
+        if ($this->parametres->contains($parametre)) {
+            $this->parametres->removeElement($parametre);
+            // set the owning side to null (unless already changed)
+            if ($parametre->getAdministrateur() === $this) {
+                $parametre->setAdministrateur(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }
