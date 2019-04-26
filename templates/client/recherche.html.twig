@@ -69,6 +69,31 @@
         <section class="bottom-search-form">
             <div class="container">
                 <form class="bt-form">
+                    <div class="input-group">
+                        <select id="choose-city" class="form-control select2-hidden-accessible"
+                                data-select2-id="choose-city" tabindex="-1" aria-hidden="true">
+                            <option data-select2-id="2">Choose City</option>
+                            <option data-select2-id="5">Chandigarh</option>
+                            <option data-select2-id="6">London</option>
+                            <option data-select2-id="7">England</option>
+                            <option data-select2-id="8">Pratapcity</option>
+                            <option data-select2-id="9">Ukrain</option>
+                            <option data-select2-id="10">Wilangana</option>
+                        </select><span
+                                class="select2 select2-container select2-container--default select2-container--above select2-container--focus"
+                                dir="ltr" data-select2-id="1" style="width: 292px;">
+                            <span class="selection">
+                                <span
+                                        class="select2-selection select2-selection--single" role="combobox"
+                                        aria-haspopup="true" aria-expanded="false" tabindex="0"
+                                        aria-labelledby="select2-choose-city-container"><span
+                                            class="select2-selection__rendered" id="select2-choose-city-container"
+                                            role="textbox" aria-readonly="true"
+                                            title="Choose City">Choose City</span><span class="select2-selection__arrow"
+                                                                                        role="presentation"><b
+                                                role="presentation"></b></span></span></span><span
+                                    class="dropdown-wrapper" aria-hidden="true"></span></span>
+                    </div>
                     <div class="row">
                         <div class="col-md-10 col-sm-6">
                             <div class="row">
@@ -101,12 +126,20 @@
                                 </div>
                                 <div class="col-md-3 col-sm-6">
 
-                                    <input type="text" id="arrivee" class="form-control" placeholder="Date arrivée">
+                                    <input type="date" id="arrivee" placeholder="Arrivée .."
+                                           onClick="$(this).removeClass('placeholderclass')"
+                                           class="form-control right-bor dateclass placeholderclass" id="date">
+
                                 </div>
                                 <div class="col-md-3 col-sm-6">
-                                    <input type="text" class="form-control" id="depart" placeholder="Date départ">
+                                    <input type="date" id="depart" placeholder="Départ .."
+                                           onClick="$(this).removeClass('placeholderclass')"
+                                           class="form-control right-bor dateclass placeholderclass" id="date">
                                 </div>
+
+
                                 <div class="col-md-3 col-sm-6">
+
                                     <select id="chambre" class="form-control">
                                         <option>Type chambre</option>
                                         <option>single</option>
@@ -115,15 +148,18 @@
 
                                     </select>
                                 </div>
+
+                                <div class="input-group">
+                                    <div class="col-md-2 col-sm-6">
+
+                                        <button type="button" class="btn btn-primary" onclick="SearchHotel()">chercher
+                                        </button>
+
+
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="input-group">
-                            <div class="col-md-2 col-sm-6">
-
-                                <button type="button" class="btn btn-primary" onclick="SearchHotel()">chercher</button>
-
-
-                            </div>
+<<<<<<< HEAD
                         </div>
                     </div>
                     <div class="row">
@@ -175,9 +211,60 @@
 
                             </select>
                         </div>
+=======
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6">
+                                    <select onchange="budgetChange()" id="budget" class="form-control">
+>>>>>>> 2026451a47eaa88037ba434e4cf6a392d877e55d
+
+                                        <option selected disabled>Budget</option>
+                                        <option>20 - 100</option>
+                                        <option>100 - 200</option>
+                                        <option>200 - 300</option>
+                                        <option>300 - 400</option>
+                                        <option>400 - 500</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-3 col-sm-6">
+                                    <select onchange="TypehotelChange()" id="type" class="form-control">
+
+                                        <option selected disabled>type hotel</option>
+                                        <option>5 étoiles</option>
+                                        <option>4 étoiles</option>
+                                        <option>3 étoiles</option>
+                                        <option>2 étoiles</option>
+                                        <option> 0/1 étoiles</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <select onchange="avisChange()" id="avis" class="form-control">
+
+                                        <option selected disabled>Avis</option>
+                                        <option>Excellent</option>
+                                        <option>Bien</option>
+                                        <option>Convenable</option>
+                                        <option>Moyen</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-3 col-sm-6">
+                                    <select onchange="autresChange()" id="autre" class="form-control">
+
+                                        <option selected disabled>Service Spécifique</option>
+                                        <option>Piscine</option>
+                                        <option>Spa</option>
+                                        <option>Wifi</option>
+                                        <option>Sport</option>
+                                        <option>Navette Aéroport</option>
+                                        <option>Parking</option>
+                                        <option>Restaurant</option>
+
+                                    </select>
+                                </div>
 
 
-                    </div>
+                            </div>
                 </form>
             </div>
 
@@ -305,7 +392,6 @@
                 }
 
 
-
             </script>
         </section>
         <section class="brows-job-category">
@@ -322,7 +408,7 @@
                                     <div class="brows-job-list">
                                         <div class="col-md-1 col-sm-2 small-padding">
                                             <div class="brows-job-company-img">
-                                                <a href="job-detail.html"><img src="assets/img/com-1.jpg"
+                                                <a href="job-detail.html"><img src="{{ hotel.image }}"
                                                                                class="img-responsive" alt=""/></a>
                                             </div>
                                         </div>
@@ -376,4 +462,24 @@
     </footer>
     <div class="clearfix"></div>
 
+{% endblock %}
+{% block content %}
+
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>One fine body&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 {% endblock %}

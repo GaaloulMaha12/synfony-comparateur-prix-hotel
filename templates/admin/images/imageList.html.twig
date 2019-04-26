@@ -8,54 +8,45 @@
         <li class="breadcrumb-item">
             <a href="index.html">accueil</a>
         </li>
-        <li class="breadcrumb-item active">hotels</li>
+        <li class="breadcrumb-item active">Images</li>
     </ol>
     <div class="row">
-        <div class="col-12 col-md-8"><h3>liste des hotels</h3></div>
+        <div class="col-12 col-md-8"><h3>liste des images </h3></div>
         <div class="col-6 col-md-4">
 
-            <button id="addNewRow" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" >ajouter un hotel</button>
+            <button id="addNewRow" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">ajouter image </button>
         </div>
     </div>
-    <table class="table table-striped table-dark">
+    <table class="table table-striped table-dark"  >
         <thead>
 
         <tr>
-            <th scope="col" >Nom hotel</th>
-            <th scope="col" >position hotel</th>
-            <th scope="col" >type hotel</th>
-            <th scope="col" >adresse</th>
-            <th scope="col" >note</th>
-            <th scope="col" >service</th>
-            <th scope="col" >image</th>
+            <th scope="col" >image hotel</th>
             <th scope="col">Action </th>
 
         </tr>
         </thead>
         <tbody>
-        {%for hotel in hotels %}
+        {%for image in images %}
 
             <tr>
-
-                <td> {{  hotel.nomhotel }}</td>
-                <td>  {{  hotel.positionhotel }}</td>
-                <td>  {{  hotel.typehotel }}</td>
-                <td>  {{  hotel.adresse}}</td>
-                <td>  {{  hotel.note }}</td>
-                <td>  {{  hotel.service }}</td>
-                <td>  {{  hotel.image }}</td>
+                <td> {{  image.imagehotel }}</td>
 
 
 
-             <td><a href="/hotels/edit/{{ hotel.id }}"> modifier    </a>
-                    <a href="/hotels/delete/{{ hotel.id }}"> supprimer </a>
-                 <a href="/images/imageList/{{ hotel.id }}"> Afficher liste image </a>
+
+                <td><a href="/images/editeimage/{{ image.id }}"> modifier    </a>
+                    <a href="/images/deleteimage/{{ image.id }}"> supprimer </a>
+
                 </td>
             </tr>
         {% endfor %}
 
         </tbody>
     </table>
+
+
+
     {#MODAL ADD#}
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -74,8 +65,6 @@
             </div>
         </div>
     </div>
-
-
 
 
 {% endblock %}

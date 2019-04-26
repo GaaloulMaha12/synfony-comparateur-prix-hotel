@@ -38,7 +38,7 @@ class AccueilController extends AbstractController
 
         $repository2 = $this->getDoctrine()->getRepository(detailsoffre::class);
         $repository = $this->getDoctrine()->getRepository(offre::class);
-        $offers = $repository->getHotelsByCriteria($pos, $chambre, $debut, $datefin, null, null);
+        $offers = $repository->getHotelsByCriteria($pos, $chambre, $debut, $datefin, null, null, null, null );
         $details = $repository2->getChambresByCriteria($chambre);
         $hotelsNotUnique = array();
         foreach ($offers as $o => $val) {

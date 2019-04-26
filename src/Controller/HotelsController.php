@@ -43,6 +43,7 @@ class HotelsController extends  AbstractController
             ->add('adresse', TextType::class)
             ->add('note', TextType::class)
             ->add('service', TextType::class)
+            ->add('image', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'ajouter'])
             ->getForm();
 
@@ -84,6 +85,7 @@ class HotelsController extends  AbstractController
             ->add('adresse', TextType::class)
             ->add('note', TextType::class)
             ->add('service', TextType::class)
+            ->add('image', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'modifier'])
             ->getForm();
 
