@@ -43,6 +43,7 @@ class HotelsController extends  AbstractController
             ->add('adresse', TextType::class)
             ->add('note', TextType::class)
             ->add('service', TextType::class)
+            ->add('description', TextType::class)
             ->add('image', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'ajouter'])
             ->getForm();
@@ -85,6 +86,7 @@ class HotelsController extends  AbstractController
             ->add('adresse', TextType::class)
             ->add('note', TextType::class)
             ->add('service', TextType::class)
+            ->add('description', TextType::class)
             ->add('image', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'modifier'])
             ->getForm();
@@ -105,6 +107,8 @@ class HotelsController extends  AbstractController
             $hotel->setTypehotel($form->getData()->getTypehotel());
             $hotel->setNote($form->getData()->getNote());
             $hotel->setService($form->getData()->getService());
+            $hotel->setDescription($form->getData()->getDescription());
+            $hotel->setImage($form->getData()->getImage());
 
             $entityManager->persist($hotel);
             $entityManager->flush();

@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use App\Entity\Hotel;
+use App\Entity\Image;
 use App\Entity\Offre;
 use App\Entity\Detailsoffre;
 use App\Entity\Chambre;
@@ -148,13 +149,19 @@ class RechercheController extends AbstractController
         $repository11 = $this->getDoctrine()->getRepository(Chambre::class);
 
         $ChambreData = $repository11->find($id);
+        $repository11 = $this->getDoctrine()->getRepository(Hotel::class);
+
+        $ImagesData = $repository11->find($id);
+
+        $images = $this->getDoctrine()->getRepository(Image::class)->findBy(["hotel"=>$id]);
 
 
         return $this->render('client/detailsoffre.html.twig', [
             'offres' => $DealsData,
             'hotel' => $HotelData,
             'detailsoffres' => $DetailsData,
-
+            'hotels'=>$ImagesData,
+            'images'=>$images
         ]);
     }
 

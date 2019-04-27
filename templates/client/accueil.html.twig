@@ -21,26 +21,27 @@
                         <form class="form-horizontal">
                             <div class="col-md-3 no-padd">
                                 <div class="input-group">
-                                    <select id="destination"  class="form-control">
+                                    <select id="choose-city" class="form-control selectpicker" data-show-subtext="true"
+                                            data-live-search="true">
 
-                                        <option  selected disabled> Destination</option>
-                                        <option >Ariana</option>
-                                        <option >Béja</option>
-                                        <option >Ben Arous</option>
-                                        <option >Bizerte</option>
-                                        <option >Gabès</option>
-                                        <option >Mahdia</option>
+                                        <option selected disabled>Destination</option>
+                                        <option data-subtext="Ariana">Ariana</option>
+                                        <option>Béja</option>
+                                        <option>Ben Arous</option>
+                                        <option>Bizerte</option>
+                                        <option>Gabès</option>
+                                        <option>Mahdia</option>
                                         <option>La Manouba</option>
-                                        <option >Médenine</option>
-                                        <option >Monastir</option>
-                                        <option >Nabeul</option>
-                                        <option >Hammamet</option>
-                                        <option >Sfax</option>
-                                        <option >Sousse</option>
-                                        <option >Tataouine</option>
-                                        <option >Tozeur</option>
-                                        <option >Tunis</option>
-                                        <option >Zaghouane</option>
+                                        <option>Médenine</option>
+                                        <option>Monastir</option>
+                                        <option>Nabeul</option>
+                                        <option>Sfax</option>
+                                        <option>Sousse</option>
+                                        <option>Tataouine</option>
+                                        <option>Tozeur</option>
+                                        <option>Tunis</option>
+                                        <option>Zaghouane</option>
+                                        <option>Gammarth</option>
                                     </select>
                                 </div>
                             </div>
@@ -79,7 +80,7 @@
                         <script>
 
                             function SearchHotel() {
-                                var destination = document.getElementById('destination');
+                                var destination = document.getElementById('choose-city');
                                 var selectedDestination = destination.options[destination.selectedIndex].value;
                                 var arrivee = document.getElementById('arrivee').value;
                                 var depart = document.getElementById('depart').value;
