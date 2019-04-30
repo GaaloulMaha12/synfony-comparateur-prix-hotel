@@ -27,10 +27,7 @@ class Agence
 
 
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private  $lien_agence;
+
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Offre", mappedBy="agence")
@@ -58,17 +55,6 @@ class Agence
     public function setNomAgence(string $nom_agence): self
     {
         $this->nom_agence = $nom_agence;
-
-        return $this;
-    }
-    public function getLienAgence(): ?string
-    {
-        return $this->lien_agence;
-    }
-
-    public function setLienAgence(string $lien_agence): self
-    {
-        $this->lien_agence = $lien_agence;
 
         return $this;
     }
