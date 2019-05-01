@@ -12,6 +12,7 @@ use App\Entity\Agence;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,6 +23,7 @@ class AgenciesController extends AbstractController
 
     /**
      * @Route("/agences",name="agence")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function agenciesList(Request $request)
     {
@@ -49,6 +51,7 @@ class AgenciesController extends AbstractController
 
     /**
      * @Route("/agences/edit/{id}" ,name="editAgency")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function editagency(Request $request, $id)
     {
@@ -90,6 +93,7 @@ class AgenciesController extends AbstractController
      * @param Request $request
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(request $request, $id)
     {

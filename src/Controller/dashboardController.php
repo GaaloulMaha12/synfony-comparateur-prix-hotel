@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Hotel;
 use App\Entity\Agence;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 use App\Entity\Offre;
 use App\Entity\Pension;
 use App\Entity\Chambre;
@@ -24,6 +26,7 @@ class dashboardController extends AbstractController
 {
     /**
      * @Route("/", name="dashboard")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function dashboard()
     {

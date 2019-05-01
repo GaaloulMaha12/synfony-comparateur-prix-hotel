@@ -16,6 +16,8 @@ use App\Entity\{
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,6 +29,7 @@ class HotelsController extends  AbstractController
     /**
     /**
      * @Route("/hotels",name="hotel")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function hotelsList(Request $request)
     {
@@ -72,6 +75,7 @@ class HotelsController extends  AbstractController
 
     /**
      * @Route("/hotels/edit/{id}" ,name="edithotel")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function editHotel(Request $request, $id)
     {
@@ -123,6 +127,7 @@ class HotelsController extends  AbstractController
 
     /**
      * @Route("/hotels/delete/{id}",name="deletehotel")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function deleteHotel(request $request, $id)
     {

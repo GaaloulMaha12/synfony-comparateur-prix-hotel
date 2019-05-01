@@ -15,6 +15,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -23,6 +25,7 @@ class PagesController extends AbstractController
 {
     /**
      * @Route("/pages",name="page")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function pagesList(Request $request)
     {
@@ -61,6 +64,7 @@ class PagesController extends AbstractController
     }
     /**
      * @Route("/pages/editpage/{id}" ,name="editpage")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function editAgency(Request $request, $id)
     {
@@ -100,6 +104,7 @@ class PagesController extends AbstractController
 
     /**
      * @Route("/pages/deletepage/{id}",name="deletepage")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(request $request, $id)
     {

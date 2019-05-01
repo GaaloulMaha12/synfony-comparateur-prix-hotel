@@ -12,6 +12,8 @@ use App\Entity\Offre;
 use App\Entity\Categoriechambre;
 use App\Entity\Pension;
 use App\Entity\Chambre;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 use function PHPSTORM_META\type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,6 +37,7 @@ class detailsOffreController extends AbstractController
     /**
      * /**
      * @Route("/detailsoffres/detailsoffreList/{id}",name="detailsoffres")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function detailsoffreList(Request $request,$id)
     {
@@ -108,6 +111,7 @@ class detailsOffreController extends AbstractController
 
     /**
      * @Route("/detailsoffres/editdetail/{id}" ,name="editdetail")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function editElement(Request $request, $id)
     {
@@ -195,6 +199,7 @@ class detailsOffreController extends AbstractController
 
     /**
      * @Route("/detailsoffres/deletedetail/{id}",name="deletedetail")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function deletedetail (request $request, $id)
     {

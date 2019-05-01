@@ -15,6 +15,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use function Symfony\Bridge\Twig\Extension\twig_is_selected_choice;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -23,6 +25,7 @@ class ParametreController extends  AbstractController
     /**
     /**
      * @Route("/parametres",name="parametres")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function parametreList(Request $request)
     {
@@ -71,6 +74,7 @@ class ParametreController extends  AbstractController
     }
     /**
      * @Route("/parametres/edit/{id}" ,name="editparametre")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function editParametre(Request $request, $id)
     {

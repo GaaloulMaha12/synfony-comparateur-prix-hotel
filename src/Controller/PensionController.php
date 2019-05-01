@@ -14,11 +14,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 use Symfony\Component\HttpFoundation\Request;
 class PensionController extends AbstractController
 {
     /**
      * @Route("/pension",name="pension")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function pensionList(Request $request)
     {
@@ -55,6 +58,7 @@ class PensionController extends AbstractController
     }
     /**
      * @Route("/pension/delete/{id}",name="deletepension")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function deletePension(request $request, $id)
     {
@@ -83,6 +87,7 @@ class PensionController extends AbstractController
     }
     /**
      * @Route("/pension/edit/{id}" ,name="editpension")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function editPension(Request $request, $id)
     {

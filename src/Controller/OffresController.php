@@ -16,6 +16,8 @@ use function Symfony\Bridge\Twig\Extension\twig_is_selected_choice;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use App\Entity\Offre;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,6 +32,7 @@ class OffresController extends AbstractController
 {
     /**
      * @Route("/offres",name="offre")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function agenciesList(Request $request)
     {
@@ -113,6 +116,7 @@ class OffresController extends AbstractController
 
     /**
      * @Route("/offres/edit/{id}" ,name="editoffre")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function editOffre(Request $request, $id)
     {
@@ -189,6 +193,7 @@ class OffresController extends AbstractController
 
     /**
      * @Route("/offres/delete/{id}",name="deleteoffre")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(request $request, $id)
     {

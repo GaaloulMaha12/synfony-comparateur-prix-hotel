@@ -6,6 +6,7 @@ use App\Entity\Categoriechambre;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +18,7 @@ class CategoriesController extends  AbstractController
     /**
     /**
      * @Route("/categories",name="categories")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function categoriesList(Request $request)
     {
@@ -55,6 +57,7 @@ class CategoriesController extends  AbstractController
 
     /**
      * @Route("/categories/edit/{id}" ,name="editcategorie")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function editCategorie(Request $request, $id)
     {
@@ -96,6 +99,7 @@ class CategoriesController extends  AbstractController
 
     /**
      * @Route("/categories/delete/{id}",name="deletecategorie")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function deleteCategorie(request $request, $id)
     {

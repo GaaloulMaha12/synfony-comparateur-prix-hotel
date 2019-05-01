@@ -14,6 +14,7 @@ use function PHPSTORM_META\type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,6 +31,7 @@ class ElementController extends AbstractController
     /**
      * /**
      * @Route("/elements/elementList/{id}",name="elements")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function elementList(Request $request,$id)
     {
@@ -69,6 +71,7 @@ class ElementController extends AbstractController
     }
     /**
      * @Route("/pages/deletelement/{id}",name="deleteelement")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(request $request, $id)
     {
@@ -97,6 +100,7 @@ class ElementController extends AbstractController
 
     /**
      * @Route("/elements/editelement/{id}" ,name="editelement")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function editElement(Request $request, $id)
     {

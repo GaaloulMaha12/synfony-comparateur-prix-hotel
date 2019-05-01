@@ -9,6 +9,8 @@
 namespace App\Controller;
 use App\Entity\Image;
 use App\Entity\Hotel;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 use function PHPSTORM_META\type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,6 +28,7 @@ class ImageController extends AbstractController
     /**
      * /**
      * @Route("/images/imageList/{id}",name="image")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function imageList(Request $request,$id)
     {
@@ -67,6 +70,7 @@ class ImageController extends AbstractController
 
     /**
      * @Route("/images/deleteimage/{id}",name="deleteimage")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function deleteimage (request $request, $id)
     {
@@ -96,6 +100,7 @@ class ImageController extends AbstractController
 
     /**
      * @Route("/images/editeimage/{id}" ,name="editeimage")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function editImage(Request $request, $id)
     {

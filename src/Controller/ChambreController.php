@@ -11,6 +11,7 @@ use App\Entity\Chambre;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,6 +23,7 @@ class ChambreController extends  AbstractController
     /**
     /**
      * @Route("/chambre",name="chambres")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function chambreList(Request $request)
     {
@@ -58,6 +60,7 @@ class ChambreController extends  AbstractController
 
     /**
      * @Route("/chambre/edit/{id}" ,name="editchambre")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function editChambre(Request $request, $id)
     {
@@ -99,6 +102,7 @@ class ChambreController extends  AbstractController
 
     /**
      * @Route("/chambre/delete/{id}",name="deletechambre")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function deleteChambre(request $request, $id)
     {

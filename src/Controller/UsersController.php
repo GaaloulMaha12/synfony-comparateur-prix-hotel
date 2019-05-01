@@ -11,18 +11,23 @@ namespace App\Controller;
 
 use App\Entity\Administrateur;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Validator\Constraints\Length;
 
 class UsersController extends AbstractController
 {
 
     /**
      * @Route("/users", name="users")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function usersList(Request $request)
     {
@@ -35,8 +40,9 @@ class UsersController extends AbstractController
         $form = $this->createFormBuilder($administrateur)
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
-            ->add('email', TextType::class)
-            ->add('password', TextType::class)
+            ->add('email', EmailType::class)
+            ->add('password', PasswordType::class,
+                ['required'=> true, 'constraints'=> [new Length(['min'=>8])]])
             ->add('save', SubmitType::class, ['label' => 'ajouter'])
             ->getForm();
 
@@ -65,6 +71,7 @@ class UsersController extends AbstractController
 
     /**
      * @Route("/users/edit/{id}",name="edit")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, $id)
     {
@@ -75,8 +82,8 @@ class UsersController extends AbstractController
         $form = $this->createFormBuilder($administrateur)
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
-            ->add('email', TextType::class)
-            ->add('password', TextType::class)
+            ->add('email', EmailType::class)
+            ->add('password', PasswordType::class)
             ->add('save', SubmitType::class, ['label' => 'modifier'])
             ->getForm();
 
@@ -109,6 +116,7 @@ class UsersController extends AbstractController
 
     /**
      * @Route("/users/delete/{id}",name="delete")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(request $request, $id)
     {
