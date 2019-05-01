@@ -52,10 +52,10 @@ class RechercheController extends AbstractController
         }
         $hotels = array();
         foreach ($hotelsNotUnique as $key => $value) {
-            if (!isset($hotels[$key])) {
-                $hotels[$key] = $value;
-            }
+        if (!isset($hotels[$key])) {
+            $hotels[$key] = $value;
         }
+    }
 
 //        $chambres = $repository2->findAll();
 //        $typeschambre = array();
