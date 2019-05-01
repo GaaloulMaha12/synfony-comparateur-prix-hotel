@@ -95,13 +95,13 @@
             <!-- <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
                <input type="text" id="password" class="fadeIn third" name="login" placeholder="password"> -->
             <div align="center">
-                <div class="col-md-6 mb-3">
+                <div class="col-md-12 mb-3">
 
                     <input type="email" class="form-control" name="email" id="inputEmail"  placeholder="email " value="{{ last_username }}"  required="">
                     <div class="invalid-feedback">
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-12 mb-3">
 
                     <input type="password" name="password" class="form-control" id="inputPassword" placeholder="mot de passe " value="" required="">
                     <div class="invalid-feedback">
@@ -118,6 +118,7 @@
 
             <!-- <input type="submit" class="fadeIn fourth" value="Log In"> -->
             <button type="submit" class="btn btn-primary"  data-dismiss="modal" >se connecter   </button>
+
         </form>
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
