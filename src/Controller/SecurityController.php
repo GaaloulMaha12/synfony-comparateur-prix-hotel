@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Administrateur;
 use App\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,64 +18,29 @@ use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
 class SecurityController extends AbstractController
 {
-    use TargetPathTrait;
-
     /**
-     * @Route("/login", name="login")
+     * @Route("/login", name="app_login")
      */
-//    public function connexion()
-//    {
-//        $user = new User();
-//
-//        return $this->render('security/index.html.twig', [
-//
-//        ]);
-
-
-    public function login(Request $request, AuthenticationUtils $helper): Response
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
 
-        $this->saveTargetPath($request->getSession(), 'main',
-            $this->generateUrl('dashboard'));
-        $form = $this->createFormBuilder()
-//            ->add('administrateur', TextType::class)
-            ->add('email', TextType::class ,['label' => ' ' ,
-                'attr' => ['placeholder' => 'email'],
-            ])
-            ->add('password', TextType::class,  ['label' => ' ' ,
-                'attr' => ['placeholder' => 'password'],
-            ])
-            ->add('se connecter', SubmitType::class , [
-                'attr' => ['class' => 'btn btn-primary btn-block btn-large'],
-            ])
-            ->getForm();
-        $form->handleRequest($request);
-        return $this->render('admin/auth/login.html.twig', [
-            // last username entered by the user (if any)
-            'last_username' => $helper->getLastUsername(),
-            // last authentication error (if any)
-            'error' => $helper->getLastAuthenticationError(),
-            'form' => $form->createView(),
-            'message'=>''
-        ]);
+        return $this->render('admin/auth/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
-
-
     /**
-     * This is the route the user can use to logout.
-     *
-     * But, this will never be executed. Symfony will intercept this first
-     * and handle the logout automatically. See logout in config/packages/security.yaml
-     *
-     * @Route("/logout", name="security_logout")
-     */
-
-
+ * This is the route the user can use to logout.
+ *
+ * But, this will never be executed. Symfony will intercept this first
+ * and handle the logout automatically. See logout in config/packages/security.yaml
+ *
+ * @Route("/logout", name="logout")
+ */
     public function logout(): void
     {
         throw new \Exception('This should never be reached!');
     }
-
-
 }
 

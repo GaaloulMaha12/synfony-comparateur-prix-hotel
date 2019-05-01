@@ -17,9 +17,17 @@ security:
             http_basic: ~
             anonymous: true
             form_login:
-                check_path: login
-                login_path: login
-                default_target_path: login
+                username_parameter: email
+                password_parameter: password
+                check_path: app_login
+                login_path: app_login
+                default_target_path: app_login
+            guard:
+                authenticators:
+                    - App\Security\AppAuthenticator
+            logout:
+                path: logout
+                target: app_login
 
 
             # activate different ways to authenticate
