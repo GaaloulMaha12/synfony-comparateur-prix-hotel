@@ -116,10 +116,12 @@
 
 
 
+
             <!-- <input type="submit" class="fadeIn fourth" value="Log In"> -->
             <button type="submit" class="btn btn-primary"  data-dismiss="modal" >se connecter   </button>
 
         </form>
+        <i class="fa fa-check" aria-hidden="true"></i> <a href="/ForgotPassword">Forgot your password?</a>
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
