@@ -28,7 +28,7 @@ class AgenciesController extends AbstractController
         $agence = new Agence();
         $form = $this->createFormBuilder($agence)
             ->add('nom_agence', TextType::class)
-            ->add('lien_agence', TextType::class)
+
             ->add('save', SubmitType::class, ['label' => 'ajouter'])
             ->getForm();
         $form->handleRequest($request);
