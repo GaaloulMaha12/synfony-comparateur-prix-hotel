@@ -71,10 +71,11 @@ class UsersController extends AbstractController
 
     /**
      * @Route("/users/edit/{id}",name="edit")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function edit(Request $request, $id)
     {
+
         $entityManager = $this->getDoctrine()->getManager();
         $administrateur = $entityManager->getRepository(administrateur::class)->find($id);
 
@@ -116,7 +117,7 @@ class UsersController extends AbstractController
 
     /**
      * @Route("/users/delete/{id}",name="delete")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function delete(request $request, $id)
     {

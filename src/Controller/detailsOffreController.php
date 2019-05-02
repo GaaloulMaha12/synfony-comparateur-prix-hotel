@@ -111,7 +111,7 @@ class detailsOffreController extends AbstractController
 
     /**
      * @Route("/detailsoffres/editdetail/{id}" ,name="editdetail")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function editElement(Request $request, $id)
     {
@@ -199,10 +199,11 @@ class detailsOffreController extends AbstractController
 
     /**
      * @Route("/detailsoffres/deletedetail/{id}",name="deletedetail")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function deletedetail (request $request, $id)
     {
+
         $entityManager = $this->getDoctrine()->getManager();
 
         $form = $this->createFormBuilder()

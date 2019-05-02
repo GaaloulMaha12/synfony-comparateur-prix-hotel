@@ -60,7 +60,7 @@ class ChambreController extends  AbstractController
 
     /**
      * @Route("/chambre/edit/{id}" ,name="editchambre")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function editChambre(Request $request, $id)
     {
@@ -102,10 +102,11 @@ class ChambreController extends  AbstractController
 
     /**
      * @Route("/chambre/delete/{id}",name="deletechambre")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function deleteChambre(request $request, $id)
     {
+
         $entityManager = $this->getDoctrine()->getManager();
         $chambre = $entityManager->getRepository(chambre::class)->find($id);
 

@@ -58,10 +58,11 @@ class PensionController extends AbstractController
     }
     /**
      * @Route("/pension/delete/{id}",name="deletepension")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function deletePension(request $request, $id)
     {
+
         $entityManager = $this->getDoctrine()->getManager();
         $pension = $entityManager->getRepository(pension::class)->find($id);
 
@@ -87,10 +88,11 @@ class PensionController extends AbstractController
     }
     /**
      * @Route("/pension/edit/{id}" ,name="editpension")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function editPension(Request $request, $id)
     {
+
         $entityManager = $this->getDoctrine()->getManager();
         $pension = $entityManager->getRepository(pension::class)->find($id);
 

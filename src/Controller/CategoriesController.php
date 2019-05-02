@@ -57,10 +57,11 @@ class CategoriesController extends  AbstractController
 
     /**
      * @Route("/categories/edit/{id}" ,name="editcategorie")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function editCategorie(Request $request, $id)
     {
+
         $entityManager = $this->getDoctrine()->getManager();
         $categoriechambre  = $entityManager->getRepository(categoriechambre ::class)->find($id);
 
@@ -99,10 +100,11 @@ class CategoriesController extends  AbstractController
 
     /**
      * @Route("/categories/delete/{id}",name="deletecategorie")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function deleteCategorie(request $request, $id)
     {
+
         $entityManager = $this->getDoctrine()->getManager();
         $categoriechambre  = $entityManager->getRepository(categoriechambre ::class)->find($id);
 

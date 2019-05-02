@@ -75,10 +75,11 @@ class HotelsController extends  AbstractController
 
     /**
      * @Route("/hotels/edit/{id}" ,name="edithotel")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function editHotel(Request $request, $id)
     {
+
         $entityManager = $this->getDoctrine()->getManager();
         $hotel = $entityManager->getRepository(hotel::class)->find($id);
 
@@ -127,10 +128,11 @@ class HotelsController extends  AbstractController
 
     /**
      * @Route("/hotels/delete/{id}",name="deletehotel")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function deleteHotel(request $request, $id)
     {
+
         $entityManager = $this->getDoctrine()->getManager();
         $hotel = $entityManager->getRepository(hotel::class)->find($id);
 

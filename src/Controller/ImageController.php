@@ -70,10 +70,11 @@ class ImageController extends AbstractController
 
     /**
      * @Route("/images/deleteimage/{id}",name="deleteimage")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function deleteimage (request $request, $id)
     {
+
         $entityManager = $this->getDoctrine()->getManager();
 
         $form = $this->createFormBuilder()
@@ -100,7 +101,6 @@ class ImageController extends AbstractController
 
     /**
      * @Route("/images/editeimage/{id}" ,name="editeimage")
-     * @IsGranted("ROLE_ADMIN")
      */
     public function editImage(Request $request, $id)
     {

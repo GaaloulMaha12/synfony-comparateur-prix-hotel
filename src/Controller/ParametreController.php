@@ -74,10 +74,11 @@ class ParametreController extends  AbstractController
     }
     /**
      * @Route("/parametres/edit/{id}" ,name="editparametre")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function editParametre(Request $request, $id)
     {
+
         $entityManager = $this->getDoctrine()->getManager();
         $parametre = $entityManager->getRepository(parametre::class)->find($id);
 

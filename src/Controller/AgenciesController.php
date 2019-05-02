@@ -51,10 +51,11 @@ class AgenciesController extends AbstractController
 
     /**
      * @Route("/agences/edit/{id}" ,name="editAgency")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function editagency(Request $request, $id)
     {
+
         $entityManager = $this->getDoctrine()->getManager();
         $agence = $entityManager->getRepository(agence::class)->find($id);
 
@@ -93,10 +94,11 @@ class AgenciesController extends AbstractController
      * @param Request $request
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function delete(request $request, $id)
     {
+
         $entityManager = $this->getDoctrine()->getManager();
         $agence = $entityManager->getRepository(agence::class)->find($id);
 

@@ -116,7 +116,7 @@ class OffresController extends AbstractController
 
     /**
      * @Route("/offres/edit/{id}" ,name="editoffre")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function editOffre(Request $request, $id)
     {
@@ -193,10 +193,12 @@ class OffresController extends AbstractController
 
     /**
      * @Route("/offres/delete/{id}",name="deleteoffre")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function delete(request $request, $id)
+
     {
+
         $entityManager = $this->getDoctrine()->getManager();
         $offre = $entityManager->getRepository(offre::class)->find($id);
 

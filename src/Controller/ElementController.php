@@ -31,10 +31,11 @@ class ElementController extends AbstractController
     /**
      * /**
      * @Route("/elements/elementList/{id}",name="elements")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function elementList(Request $request,$id)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $element = new Element();
 
 
@@ -71,10 +72,12 @@ class ElementController extends AbstractController
     }
     /**
      * @Route("/pages/deletelement/{id}",name="deleteelement")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function delete(request $request, $id)
+
     {
+
         $entityManager = $this->getDoctrine()->getManager();
 
         $form = $this->createFormBuilder()
@@ -100,7 +103,6 @@ class ElementController extends AbstractController
 
     /**
      * @Route("/elements/editelement/{id}" ,name="editelement")
-     * @IsGranted("ROLE_ADMIN")
      */
     public function editElement(Request $request, $id)
     {

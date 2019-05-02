@@ -64,10 +64,11 @@ class PagesController extends AbstractController
     }
     /**
      * @Route("/pages/editpage/{id}" ,name="editpage")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function editAgency(Request $request, $id)
     {
+
         $entityManager = $this->getDoctrine()->getManager();
         $page = $entityManager->getRepository(page::class)->find($id);
 
@@ -104,10 +105,11 @@ class PagesController extends AbstractController
 
     /**
      * @Route("/pages/deletepage/{id}",name="deletepage")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function delete(request $request, $id)
     {
+
         $entityManager = $this->getDoctrine()->getManager();
         $page = $entityManager->getRepository(page::class)->find($id);
 
