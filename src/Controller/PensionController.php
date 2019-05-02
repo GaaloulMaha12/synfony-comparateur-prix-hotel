@@ -62,7 +62,7 @@ class PensionController extends AbstractController
      */
     public function deletePension(request $request, $id)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $entityManager = $this->getDoctrine()->getManager();
         $pension = $entityManager->getRepository(pension::class)->find($id);
 
@@ -92,7 +92,6 @@ class PensionController extends AbstractController
      */
     public function editPension(Request $request, $id)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $entityManager = $this->getDoctrine()->getManager();
         $pension = $entityManager->getRepository(pension::class)->find($id);

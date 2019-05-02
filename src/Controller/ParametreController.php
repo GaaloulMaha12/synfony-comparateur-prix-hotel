@@ -78,7 +78,7 @@ class ParametreController extends  AbstractController
      */
     public function editParametre(Request $request, $id)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $entityManager = $this->getDoctrine()->getManager();
         $parametre = $entityManager->getRepository(parametre::class)->find($id);
 

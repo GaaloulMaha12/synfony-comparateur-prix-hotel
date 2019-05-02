@@ -68,7 +68,7 @@ class PagesController extends AbstractController
      */
     public function editAgency(Request $request, $id)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
 
         $entityManager = $this->getDoctrine()->getManager();
         $page = $entityManager->getRepository(page::class)->find($id);
@@ -110,7 +110,6 @@ class PagesController extends AbstractController
      */
     public function delete(request $request, $id)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $entityManager = $this->getDoctrine()->getManager();
         $page = $entityManager->getRepository(page::class)->find($id);
 

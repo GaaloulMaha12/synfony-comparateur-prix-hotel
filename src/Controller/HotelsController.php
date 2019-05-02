@@ -79,7 +79,7 @@ class HotelsController extends  AbstractController
      */
     public function editHotel(Request $request, $id)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $entityManager = $this->getDoctrine()->getManager();
         $hotel = $entityManager->getRepository(hotel::class)->find($id);
 
@@ -132,7 +132,7 @@ class HotelsController extends  AbstractController
      */
     public function deleteHotel(request $request, $id)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $entityManager = $this->getDoctrine()->getManager();
         $hotel = $entityManager->getRepository(hotel::class)->find($id);
 

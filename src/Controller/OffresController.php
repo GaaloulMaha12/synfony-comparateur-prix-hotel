@@ -120,7 +120,7 @@ class OffresController extends AbstractController
      */
     public function editOffre(Request $request, $id)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
 
         $entityManager = $this->getDoctrine()->getManager();
         $offre = $entityManager->getRepository(Offre::class)->find($id);
@@ -198,7 +198,7 @@ class OffresController extends AbstractController
     public function delete(request $request, $id)
 
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $entityManager = $this->getDoctrine()->getManager();
         $offre = $entityManager->getRepository(offre::class)->find($id);
 

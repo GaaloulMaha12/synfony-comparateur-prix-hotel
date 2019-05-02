@@ -41,7 +41,7 @@ class detailsOffreController extends AbstractController
      */
     public function detailsoffreList(Request $request,$id)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $detailsoffre = new detailsoffre();
         $repository2 = $this->getDoctrine()->getRepository(Chambre::class);
         $chambres = $repository2->findAll();
@@ -116,7 +116,7 @@ class detailsOffreController extends AbstractController
      */
     public function editElement(Request $request, $id)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $entityManager = $this->getDoctrine()->getManager();
         $detailsoffre = $entityManager->getRepository(Detailsoffre::class)->find($id);
 
@@ -205,7 +205,6 @@ class detailsOffreController extends AbstractController
      */
     public function deletedetail (request $request, $id)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $entityManager = $this->getDoctrine()->getManager();
 
         $form = $this->createFormBuilder()

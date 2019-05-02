@@ -36,7 +36,7 @@ class ElementController extends AbstractController
     public function elementList(Request $request,$id)
     {
 
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $element = new Element();
 
 
@@ -78,7 +78,7 @@ class ElementController extends AbstractController
     public function delete(request $request, $id)
 
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $entityManager = $this->getDoctrine()->getManager();
 
         $form = $this->createFormBuilder()
@@ -107,7 +107,7 @@ class ElementController extends AbstractController
      */
     public function editElement(Request $request, $id)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $entityManager = $this->getDoctrine()->getManager();
         $element = $entityManager->getRepository(Element::class)->find($id);
 
