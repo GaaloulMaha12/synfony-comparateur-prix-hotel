@@ -55,7 +55,7 @@ class AgenciesController extends AbstractController
      */
     public function editagency(Request $request, $id)
     {
-
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $entityManager = $this->getDoctrine()->getManager();
         $agence = $entityManager->getRepository(agence::class)->find($id);
 
@@ -98,7 +98,7 @@ class AgenciesController extends AbstractController
      */
     public function delete(request $request, $id)
     {
-
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $entityManager = $this->getDoctrine()->getManager();
         $agence = $entityManager->getRepository(agence::class)->find($id);
 

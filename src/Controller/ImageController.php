@@ -28,10 +28,11 @@ class ImageController extends AbstractController
     /**
      * /**
      * @Route("/images/imageList/{id}",name="image")
-     * @IsGranted("ROLE_ADMIN")
+
      */
     public function imageList(Request $request,$id)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $image = new image();
 
 
@@ -74,7 +75,7 @@ class ImageController extends AbstractController
      */
     public function deleteimage (request $request, $id)
     {
-
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $entityManager = $this->getDoctrine()->getManager();
 
         $form = $this->createFormBuilder()
@@ -104,7 +105,7 @@ class ImageController extends AbstractController
      */
     public function editImage(Request $request, $id)
     {
-
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $entityManager = $this->getDoctrine()->getManager();
         $image = $entityManager->getRepository(Image::class)->find($id);
 

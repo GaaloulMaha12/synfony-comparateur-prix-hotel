@@ -64,6 +64,7 @@ class ChambreController extends  AbstractController
      */
     public function editChambre(Request $request, $id)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $entityManager = $this->getDoctrine()->getManager();
         $chambre = $entityManager->getRepository(chambre::class)->find($id);
 
@@ -106,7 +107,7 @@ class ChambreController extends  AbstractController
      */
     public function deleteChambre(request $request, $id)
     {
-
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $entityManager = $this->getDoctrine()->getManager();
         $chambre = $entityManager->getRepository(chambre::class)->find($id);
 

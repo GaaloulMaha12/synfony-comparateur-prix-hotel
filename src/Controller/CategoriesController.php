@@ -61,7 +61,7 @@ class CategoriesController extends  AbstractController
      */
     public function editCategorie(Request $request, $id)
     {
-
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $entityManager = $this->getDoctrine()->getManager();
         $categoriechambre  = $entityManager->getRepository(categoriechambre ::class)->find($id);
 
@@ -104,7 +104,7 @@ class CategoriesController extends  AbstractController
      */
     public function deleteCategorie(request $request, $id)
     {
-
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $entityManager = $this->getDoctrine()->getManager();
         $categoriechambre  = $entityManager->getRepository(categoriechambre ::class)->find($id);
 
