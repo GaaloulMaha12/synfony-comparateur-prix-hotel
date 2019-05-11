@@ -55,8 +55,8 @@ class ForgotPasswordController extends AbstractController
             $entityManager->flush();
 
             $message = (new \Swift_Message('Hello Email'))
-                ->setFrom($usersData->getEmail())
-                ->setTo("marwa.louati1997@gmail.com")
+                ->setFrom($usersData->getEmail())//sender email
+                ->setTo($usersData->getEmail())//reciever email
                 ->setBody(
                     " hello  your new password " . $pass
                 );

@@ -181,4 +181,11 @@ class Administrateur implements  UserInterface
     {
         // TODO: Implement eraseCredentials() method.
     }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
 }

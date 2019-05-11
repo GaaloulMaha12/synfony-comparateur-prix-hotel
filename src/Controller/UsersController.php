@@ -75,7 +75,7 @@ class UsersController extends AbstractController
      */
     public function edit(Request $request, $id)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
 
         $entityManager = $this->getDoctrine()->getManager();
         $administrateur = $entityManager->getRepository(administrateur::class)->find($id);
@@ -122,7 +122,7 @@ class UsersController extends AbstractController
      */
     public function delete(request $request, $id)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $entityManager = $this->getDoctrine()->getManager();
         $administrateur = $entityManager->getRepository(administrateur::class)->find($id);
 

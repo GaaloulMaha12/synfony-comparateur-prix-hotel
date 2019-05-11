@@ -41,11 +41,17 @@ class RechercheController extends AbstractController
         $autre = $request->get('autre');
         $avis = $request->get('avis');
         $budget = $request->get('budget');
-
+//        $repository3 = $this->getDoctrine()->getRepository(Parametre::class);
+//        $parametresdata = $repository3->findAll();
+//        $parametresArray = array();
+//        foreach ($parametresdata as $a => $val) {
+//            $parametresArray[$val->getNomparametre()] = $val;
+//        }
         $repository2 = $this->getDoctrine()->getRepository(Detailsoffre::class);
         $repository = $this->getDoctrine()->getRepository(Offre::class);
         $offers = $repository->getHotelsByCriteria($pos, $type, $debut, $datefin,$autre , $chambre, $avis, $budget);
         $details = $repository2->getHotelsByCriteria($pos, $type, $debut, $datefin,  $autre, $budget);
+
         $hotelsNotUnique = array();
         foreach ($offers as $o => $val) {
             $hotelsNotUnique[$val->getHotel()->getId()] = $val->getHotel();
@@ -109,6 +115,7 @@ class RechercheController extends AbstractController
             'types' => [],
 
             'notes' => [],
+
 //
 
         ]);
@@ -139,12 +146,18 @@ class RechercheController extends AbstractController
 
         $DealsData = $repository->findBy(["hotel" => $id]);
 
+
         $repository2 = $this->getDoctrine()->getRepository(Hotel::class);
 
         $HotelData = $repository2->find($id);
-        $repository1 = $this->getDoctrine()->getRepository(Detailsoffre::class);
+//        $repository1 = $this->getDoctrine()->getRepository(Detailsoffre::class);
+//        $DetailsData = $repository1->find($id);
+//        $DetailsData = $repository1->findBy(["chambre" => $id]);
+        $repository1 = $this->getDoctrine()->getRepository(Offre::class);
 
-        $DetailsData = $repository1->findBy(["chambre" => $id]);
+        $DetailsData = $repository1->find($id);
+
+        $details = $this->getDoctrine()->getRepository(Detailsoffre::class)->findBy(["offre"=>$id]);
 
         $repository11 = $this->getDoctrine()->getRepository(Chambre::class);
 
@@ -159,7 +172,7 @@ class RechercheController extends AbstractController
         return $this->render('client/detailsoffre.html.twig', [
             'offres' => $DealsData,
             'hotel' => $HotelData,
-            'detailsoffres' => $DetailsData,
+           'detailsoffres' => $DetailsData,
             'hotels'=>$ImagesData,
             'images'=>$images
         ]);
