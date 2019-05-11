@@ -150,14 +150,9 @@ class RechercheController extends AbstractController
         $repository2 = $this->getDoctrine()->getRepository(Hotel::class);
 
         $HotelData = $repository2->find($id);
-//        $repository1 = $this->getDoctrine()->getRepository(Detailsoffre::class);
-//        $DetailsData = $repository1->find($id);
-//        $DetailsData = $repository1->findBy(["chambre" => $id]);
-        $repository1 = $this->getDoctrine()->getRepository(Offre::class);
-
+        $repository1 = $this->getDoctrine()->getRepository(Detailsoffre::class);
         $DetailsData = $repository1->find($id);
-
-        $details = $this->getDoctrine()->getRepository(Detailsoffre::class)->findBy(["offre"=>$id]);
+        $DetailsData = $repository1->findBy(["offre" => $id]);
 
         $repository11 = $this->getDoctrine()->getRepository(Chambre::class);
 
